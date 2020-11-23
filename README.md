@@ -60,11 +60,15 @@ Online Garden Shed is for improving your gardening skills by keeping track of pl
 # R4. User Stories
 * As a guest, I want to be able to see other users garden shed plant history without the need of sign up, so I can look around and without any obligations.
 * As a user, I want to be able to sign up or log in, so I can create plant history with photos and written logs.
+* As a user, I want to create plant history with photos and written logs, so I can maintain the history of plants growth.
 * As a user, I want to be able to search for plants during the creation of a new plant log, so I can bring up detailed info about that specific plant.
 * As a user, I want to be able to browse MY OWN garden shed plant history list, so I can update or delete a specific plant history.
-* As a user, I want to be able to maintain the history of plants growth
-* As a user, I want to be able to sign up/ log in
-
+* As a user, I want to be able to update or delete the history of plants growth, so I can learn and share previous gardening attemps with myself and for other users.
+* As a user, I want to be able to get email notifications when it comes time to water or fertilise the plants, so I can stick to the schedule.
+* As a user, I want to be able to search a specific plant, so I can look at the history and follow the progress of a specific plant grown by many garden sheds.
+* As a user, I want to be able to follow a specific plant, so I can get email notifications when the plants that I follow are updated.
+* As a user, I want to be able to follow other garden sheds, so I can get email notifications when the following garden sheds update any plant history.
+* As a user, I want to be able to get email notifications when the garden shed that I am following updates any plant history, so I can keep updated with the progress of any plant records.
 
 
 [Go back](#table-of-contents)<br /><br /><br />
