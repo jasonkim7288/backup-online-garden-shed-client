@@ -32,7 +32,15 @@ Online Garden Shed is for improving your gardening skills by keeping track of pl
 * For everybody who is interested in gardening
 
 ## Tech stack
-*
+* Mongo DB
+* Express JS
+* React JS
+* Node JS
+* AWS S3 Bucket or Cloudinary
+* react-google-login
+* google-auth-library
+* jwt
+* nodemailer
 
 [Go back](#table-of-contents)<br /><br /><br />
 
@@ -47,6 +55,13 @@ Online Garden Shed is for improving your gardening skills by keeping track of pl
 [Go back](#table-of-contents)<br /><br /><br />
 
 # R4. User Stories
+* As a guest, I want to be able to see other users garden shed plant history without the need of sign up, so I can look around and without any obligations.
+* As a user, I want to be able to sign up or log in, so I can create plant history with photos and written logs.
+* As a user, I want to be able to search for plants during the creation of a new plant log, so I can bring up detailed info about that specific plant.
+* As a user, I want to be able to browse MY OWN garden shed plant history list, so I can update or delete a specific plant history.
+* As a user, I want to be able to maintain the history of plants growth
+* As a user, I want to be able to sign up/ log in
+
 
 
 [Go back](#table-of-contents)<br /><br /><br />
