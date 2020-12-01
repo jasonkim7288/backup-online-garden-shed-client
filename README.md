@@ -46,11 +46,12 @@ Online Garden Shed is for improving your gardening skills by keeping track of pl
 [Go back](#table-of-contents)<br /><br /><br />
 
 # R2. Dataflow Diagram
-
+![Data Flow Diagram](./DFD_OnlineGardenShed.png)
 
 [Go back](#table-of-contents)<br /><br /><br />
 
 # R3. Application Architecture Diagram
+![Application Architecture Diagram](./AAD_OnlineGardenShed.png)
 
 
 [Go back](#table-of-contents)<br /><br /><br />
