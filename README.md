@@ -73,7 +73,9 @@ Online Garden Shed is for improving your gardening skills by keeping track of pl
 [Go back](#table-of-contents)<br /><br /><br />
 
 # R5. Wireframes for multiple standard screen sizes
-
+![Mobile Wireframes](./MobileWireframes.png)
+![Tablet Wireframes](./TabletWireframes.png)
+![Desktop Wireframes](./DesktopWireframes.png)
 
 [Go back](#table-of-contents)<br /><br /><br />
 
