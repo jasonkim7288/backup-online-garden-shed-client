@@ -7,11 +7,11 @@ import './styles/app.css'
 
 const App = () => {
   return (
-    <div id="entire-view">
-      <div class="grid-item">
+    <div id="entier-view">
+      <div id="grid-item-navbar">
         <NavbarMobile />
       </div>
-      <div class="grid-item">
+      <div id="grid-item-body">
       <BrowserRouter>
         <Switch>
           <Route exact path ="/" component={LandingPage} />

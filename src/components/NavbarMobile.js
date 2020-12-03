@@ -4,7 +4,7 @@ import '../styles/navbar.css'
 const NavbarMobile = () => {
   return (
     <div id="navbar">
-      Navbar
+      Navbar 
     </div>
   )
 }
