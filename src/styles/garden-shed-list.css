@@ -1,0 +1,15 @@
+* {
+  margin: 0px;
+  height:100%;
+}
+
+#garden-shed-list-container {
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr; /* this is used to set the gap on each side of every screen */
+  grid-template-rows: 1fr 1fr;
+}
+
+.garden-shed {
+  border: 1px solid black;
+  background-color: lightblue;
+}
