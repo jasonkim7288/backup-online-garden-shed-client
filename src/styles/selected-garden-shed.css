@@ -1,0 +1,13 @@
+* {
+  margin: 0px;
+}
+
+#selected-garden-shed-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 4fr 1fr;
+  grid-template-rows: 1fr 2fr 1fr 2fr 1fr 2fr 1fr;
+}
+
+.sgs-item {
+  border: 1px solid black;
+}

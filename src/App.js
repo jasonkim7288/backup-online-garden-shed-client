@@ -16,7 +16,7 @@ import CreateNewLog from './components/CreateNewLog'
 
 const App = () => {
   return (
-    <div className="container">
+    <div id="app-container">
       <div className="navbar">
         Navbar
       </div>
