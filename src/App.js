@@ -1,13 +1,12 @@
 import React from 'react'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import './styles/app.css'
 
 import LandingPage from './components/LandingPage'
 import About from './components/About'
 import SelectedPlantRecord from './components/SelectedPlantRecord'
 import SelectedPlantFirstEntry from './components/SelectedPlantFirstEntry'
-import GardenShedList from './components/GardenShedList'
-import SelectedGardenShed from './components/SelectedGardenShed'
+import GardenSheds from './components/GardenSheds'
+import PlantsRecords from './components/PlantsRecords'
 import CreateNewRecord from './components/CreateNewRecord'
 import SearchPlant from './components/SearchPlant'
 import CreateNewLog from './components/CreateNewLog'
@@ -27,8 +26,8 @@ const App = () => {
             <Route path="/about" component={About} />
             <Route path="/sheds/:shedId/:plantId/first-entry" component={SelectedPlantFirstEntry} />  
             <Route path="/sheds/:shedId/:plantId" component={SelectedPlantRecord} /> 
-            <Route path="/sheds/:shedId" component={SelectedGardenShed} /> 
-            <Route path="/sheds" component={GardenShedList} />  
+            <Route path="/sheds/:shedId" component={PlantsRecords} /> 
+            <Route path="/sheds" component={GardenSheds} />  
             <Route path="/new-record" component={CreateNewRecord} />  
             <Route path="/search" component={SearchPlant} />
             <Route path="/new-log" component={CreateNewLog} />
