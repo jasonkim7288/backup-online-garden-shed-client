@@ -40,7 +40,8 @@ a:link {
   height: calc(100vh - 50px);
 }
 .button {
-  /* font-size: 15px; */
+  border-radius: 5px;
+  font-size: 15px;
   padding: 5px 5px;
 }
 
@@ -58,8 +59,20 @@ a:link {
 }
 
 
-/* Break point from mobile to tablet */
+/* Break point for tablet */
 @media (min-width: 768px) {
+  .landing-page-container {
+    grid-template-columns: repeat(11, 1fr);
+  }
+
+  .guest-login-item {
+    grid-area: 5 / 5;
+  }
+
+  .google-login-item {
+    grid-area: 5 / 7;
+
+  }
   .button {
     font-size: 20px;
   }
@@ -69,20 +82,17 @@ a:link {
   }
 }
 
-/* Break point from tablet to desktop */
+/* Break point for desktop */
 @media (min-width: 1200px) {
   .landing-page-container {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr 3fr 1fr;
-    grid-template-rows: repeat(9, 1fr);
-    height: calc(100vh - 50px);
+    grid-template-columns: repeat(10, 1fr);
   }
   .guest-login-item {
-    grid-area: 5 / 3;
+    grid-area: 5 / 5;
   }
 
   .google-login-item {
-    grid-area: 5 / 4;
+    grid-area: 5 / 6;
   }
 }
 
