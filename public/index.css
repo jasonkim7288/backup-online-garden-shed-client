@@ -26,6 +26,7 @@ a:link {
 
 .navbar {
   background-color: grey;
+  font-size: 30px;
 }
 
 .body {
@@ -133,8 +134,8 @@ a:link {
 }
 
 
-/* -------Plants Records------- */
-#plants-records-container {
+/* -------Plant Records------- */
+#plant-records-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 5px;
@@ -143,25 +144,11 @@ a:link {
   text-align: center;
 }
 
-/* Break point from mobile to tablet */
-@media (min-width: 768px) {
-  #plants-records-container {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-/* Break point from tablet to desktop */
-@media (min-width: 1200px) {
-  #plants-records-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-}
-
 .plant-image {
-  max-width: 100%;
+  max-width: 150px;
   height: 150px;
-  max-height: 150px;
-  min-height: 150px;
+  max-height: 120px;
+  min-height: 120px;
   object-fit: contain;
   margin-left: auto;
   margin-right: auto;
@@ -172,5 +159,29 @@ a:link {
   border: 1px solid black;
 }
 
+/* Break point for tablet */
+@media (min-width: 768px) {
+  #plant-records-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .plant-image {
+    max-width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+  }
+}
+
+/* Break point for desktop */
+@media (min-width: 1200px) {
+  #plant-records-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 0 200px;
+  }
+  .plant-image {
+    max-width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+  }
+}
 
 

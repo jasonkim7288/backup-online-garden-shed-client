@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const GardenShed = () => {
+const LandingPage = () => {
   return (
     <div className="landing-page-container">
       <div className="guest-login-item" >
@@ -14,4 +14,4 @@ const GardenShed = () => {
   )
 }
 
-export default GardenShed
+export default LandingPage
