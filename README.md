@@ -39,7 +39,8 @@ Online Garden Shed is for improving your gardening skills by keeping track of a 
 * Node JS: JavaScript runtime environment
 * AWS S3 Bucket or Cloudinary: Cloud storage for holding the plant images
 * react-google-login: Node module for Google OAuth login process in React JS
-* google-auth-library: Node module for Google OAuth login process in Express JS
+* passport: Node module for authentication and authorization in Express JS
+* passport-google-plus-token: Node module for Google OAuth login process in Express JS
 * jwt: Node module for the authentication communication between React JS and Express JS
 * nodemailer: Node module for sending email notifications
 
