@@ -36,22 +36,56 @@ a:link {
 .landing-page-container {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 3fr 1fr;
-  grid-template-rows: 6fr 1fr 6fr;
+  grid-template-rows: repeat(9, 1fr);
   height: calc(100vh - 50px);
+}
+.button {
+  /* font-size: 15px; */
+  padding: 5px 5px;
+}
+
+.google {
+  width: 150px;
 }
 
 .guest-login-item {
-  grid-area: 2 / 2 / 3 / 3;
+  grid-area: 5 / 2;
 }
 
 .google-login-item {
-  grid-area: 2 / 4 / 3 / 5;
+  grid-area: 5 / 4;
+
 }
 
 
-.block {
-  width: 100%; /* This makes the buttons the entire width of the div */
+/* Break point from mobile to tablet */
+@media (min-width: 768px) {
+  .button {
+    font-size: 20px;
+  }
+
+  .google {
+    width: 190px;
+  }
 }
+
+/* Break point from tablet to desktop */
+@media (min-width: 1200px) {
+  .landing-page-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 3fr 1fr;
+    grid-template-rows: repeat(9, 1fr);
+    height: calc(100vh - 50px);
+  }
+  .guest-login-item {
+    grid-area: 5 / 3;
+  }
+
+  .google-login-item {
+    grid-area: 5 / 4;
+  }
+}
+
 
 
 /* -------Garden Sheds------- */
