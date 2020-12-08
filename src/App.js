@@ -20,7 +20,7 @@ const App = () => {
       <div className="navbar">
         <Navbar />
       </div>
-      <div className="body">
+      <div className="body container">
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={LandingPage} />
