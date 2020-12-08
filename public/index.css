@@ -134,7 +134,7 @@ a:link {
 }
 
 
-/* -------Plant Records------- */
+/* -------Plant Thumbnails------- */
 #plant-thumbnails-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -184,4 +184,60 @@ a:link {
   }
 }
 
+/* -------Plant Record------- */
+#plant-record-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr  5fr 1fr 1fr 1fr;
+}
 
+/* Buttons in the plant record */
+#plant-record-container > .button > #new-log {
+  width: 170px;
+  grid-area: 2 / 2 / 3 / 5;
+}
+
+#plant-record-container > .button > #about {
+  grid-area: 2 / 9 / 3 / 11;
+}
+
+#plant-record-container > #image-wrapper {
+  grid-area: 4 / 2 / 5 / 11;
+  border: 2px solid yellow;
+}
+
+.main-image {
+  width: 100%;
+  object-fit: contain;
+}
+
+#plant-record-container > .thumbnail {
+  max-width: 70px;
+  max-height: 50px;
+  border: 1px solid red;
+}
+
+#plant-record-container > .thumbnail-1 {
+  grid-area: 6 / 2;
+}
+#plant-record-container > .thumbnail-2 {
+  grid-area: 6 / 4;
+}
+#plant-record-container > .thumbnail-3 {
+  grid-area: 6 / 6;
+}
+#plant-record-container > .thumbnail-4 {
+  grid-area: 6 / 8;
+}
+#plant-record-container > .thumbnail-5 {
+  grid-area: 6 / 10;
+}
+
+
+/* Break point for desktop */
+@media (min-width: 1200px) {
+  #plant-record-container > .button > #new-log {
+    font-size: 20px;
+    padding: 50px;
+  }
+}
