@@ -6,21 +6,20 @@ const PlantThumbnails = () => {
     <div>
       <h1>Plant Thumbnails</h1>
       <div id="plant-thumbnails-container">
-        <div>
-          <img className="plant-thumbnail" src="http://placekitten.com/200/300" alt=""/>
+        <div className="plant-thumbnail-wrapper">
+          <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
           <p>Daisy 1</p>
         </div>
-        <div>
-          <img className="plant-thumbnail" src="http://placekitten.com/1200/300" alt=""/>
+        <div className="plant-thumbnail-wrapper">
+          <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
           <p>Daisy 2</p>
         </div>
-
-        <div>
-          <img className="plant-thumbnail" src="http://placekitten.com/200/300" alt=""/>
+        <div className="plant-thumbnail-wrapper">
+          <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
           <p>Daisy 3</p>
         </div>
-        <div>
-          <img className="plant-thumbnail" src="http://placekitten.com/1200/800" alt=""/>
+        <div className="plant-thumbnail-wrapper">
+          <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
           <p>Daisy 4</p>
         </div>
       </div>
