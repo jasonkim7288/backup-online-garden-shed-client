@@ -17,20 +17,16 @@ const Navbar = () => {
       access_token: accessToken
     });
 
-    const { token } = res.data;
     dispatch({
-      type: AUTH_SIGN_IN,
-      payload: token
+      type: AUTH_SIGN_IN
     });
-
-    localStorage.setItem('JWT_TOKEN', token);
   };
 
   return (
     <div>
       Online Garden Shed
       {
-        isLoggedIn &&
+        !isLoggedIn &&
         <GoogleLogin
           clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
           buttonText="Login with Google"
