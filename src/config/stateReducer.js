@@ -1,16 +1,15 @@
-import { AUTH_SIGN_IN, AUTH_SIGN_OUT } from './types';
+import { AUTH_SIGN_IN, AUTH_SIGN_OUT, SET_TOKEN, SET_USER } from './types';
 
 export const initialState = {
   isLoggedIn: false,
   errMsg: '',
-  currentUser: null
+  currentUser: null,
+  token: ''
 };
 
 export const stateReducer = (state, action) => {
   switch (action.type) {
     case AUTH_SIGN_IN:
-      console.log('AUTH_SIGN_IN', action.payload);
-
       return {
         ...state,
         isLoggedIn: true,
@@ -22,6 +21,18 @@ export const stateReducer = (state, action) => {
         ...state,
         isLoggedIn: false,
         errMsg: ''
+      };
+    case SET_TOKEN:
+      console.log('SET_TOKEN');
+      return {
+        ...state,
+        token: action.payload
+      };
+    case SET_USER:
+      console.log('SET_USER');
+      return  {
+        ...state,
+        currentUser : action.payload
       };
     defualt:
       return state;
