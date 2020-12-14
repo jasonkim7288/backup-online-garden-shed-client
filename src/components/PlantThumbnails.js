@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
 
 const PlantThumbnails = () => {
+  const { shedId } = useParams();
+  console.log(shedId);
   return (
     <div>
       <h1>Plant Thumbnails</h1>

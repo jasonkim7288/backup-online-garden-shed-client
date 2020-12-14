@@ -1,10 +1,11 @@
-import { AUTH_SIGN_IN, AUTH_SIGN_OUT, SET_TOKEN, SET_USER } from './types';
+import { AUTH_SIGN_IN, AUTH_SIGN_OUT, SET_TOKEN, SET_USER, SET_SHEDS } from './types';
 
 export const initialState = {
   isLoggedIn: false,
   errMsg: '',
   currentUser: null,
-  token: ''
+  token: '',
+  sheds: []
 };
 
 export const stateReducer = (state, action) => {
@@ -32,8 +33,14 @@ export const stateReducer = (state, action) => {
       console.log('SET_USER');
       return  {
         ...state,
-        currentUser : action.payload
+        currentUser: action.payload
       };
+    case SET_SHEDS:
+      console.log('SET_SHEDS');
+      return {
+        ...state,
+        sheds: action.payload
+      }
     defualt:
       return state;
   }
