@@ -25,26 +25,31 @@ const PlantThumbnails = () => {
   console.log('shed:', shed);
   return (
     <div>
-      {shed && shed.owner.email}
-      <h1>Plant Thumbnails</h1>
-      <div id="plant-thumbnails-container">
-        <div className="plant-thumbnail-wrapper">
-          <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
-          <p>Daisy 1</p>
-        </div>
-        <div className="plant-thumbnail-wrapper">
-          <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
-          <p>Daisy 2</p>
-        </div>
-        <div className="plant-thumbnail-wrapper">
-          <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
-          <p>Daisy 3</p>
-        </div>
-        <div className="plant-thumbnail-wrapper">
-          <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
-          <p>Daisy 4</p>
-        </div>
-      </div>
+      {
+        shed &&
+          <>
+            <p className="path">{shed.owner.email}</p>
+          
+            <div id="plant-thumbnails-container">
+              <div className="plant-thumbnail-wrapper">
+                <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
+                <p>Daisy 1</p>
+              </div>
+              <div className="plant-thumbnail-wrapper">
+                <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
+                <p>Daisy 2</p>
+              </div>
+              <div className="plant-thumbnail-wrapper">
+                <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
+                <p>Daisy 3</p>
+              </div>
+              <div className="plant-thumbnail-wrapper">
+                <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
+                <p>Daisy 4</p>
+              </div>
+            </div>
+          </>
+      }
     </div>
   )
 }
