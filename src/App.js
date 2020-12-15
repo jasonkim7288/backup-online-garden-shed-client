@@ -23,7 +23,8 @@ const App = () => {
     console.log('app started');
     const acquireUser = async () => {
       try {
-        const acquiredUser = await api.get('/api/auth/userinfo');
+        const resAcquiredUser = await api.get('/api/auth/userinfo');
+        const acquiredUser = resAcquiredUser.data;
         console.log('acquiredUser:', acquiredUser);
         if (acquiredUser) {
           dispatch({
@@ -40,11 +41,11 @@ const App = () => {
   }, []);
   return (
     <div id="app-container">
-      <div className="navbar">
-        <Navbar />
-      </div>
-      <div className="body container">
-        <BrowserRouter>
+      <BrowserRouter>
+        <div className="navbar">
+          <Navbar />
+        </div>
+        <div className="body container">
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route path="/about" component={About} />
@@ -56,8 +57,8 @@ const App = () => {
             <Route path="/search" component={SearchPlant} />
             <Route path="/new-log" component={CreateNewLog} />
           </Switch>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
