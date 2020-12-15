@@ -8,9 +8,8 @@
   box-sizing: border-box;
 }
 
-h1 {
+.sub-headings {
   font-size: 1.2em;
-  margin: 10px 0;
 }
 
 a:link {
@@ -34,6 +33,10 @@ a:link {
 
 .container {
   margin: 0 20px
+}
+
+.path {
+  margin: 10px 0;
 }
 
 /* -------Landing Page------- */
@@ -212,6 +215,7 @@ a:link {
   margin: 10px 0;
 }
 
+
 .button-wrapper {
   border-radius: 5px;
   font-size: 15px;
@@ -223,9 +227,8 @@ a:link {
 }
 
 .button-wrapper > .about {
-  position: fixed;
-  top: 97px;
-  right: 20px;
+  display: block;
+  margin-left: auto;
   padding: 0 5px;
 }
 
@@ -258,6 +261,26 @@ a:link {
 #plant-record-container > .thumbnail-5 {
   grid-area: 3 / 5;
 }
+
+.icon-record {
+  font-size: 1.5em;
+}
+
+.icon-record-edit {
+  float: right;
+  margin-right: 15px;
+  color: rgb(31, 155, 31);
+}
+
+.icon-record-delete {
+  float: right;
+  color: red;
+}
+
+.icon-record-follow {
+  color: rgb(170, 167, 167);
+}
+
 
 
 /* Break point for desktop */

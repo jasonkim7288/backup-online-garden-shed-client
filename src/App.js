@@ -48,8 +48,8 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route path="/about" component={About} />
-            <Route path="/sheds/:shedId/:plantId/first-entry" component={SelectedPlantFirstEntry} />
-            <Route path="/sheds/:shedId/:plantId" component={PlantRecord} />
+            <Route path="/sheds/:shedId/records/:plantRecordId/first-entry" component={SelectedPlantFirstEntry} />
+            <Route path="/sheds/:shedId/records/:plantRecordId" component={PlantRecord} />
             <Route path="/sheds/:shedId" component={PlantThumbnails} />
             <Route path="/sheds" component={GardenSheds} />
             <Route path="/new-record" component={CreateNewRecord} />
