@@ -5,33 +5,33 @@ import api from '../config/api';
 import { Link } from 'react-router-dom';
 
 const PlantRecord = () => {
-  const [plantRecord, setPlantRecord] = useState(null); 
+  const [plantRecord, setPlantRecord] = useState(null);
   const { shedId, plantRecordId } = useParams();
-  
+
   useEffect(() => {
     const findPlantRecord = async () => {
-      const res = await api(`/api/sheds/${shedId}/records/${plantRecordId}`); 
+      const res = await api(`/api/sheds/${shedId}/records/${plantRecordId}`);
       const foundPlantRecord = res.data;
       console.log('found Plant record:', foundPlantRecord);
       if(foundPlantRecord) {
         setPlantRecord(foundPlantRecord);
-      } 
+      }
     }
     findPlantRecord();
   }, []);
   return (
     <div>
-      { 
-        plantRecord && 
+      {
+        plantRecord &&
           <>
             <p className="path">
               <Link to={`/sheds/${shedId}`}> {`${plantRecord.ownedShed.owner.email}`}</Link>
               {` > ${plantRecord.commonName}`}
             </p>
             <div className="icon icon-record icon-record-follow">
-              <i class="fas fa-leaf"></i>
+              <i className="fas fa-leaf"></i>
             </div>
-            
+
             <div className="button-wrapper">
               <button className="about" type="button">About</button>
             </div>
@@ -41,7 +41,7 @@ const PlantRecord = () => {
 
             <div id="plant-record-container">
               <div id="image-wrapper">
-                <img class="main-image" src="http://placekitten.com/400/400"  alt=""/>
+                <img className="main-image" src="http://placekitten.com/400/400"  alt=""/>
               </div>
 
               <div className="thumbnail-1">
@@ -61,23 +61,23 @@ const PlantRecord = () => {
               </div>
 
             </div>
-            
+
             <div className="icon icon-record icon-record-delete">
               <i className="far fa-trash-alt"></i>
             </div>
             <div className="icon icon-record icon-record-edit">
               <i className="far fa-edit"></i>
             </div>
-            
+
             <p className="sub-headings"><strong>Date:</strong> 17/11/2020 (Day 1)</p>
             <p className="sub-headings"><strong>My Notes:</strong></p>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper vitae magna eget mattis. 
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper vitae magna eget mattis.
               Vivamus posuere iaculis consequat. Pellentesque euismod elementum bibendum.
-              Quisque tincidunt nisi a ligula sagittis accumsan. Fusce sed luctus elit. 
-              Aenean at ipsum iaculis, facilisis lectus et, interdum nisi. Pellentesque quis fermentum ante. 
-              In id massa eu nisi dignissim elementum in vitae quam. Duis eros ante, pulvinar ut est et, maximus consequat augue. 
-              Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vitae tellus lacus. 
+              Quisque tincidunt nisi a ligula sagittis accumsan. Fusce sed luctus elit.
+              Aenean at ipsum iaculis, facilisis lectus et, interdum nisi. Pellentesque quis fermentum ante.
+              In id massa eu nisi dignissim elementum in vitae quam. Duis eros ante, pulvinar ut est et, maximus consequat augue.
+              Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vitae tellus lacus.
             </p>
           </>
       }

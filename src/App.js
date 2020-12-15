@@ -42,9 +42,7 @@ const App = () => {
   return (
     <div id="app-container">
       <BrowserRouter>
-        <div className="navbar">
-          <Navbar />
-        </div>
+        <Navbar />
         <div className="body container">
           <Switch>
             <Route exact path="/" component={LandingPage} />

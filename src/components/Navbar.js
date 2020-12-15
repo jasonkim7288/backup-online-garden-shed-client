@@ -1,14 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useGlobalState } from '../config/globalState';
 import SignIn from './SignIn';
 
 
 const Navbar = () => {
+  const {state} = useGlobalState();
+  const { isLoggedIn } = state;
   return (
-    <div>
-      <div>
-        <span>Online Garden Shed</span>
-        <span><SignIn /></span>
-      </div>
+    <div className="navbar">
+        <div>
+          <Link to={isLoggedIn ? "/sheds" : "/"}>Online Garden Shed</Link>
+        </div>
+        <SignIn />
     </div>
   );
 }
