@@ -10,7 +10,6 @@ const SignIn = () => {
   const { isLoggedIn, currentUser } = state;
   let history = useHistory();
   let location = useLocation();
-  console.log('location:', location);
 
   const responseGoogle = async (data) => {
     try {
@@ -20,13 +19,11 @@ const SignIn = () => {
         const res = await api.post('/api/auth/signin', {
           access_token: accessToken
         });
-        console.log('res.data:', res.data);
 
         if (res.data) {
           const resAcquiredUser = await api.get('/api/auth/userinfo');
           const acquiredUser = resAcquiredUser.data;
           console.log('acquiredUser:', acquiredUser);
-
           dispatch({
             type: SET_USER,
             payload: acquiredUser
@@ -41,6 +38,7 @@ const SignIn = () => {
       console.log('err: ', err.message);
     }
   };
+
   const handleClickLogout = async () => {
     console.log('clicked');
     try {
@@ -50,30 +48,35 @@ const SignIn = () => {
         payload: null
       });
       dispatch({ type: AUTH_SIGN_OUT });
+      history.push('/');
     } catch (err) {
       console.log('err: ', err.message);
     }
   };
 
   return (
-    <span>
+    <>
       {
         (isLoggedIn && currentUser) ?
-          <>
-            <img src={currentUser.photo} alt="current user"/>
-            <button onClick={handleClickLogout} type="button">
+          <div className="navbar">
+            <img src={currentUser.photo} alt="current user" className="profile-image"/>
+            <button onClick={handleClickLogout} type="button" className="button">
               Sign out
             </button>
-          </>
+          </div>
         :
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-            buttonText="Sign in with Google"
+            render={renderProps => (
+              <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="button google">
+                <i className="fab fa-google"></i>Sign in with Google
+              </button>
+            )}
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
           />
       }
-    </span>
+    </>
   );
 }
 
