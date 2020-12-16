@@ -136,7 +136,7 @@ a:link {
   object-fit: contain;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 
@@ -152,6 +152,7 @@ a:link {
 .plant-thumbnail-wrapper {
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
 .plant-thumbnail {
@@ -161,7 +162,7 @@ a:link {
   max-height: 120px;
   min-height: 120px;
   object-fit: contain;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .sgs-item {
