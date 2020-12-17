@@ -12,12 +12,6 @@ const GardenSheds = () => {
   useEffect(() => {
     api.get('/api/sheds')
       .then(res => {
-        console.log(res);
-        console.log(res.data[0].plantRecords.length);
-        console.log(res.data[0].plantRecords[0].commonName);
-        console.log(res.data[0].plantRecords[1].commonName);
-        console.log(res.data[0].plantRecords[0].recordPhoto);
-        console.log(res.data[0].plantRecords[1].recordPhoto);
         dispatch({
           type: SET_SHEDS,
           payload: res.data
