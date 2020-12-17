@@ -33,13 +33,12 @@ const PlantThumbnails = () => {
                 <Link to={`/sheds/${shedId}/records/${plantRecord._id}`}>
                   <div className="plant-thumbnail-wrapper">
                     <img className="plant-thumbnail" src={plantRecord.recordPhoto} alt=""/>
-                    <p>{plantRecord.commonName}</p>
+                    <p className="plant-thumbnail-name">{plantRecord.commonName}</p>
                   </div>
                 </Link>
               ))}
             </div>
-            <p className="path">{shed.owner.email}</p>
-
+              Below this line are hardcoded thumbnails
             <div id="plant-thumbnails-container">
               <div className="plant-thumbnail-wrapper">
                 <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
