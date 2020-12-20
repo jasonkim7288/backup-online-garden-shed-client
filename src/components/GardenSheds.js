@@ -47,25 +47,6 @@ const GardenSheds = () => {
             </div>
           ))
         }
-        <div>
-          <img className="garden-shed" src="http://placekitten.com/800/400" alt=""/>
-          <p>some email</p>
-          <p>Daisy, Sun flower, Peace Lilly</p>
-        </div>
-        <div>
-          <img className="garden-shed" src="http://placekitten.com/800/400" alt=""/>
-          <p>some email</p>
-          <p>Daisy, Sun flower, Peace Lilly</p>
-        </div>
-        <div>
-          <img className="garden-shed" src="http://placekitten.com/800/400" alt=""/>
-          <p>some email</p>
-          <p>Daisy, Sun flower, Peace Lilly</p>
-        </div>
-        <div>
-          <img className="garden-shed" src="http://placekitten.com/800/400" alt=""/>
-          <p>Hello</p>
-        </div>
       </div>
     </div> 
   );
