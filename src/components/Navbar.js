@@ -12,7 +12,7 @@ const Navbar = () => {
         <div>
           <Link to={isLoggedIn ? "/sheds" : "/"}>Online Garden Shed</Link>
         </div>
-        <SignIn />
+        {/* <SignIn /> */}
     </div>
   );
 }
