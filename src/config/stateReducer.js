@@ -41,7 +41,7 @@ export const stateReducer = (state, action) => {
         ...state,
         sheds: action.payload
       }
-    defualt:
+    default:
       return state;
   }
 };

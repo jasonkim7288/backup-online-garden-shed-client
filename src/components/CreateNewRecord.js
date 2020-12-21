@@ -1,17 +1,65 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import api from '../config/api';
+import axios from 'axios';
 
 const CreateNewRecord = () => {
+  const [shed, setShed] = useState(null);
+  const [searchText, setSearchText] = useState('');
+  const [plants, setPlants] = useState(null);
+  const { shedId } = useParams();
+  useEffect(() => {
+    const findShed = async () => {
+      const res = await api(`/api/sheds/${shedId}`);
+      const foundShed = res.data;
+      console.log('foundShed:', foundShed);
+      if(foundShed) {
+        setShed(foundShed);
+      }
+    }
+    findShed();
+  }, []);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://trefle.io/api/v1/plants/search?token=${process.env.REACT_APP_TREFLE_API_TOKEN}&q=${searchText}`);
+    console.log(res);
+    setPlants(res.data.data);
+  }
+
+  const handleChange = (event) => {
+    setSearchText(event.target.value);
+  }
   return (
     <div>
-      <p>user email</p>
-      Create new record
-      <p>Date:</p>
-      <div id="image-wrapper">
-        <img className="main-image" src="http://placekitten.com/400/400"  alt=""/>
-      </div>
-    <p>Common name</p>
-    <p>Scientific name</p>
-    <p>Family common name</p>
+      {
+        shed &&
+          <>
+            <p className="path">{shed.owner.email}</p>
+            <h1>Create New Record</h1>
+            <p>Date: 21/12/2020</p>
+            <form onSubmit={handleSubmit}>
+              <input autoFocus type="text" value={searchText} onChange={handleChange}/>
+              <button type="submit">Search</button>
+            </form>
+            {
+              plants &&
+              <>
+                <h2>{`Searched results for "${searchText}"`} </h2>
+                {
+                  plants.map(plant => (
+                    <Link to={``} className="api-wrapper" key={plant.id}>
+                      <img className="api-image" src={plant.image_url} alt=""/>
+                      <p><strong>Common name:</strong>{plant.common_name}</p>
+                      <p><strong>Scientific name:</strong>{plant.scientific_name}</p>
+                      <p><strong>Family common name:</strong>{plant.family_common_name}</p>
+                    </Link>  
+                  ))
+                }
+              </>
+            }
+          </>
+      }
     </div>
   )
 }

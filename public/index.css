@@ -59,6 +59,19 @@ button:hover {
   margin: 10px 0;
 }
 
+.api-wrapper {
+  width: 100%;
+  width: 100%;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.api-image {
+  height: 100px;
+  object-fit: contain; 
+}
+
+
+
 /* -------Landing Page------- */
 .landing-page-container {
   display: grid;
@@ -73,7 +86,8 @@ button:hover {
 }
 
 .google {
-  width: 500px;
+  width: 500px; 
+  width: 500px; 
 }
 
 .guest-login-item {
