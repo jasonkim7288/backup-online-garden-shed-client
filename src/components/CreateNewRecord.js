@@ -23,9 +23,9 @@ const CreateNewRecord = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await axios.get(`https://cors-anywhere.herokuapp.com/https://trefle.io/api/v1/plants/search?token=${process.env.REACT_APP_TREFLE_API_TOKEN}&q=${searchText}`);
+    const res = await api.get(`api/plants?q=${searchText}`);
     console.log(res);
-    setPlants(res.data.data);
+    setPlants(res.data);
   }
 
   const handleChange = (event) => {
@@ -66,9 +66,9 @@ const CreateNewRecord = () => {
                         plants.map((plant, index) => (
                           <div className="api-wrapper" key={plant.id} onClick={(event) => handleClick(event, index)}>
                             <img className="api-image" src={plant.image_url} alt=""/>
-                            <p><strong>Common name:</strong>{plant.common_name}</p>
-                            <p><strong>Scientific name:</strong>{plant.scientific_name}</p>
-                            <p><strong>Family common name:</strong>{plant.family_common_name}</p>
+                            <p><strong>Common name:</strong>&nbsp;{plant.common_name}</p>
+                            <p><strong>Scientific name:</strong>&nbsp;{plant.scientific_name}</p>
+                            <p><strong>Family common name:</strong>&nbsp;{plant.family_common_name}</p>
                           </div>  
                         ))
                       }

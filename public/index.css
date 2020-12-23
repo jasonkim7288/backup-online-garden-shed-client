@@ -3,6 +3,7 @@
 }
 
 * {
+  font-family: sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -60,12 +61,17 @@ button:hover {
 }
 
 .api-wrapper {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   width: 100%;
   box-shadow: 2px 2px 5px grey;
 }
 
 .api-image {
+  margin-bottom: 10px;
   height: 100px;
   object-fit: contain; 
 }
@@ -86,8 +92,7 @@ button:hover {
 }
 
 .google {
-  width: 500px; 
-  width: 500px; 
+   
 }
 
 .guest-login-item {
