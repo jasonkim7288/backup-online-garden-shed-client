@@ -41,7 +41,7 @@ const PlantRecord = () => {
 
             <div id="plant-record-container">
               <div id="image-wrapper">
-                <img className="main-image" src="http://placekitten.com/400/400"  alt=""/>
+                <img className="main-image" src="http://placekitten.com/400/300"  alt=""/>
               </div>
 
               <div className="thumbnail-1">
@@ -71,7 +71,7 @@ const PlantRecord = () => {
 
             <p className="sub-headings"><strong>Date:</strong> 17/11/2020 (Day 1)</p>
             <p className="sub-headings"><strong>My Notes:</strong></p>
-            <p>
+            <p className="my-notes">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper vitae magna eget mattis.
               Vivamus posuere iaculis consequat. Pellentesque euismod elementum bibendum.
               Quisque tincidunt nisi a ligula sagittis accumsan. Fusce sed luctus elit.

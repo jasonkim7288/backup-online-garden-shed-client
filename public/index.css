@@ -329,6 +329,11 @@ button:hover {
   color: rgb(170, 167, 167);
 }
 
+.my-notes {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
 
 
 /* Break point for desktop */
