@@ -3,6 +3,7 @@
 }
 
 * {
+  font-family: sans-serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -60,12 +61,17 @@ button:hover {
 }
 
 .api-wrapper {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   width: 100%;
   box-shadow: 2px 2px 5px grey;
 }
 
 .api-image {
+  margin-bottom: 10px;
   height: 100px;
   object-fit: contain; 
 }
@@ -86,8 +92,7 @@ button:hover {
 }
 
 .google {
-  width: 500px; 
-  width: 500px; 
+   
 }
 
 .guest-login-item {
@@ -162,16 +167,24 @@ button:hover {
   }
 }
 
-.garden-shed {
+.garden-shed-wrapper {
+  margin-top: 50px;
+  box-shadow: 2px 2px 5px grey;  
+}
+
+.garden-shed-image-wrapper {
+  text-align: center;
+}
+
+.garden-shed-image {
   max-width: 100%;
   height: 150px;
   max-height: 150px;
   min-height: 150px;
-  object-fit: contain;
-  margin-left: auto;
-  margin-right: auto;
+  object-fit: contain; 
   /* border: 1px solid red; */
 }
+
 
 
 /* -------Plant Thumbnails------- */
@@ -184,8 +197,6 @@ button:hover {
 }
 
 .plant-thumbnail-wrapper {
-  margin-left: auto;
-  margin-right: auto;
   text-align: center;
   box-shadow: 2px 2px 5px grey;
   padding-top: 20px;
@@ -280,6 +291,7 @@ button:hover {
 }
 
 .main-image {
+  
   width: 100%;
   object-fit: contain;
 }
@@ -322,6 +334,11 @@ button:hover {
 
 .icon-record-follow {
   color: rgb(170, 167, 167);
+}
+
+.my-notes {
+  margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 

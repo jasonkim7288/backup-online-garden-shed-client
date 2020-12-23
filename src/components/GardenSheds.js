@@ -23,7 +23,6 @@ const GardenSheds = () => {
 
   return (
     <div>
-      <h1>Garden Sheds</h1>
       <div id="garden-sheds-container">
         {
           sheds.length > 0 &&
@@ -32,18 +31,22 @@ const GardenSheds = () => {
               {
                 shed.plantRecords.length > 0 && (
                   <Link to={ `/sheds/${shed._id}` }>
-                    <img className="garden-shed" src={shed.plantRecords[0].recordPhoto} alt=""/>
+                    <div className="garden-shed-wrapper">
+                      <div className="garden-shed-image-wrapper">
+                        <img className="garden-shed-image" src={shed.plantRecords[0].recordPhoto} alt=""/>
+                      </div>
+                      <p>{shed.owner.email}</p>
+                      {
+                        shed.plantRecords.length > 0 && (
+                          <p>
+                            {shed.plantRecords.map(plantRecord => plantRecord.commonName).join(', ')}
+                          </p>
+                        )
+                      }
+                    </div>
                   </Link>
                 )
-              }
-              <p>{shed.owner.email}</p>
-              {
-                shed.plantRecords.length > 0 && (
-                  <p>
-                    {shed.plantRecords.map(plantRecord => plantRecord.commonName).join(', ')}
-                  </p>
-                )
-              }
+              } 
             </div>
           ))
         }
