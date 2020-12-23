@@ -38,21 +38,6 @@ const PlantThumbnails = () => {
                 </Link>
               ))}
             </div>
-              Below this line are hardcoded thumbnails
-            <div id="plant-thumbnails-container">
-              <div className="plant-thumbnail-wrapper">
-                <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
-                <p>Daisy 2</p>
-              </div>
-              <div className="plant-thumbnail-wrapper">
-                <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
-                <p>Daisy 3</p>
-              </div>
-              <div className="plant-thumbnail-wrapper">
-                <img className="plant-thumbnail" src="http://placekitten.com/400/300" alt=""/>
-                <p>Daisy 4</p>
-              </div>
-            </div>
           </>
       }
     </div>

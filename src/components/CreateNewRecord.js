@@ -45,14 +45,7 @@ const CreateNewRecord = () => {
             <h1>Create New Record</h1>
             <p>Date: 21/12/2020</p>
             {
-              plantIndex ?
-                <div className="api-wrapper" key={plants[plantIndex].id}>
-                  <img className="api-image" src={plants[plantIndex].image_url} alt=""/>
-                  <p><strong>Common name:</strong>{plants[plantIndex].common_name}</p>
-                  <p><strong>Scientific name:</strong>{plants[plantIndex].scientific_name}</p>
-                  <p><strong>Family common name:</strong>{plants[plantIndex].family_common_name}</p>
-                </div>
-              :
+              plantIndex === null ?
                 <>
                   <form onSubmit={handleSubmit}>
                     <input autoFocus type="text" value={searchText} onChange={handleChange}/>
@@ -75,6 +68,13 @@ const CreateNewRecord = () => {
                     </>
                   }
                 </>
+              :
+                <div className="api-wrapper" key={plants[plantIndex].id}>
+                  <img className="api-image" src={plants[plantIndex].image_url} alt=""/>
+                  <p><strong>Common name:</strong>{plants[plantIndex].common_name}</p>
+                  <p><strong>Scientific name:</strong>{plants[plantIndex].scientific_name}</p>
+                  <p><strong>Family common name:</strong>{plants[plantIndex].family_common_name}</p>
+                </div>
             }
             
           </>

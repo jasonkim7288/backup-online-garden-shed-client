@@ -167,16 +167,24 @@ button:hover {
   }
 }
 
-.garden-shed {
+.garden-shed-wrapper {
+  margin-top: 50px;
+  box-shadow: 2px 2px 5px grey;  
+}
+
+.garden-shed-image-wrapper {
+  text-align: center;
+}
+
+.garden-shed-image {
   max-width: 100%;
   height: 150px;
   max-height: 150px;
   min-height: 150px;
-  object-fit: contain;
-  margin-left: auto;
-  margin-right: auto;
+  object-fit: contain; 
   /* border: 1px solid red; */
 }
+
 
 
 /* -------Plant Thumbnails------- */
@@ -189,8 +197,6 @@ button:hover {
 }
 
 .plant-thumbnail-wrapper {
-  margin-left: auto;
-  margin-right: auto;
   text-align: center;
   box-shadow: 2px 2px 5px grey;
   padding-top: 20px;
@@ -285,6 +291,7 @@ button:hover {
 }
 
 .main-image {
+  
   width: 100%;
   object-fit: contain;
 }
