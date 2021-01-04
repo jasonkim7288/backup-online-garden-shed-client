@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
 import api from '../config/api';
-import { Link } from 'react-router-dom';
 
 const PlantRecord = () => {
   const [plantRecord, setPlantRecord] = useState(null);
   const { shedId, plantRecordId } = useParams();
+  let history = useHistory();
 
   useEffect(() => {
     const findPlantRecord = async () => {
@@ -19,6 +19,10 @@ const PlantRecord = () => {
     }
     findPlantRecord();
   }, []);
+
+  const handleClickNewLog = () => {
+    history.push(`/sheds/${shedId}/records/${plantRecordId}/logs/new`);
+  }
   return (
     <div>
       {
@@ -36,7 +40,7 @@ const PlantRecord = () => {
               <button className="about" type="button">About</button>
             </div>
             <div className="button-wrapper">
-              <button className="new-log" type="button">Creat a new log</button>
+              <button onClick={handleClickNewLog} className="new-log" type="button">Creat a new log</button>
             </div>
 
             <div id="plant-record-container">

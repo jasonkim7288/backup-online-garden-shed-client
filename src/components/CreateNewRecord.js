@@ -64,14 +64,16 @@ const CreateNewRecord = () => {
         shed &&
           <>
             <p className="path">{shed.owner.email}</p>
-            <h1>Create New Record</h1>
-            <p>{`Date: ${getCurrentDate()}`}</p>
+            <h1 className="title">Create New Record</h1>
+            <p className="current-date">{`Date: ${getCurrentDate()}`}</p>
             {
               plantIndex === null ?
                 <>
                   <form onSubmit={handleSearch}>
-                    <input autoFocus type="text" value={searchText} onChange={handleChangeSearch}/>
-                    <button type="submit">Search</button>
+                    <div className="input-content-wrapper">
+                      <input className="input-content" placeholder="Search keywords" autoFocus type="text" value={searchText} onChange={handleChangeSearch}/>
+                      <button className="input-button" type="submit">Search</button>
+                    </div>
                   </form>
                   {
                     plants &&
@@ -93,9 +95,9 @@ const CreateNewRecord = () => {
               :
                 <div className="api-wrapper" key={plants[plantIndex].id}>
                   <img className="api-image" src={plants[plantIndex].image_url} alt=""/>
-                  <p><strong>Common name:</strong>{plants[plantIndex].common_name}</p>
-                  <p><strong>Scientific name:</strong>{plants[plantIndex].scientific_name}</p>
-                  <p><strong>Family common name:</strong>{plants[plantIndex].family_common_name}</p>
+                  <p><strong>Common name:</strong>&nbsp;{plants[plantIndex].common_name}</p>
+                  <p><strong>Scientific name:</strong>&nbsp;{plants[plantIndex].scientific_name}</p>
+                  <p><strong>Family common name:</strong>&nbsp;{plants[plantIndex].family_common_name}</p>
                   <form onSubmit={handleSubmit}>
                     <textarea id="description-input" name="description" rows="10" placeholder="Description" value={description} onChange={handleChangeDescription}/>
                     <button type="submit">Create a new record</button>

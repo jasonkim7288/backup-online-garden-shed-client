@@ -9,11 +9,33 @@
   box-sizing: border-box;
 }
 
+.title {
+  text-align: center;
+  margin: 20px 0px;
+  font-weight: 100;
+}
+.input-content-wrapper {
+  display: flex;
+}
+.input-content, textarea {
+  width: 100%;
+  padding: 0.3em 0.5em ;
+}
+
+button {
+  padding: 0.3em;
+}
+
+.current-date {
+  margin-bottom: 20px;
+}
+
 .sub-headings {
   font-size: 1.2em;
 }
 
-a:link {
+a, a:link {
+  font-weight: 100;
   text-decoration: none;
   color: black;
 }

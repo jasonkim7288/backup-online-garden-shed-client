@@ -5,3 +5,7 @@ export const getCurrentDate = () => {
   const year = newDate.getFullYear();
   return `${date < 10 ? `0${date}` : `${date}`}/${month < 10 ? `0${month}` : `${month}`}/${year}`
 }
+
+export const dayCount = (startingDate) => {
+  
+}
