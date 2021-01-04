@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import api from '../config/api';
 import axios from 'axios';
+import { getCurrentDate } from '../utilities/date';
 
 const CreateNewRecord = () => {
   const [shed, setShed] = useState(null);
@@ -10,6 +11,8 @@ const CreateNewRecord = () => {
   const { shedId } = useParams();
   const [plantIndex, setPlantIndex] = useState(null);
   const [description, setDescription] = useState('');
+  let history = useHistory();
+
   useEffect(() => {
     const findShed = async () => {
       const res = await api(`/api/sheds/${shedId}`);
@@ -49,6 +52,7 @@ const CreateNewRecord = () => {
         description
       });
       console.log(res.data);
+      history.push(`/sheds/${shedId}/records/${res.data._id}`);
   }
 
   const handleChangeDescription = (event) => {
@@ -61,7 +65,7 @@ const CreateNewRecord = () => {
           <>
             <p className="path">{shed.owner.email}</p>
             <h1>Create New Record</h1>
-            <p>Date: 21/12/2020</p>
+            <p>{`Date: ${getCurrentDate()}`}</p>
             {
               plantIndex === null ?
                 <>
