@@ -9,6 +9,7 @@ const CreateNewRecord = () => {
   const [plants, setPlants] = useState(null);
   const { shedId } = useParams();
   const [plantIndex, setPlantIndex] = useState(null);
+  const [description, setDescription] = useState('');
   useEffect(() => {
     const findShed = async () => {
       const res = await api(`/api/sheds/${shedId}`);
@@ -21,21 +22,38 @@ const CreateNewRecord = () => {
     findShed();
   }, []);
 
-  const handleSubmit = async (event) => {
+  const handleSearch = async (event) => {
     event.preventDefault();
     const res = await api.get(`api/plants?q=${searchText}`);
     console.log(res);
     setPlants(res.data);
   }
 
-  const handleChange = (event) => {
+  const handleChangeSearch = (event) => {
     setSearchText(event.target.value);
   }
 
   const handleClick = (event, index) => {
     console.log(index);
     setPlantIndex(index);
-  } 
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const res = await api.post(`api/sheds/${shedId}/records`,
+      {
+        commonName: plants[plantIndex].common_name,
+        scientificName: plants[plantIndex].scientific_name,
+        familyCommonName: plants[plantIndex].family_common_name,
+        recordPhoto: plants[plantIndex].image_url,
+        description
+      });
+      console.log(res.data);
+  }
+
+  const handleChangeDescription = (event) => {
+    setDescription(event.target.value);
+  }
   return (
     <div>
       {
@@ -47,8 +65,8 @@ const CreateNewRecord = () => {
             {
               plantIndex === null ?
                 <>
-                  <form onSubmit={handleSubmit}>
-                    <input autoFocus type="text" value={searchText} onChange={handleChange}/>
+                  <form onSubmit={handleSearch}>
+                    <input autoFocus type="text" value={searchText} onChange={handleChangeSearch}/>
                     <button type="submit">Search</button>
                   </form>
                   {
@@ -74,6 +92,10 @@ const CreateNewRecord = () => {
                   <p><strong>Common name:</strong>{plants[plantIndex].common_name}</p>
                   <p><strong>Scientific name:</strong>{plants[plantIndex].scientific_name}</p>
                   <p><strong>Family common name:</strong>{plants[plantIndex].family_common_name}</p>
+                  <form onSubmit={handleSubmit}>
+                    <textarea id="description-input" name="description" rows="10" placeholder="Description" value={description} onChange={handleChangeDescription}/>
+                    <button type="submit">Create a new record</button>
+                  </form>
                 </div>
             }
             
