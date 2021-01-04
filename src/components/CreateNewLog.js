@@ -60,10 +60,38 @@ const CreateNewLog = () => {
       <p className="current-date">{`Date: ${getCurrentDate()}`}</p>
       <form onSubmit={handleSubmit}>
         <textarea id="description-input" name="description" rows="5" placeholder="Notes" value={notes} onChange={handleChangeNotes}/>
-        
         <input type="file" name="image-upload"/>
         <button type="submit">Submit</button>
-        <p>Select Main Image</p>
+        <p id="select-main-image">Select Main Image</p>
+          {/* <div className="radio-wrapper">
+            <input type="radio" className="radio-button" name="thumbnail-radio-button"/>
+            <input type="radio" className="radio-button" name="thumbnail-radio-button"/>
+            <input type="radio" className="radio-button" name="thumbnail-radio-button"/>
+            <input type="radio" className="radio-button" name="thumbnail-radio-button"/>
+            <input type="radio" className="radio-button" name="thumbnail-radio-button"/>
+          </div> */}
+          <div className="thumbnails-wrapper">
+            {/* <img className="log-thumbnail" src="http://placekitten.com/500/70"></img>
+            <img className="log-thumbnail" src="http://placekitten.com/40/80"></img>
+            <img className="log-thumbnail" src="http://placekitten.com/1000/70"></img>
+            <img className="log-thumbnail" src="http://placekitten.com/50/90"></img>
+            <img className="log-thumbnail" src="http://placekitten.com/200/70"></img> */}
+            <div className="thumbnail-1">
+                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
+              </div>
+              <div className="thumbnail-2">
+                <img className="thumbnail" src="http://placekitten.com/70/500" alt=""/>
+              </div>
+              <div className="thumbnail-3">
+                <img className="thumbnail" src="http://placekitten.com/100/50" alt=""/>
+              </div>
+              <div className="thumbnail-4">
+                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
+              </div>
+              <div className="thumbnail-5">
+                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
+              </div>
+          </div>
       </form>
     </div>
   )

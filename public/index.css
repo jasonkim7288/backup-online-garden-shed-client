@@ -379,3 +379,35 @@ button:hover {
   width: 100%;
   margin: 20px 0px;
 }
+
+/* -------Create New Log------- */
+
+#select-main-image {
+  margin: 20px 0px;
+  text-align: center;
+}
+
+.radio-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.thumbnails-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 10px;
+  column-gap: 10px;
+  margin: 10px 0;
+}
+
+/* .log-thumbnail {
+  flex-grow: 1;
+  object-fit: contain;
+  max-height: 70px;
+} */
+
+.thumbnail-radio-button {
+  width: 100%;
+}
+
