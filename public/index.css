@@ -70,12 +70,14 @@ button:hover {
   padding-right: 10px;
 }
 
-.body {
-  /* background-color: lightblue; */
-}
-
 .container {
-  margin: 0 20px
+  /* background-color: lightblue; */
+  max-width: 1000px;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .path {
@@ -95,7 +97,7 @@ button:hover {
 .api-image {
   margin-bottom: 10px;
   height: 100px;
-  object-fit: contain; 
+  object-fit: contain;
 }
 
 
@@ -114,7 +116,7 @@ button:hover {
 }
 
 .google {
-   
+
 }
 
 .guest-login-item {
@@ -191,7 +193,7 @@ button:hover {
 
 .garden-shed-wrapper {
   margin-top: 50px;
-  box-shadow: 2px 2px 5px grey;  
+  box-shadow: 2px 2px 5px grey;
 }
 
 .garden-shed-image-wrapper {
@@ -203,7 +205,7 @@ button:hover {
   height: 150px;
   max-height: 150px;
   min-height: 150px;
-  object-fit: contain; 
+  object-fit: contain;
   /* border: 1px solid red; */
 }
 
@@ -313,7 +315,7 @@ button:hover {
 }
 
 .main-image {
-  
+
   width: 100%;
   object-fit: contain;
 }
@@ -393,21 +395,31 @@ button:hover {
 }
 
 .thumbnails-wrapper {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  row-gap: 10px;
-  column-gap: 10px;
-  margin: 10px 0;
+  display: flex;
+  justify-content: space-around;
 }
 
-/* .log-thumbnail {
-  flex-grow: 1;
+.log-thumbnail {
   object-fit: contain;
-  max-height: 70px;
-} */
+  max-width: 180px;
+  min-width: 40px;
+  width: 100%;
+  max-height: 100px;
+  height: 100px;
+  min-height: 100px;
+  /* border: 1px solid; */
+  margin: 5px;
+}
 
 .thumbnail-radio-button {
+  height: 1.5em;
   width: 100%;
+  margin: 10px;
+}
+
+.log-selected-thumbnail {
+  object-fit: contain;
+  width: 100%;
+  padding: 10px 5px;
 }
 
