@@ -7,6 +7,7 @@ const CreateNewLog = () => {
   const { shedId, plantRecordId } = useParams();
   const [plantRecord, setPlantRecord] = useState(null);
   const [formData, setFormData] = useState({});
+  const [temp, setTemp] = useState(null);
   let history = useHistory();
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const CreateNewLog = () => {
     findPlantRecord();
   }, []);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
     // const res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}`,
       // {
@@ -34,15 +35,23 @@ const CreateNewLog = () => {
       // });
       // console.log(res.data);
       // history.push(`/sheds/${shedId}/records/${res.data._id}`);
-  }
+  };
 
-  const handleChangeNotes = (event) => {
+  const handleChangeNotes = event => {
     setFormData(
       {...formData,
         note: event.target.value
       }
     );
-  }
+  };
+
+  const handleChangeFiles = event => {
+    console.log(event.target.files);
+    console.log(event.target.value);
+    if(event.target.files.length > 0) {
+      setTemp(event.target.files[0].name);
+    }
+  };
 
   const { notes } = formData;
 
@@ -60,24 +69,28 @@ const CreateNewLog = () => {
       <p className="current-date">{`Date: ${getCurrentDate()}`}</p>
       <form onSubmit={handleSubmit}>
         <textarea id="description-input" name="description" rows="5" placeholder="Notes" value={notes} onChange={handleChangeNotes}/>
-        <input type="file" name="image-upload"/>
-        <button type="submit">Submit</button>
+        <input multiple onChange={handleChangeFiles} type="file" name="image-upload"/>
+        
         <p id="select-main-image">Select Main Image</p>
         <div className="radio-wrapper">
           <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
+          {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
           <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
-          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
-          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
-          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
+          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
+          {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
         </div>
         <div className="thumbnails-wrapper">
           <img className="log-thumbnail" src="http://placekitten.com/640/480" alt="first thumbnail"/>
-          <img className="log-thumbnail" src="http://placekitten.com/480/640" alt="second thumbnail"/>
+          {/* <img className="log-thumbnail" src="http://placekitten.com/480/640" alt="second thumbnail"/>
           <img className="log-thumbnail" src="http://placekitten.com/1280/960" alt="third thumbnail"/>
-          <img className="log-thumbnail" src="http://placekitten.com/960/1280" alt="fourth thumbnail"/>
-          <img className="log-thumbnail" src="http://placekitten.com/2568/1580" alt="fifth thumbnail"/>
+          <img className="log-thumbnail" src="http://placekitten.com/960/1280" alt="fourth thumbnail"/> */}
+          {/* <img className="log-thumbnail" src="http://placekitten.com/2568/1580" alt="fifth thumbnail"/> */}
         </div>
+        {
+          temp && <img className="log-selected-thumbnail" src={temp} alt="seleted thumbnail main plant"/>
+        }
         <img className="log-selected-thumbnail" src="http://placekitten.com/1280/960" alt="seleted thumbnail main plant"/>
+        <button type="submit">Submit</button>
       </form>
     </div>
   )
