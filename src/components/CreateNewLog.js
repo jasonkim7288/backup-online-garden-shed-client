@@ -63,35 +63,21 @@ const CreateNewLog = () => {
         <input type="file" name="image-upload"/>
         <button type="submit">Submit</button>
         <p id="select-main-image">Select Main Image</p>
-          {/* <div className="radio-wrapper">
-            <input type="radio" className="radio-button" name="thumbnail-radio-button"/>
-            <input type="radio" className="radio-button" name="thumbnail-radio-button"/>
-            <input type="radio" className="radio-button" name="thumbnail-radio-button"/>
-            <input type="radio" className="radio-button" name="thumbnail-radio-button"/>
-            <input type="radio" className="radio-button" name="thumbnail-radio-button"/>
-          </div> */}
-          <div className="thumbnails-wrapper">
-            {/* <img className="log-thumbnail" src="http://placekitten.com/500/70"></img>
-            <img className="log-thumbnail" src="http://placekitten.com/40/80"></img>
-            <img className="log-thumbnail" src="http://placekitten.com/1000/70"></img>
-            <img className="log-thumbnail" src="http://placekitten.com/50/90"></img>
-            <img className="log-thumbnail" src="http://placekitten.com/200/70"></img> */}
-            <div className="thumbnail-1">
-                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
-              </div>
-              <div className="thumbnail-2">
-                <img className="thumbnail" src="http://placekitten.com/70/500" alt=""/>
-              </div>
-              <div className="thumbnail-3">
-                <img className="thumbnail" src="http://placekitten.com/100/50" alt=""/>
-              </div>
-              <div className="thumbnail-4">
-                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
-              </div>
-              <div className="thumbnail-5">
-                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
-              </div>
-          </div>
+        <div className="radio-wrapper">
+          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
+          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
+          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
+          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
+          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
+        </div>
+        <div className="thumbnails-wrapper">
+          <img className="log-thumbnail" src="http://placekitten.com/640/480" alt="first thumbnail"/>
+          <img className="log-thumbnail" src="http://placekitten.com/480/640" alt="second thumbnail"/>
+          <img className="log-thumbnail" src="http://placekitten.com/1280/960" alt="third thumbnail"/>
+          <img className="log-thumbnail" src="http://placekitten.com/960/1280" alt="fourth thumbnail"/>
+          <img className="log-thumbnail" src="http://placekitten.com/2568/1580" alt="fifth thumbnail"/>
+        </div>
+        <img className="log-selected-thumbnail" src="http://placekitten.com/1280/960" alt="seleted thumbnail main plant"/>
       </form>
     </div>
   )
