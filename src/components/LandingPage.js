@@ -17,7 +17,7 @@ const LandingPage = () => {
         <button type="button" onClick={handleClickGuestLogin} className="button guest">Guest</button>
       </div>
       <div className="google-login-item">
-        <SignIn />
+        <SignIn tagType="button"/>
       </div>
     </div>
   )

@@ -46,12 +46,13 @@ const GardenSheds = () => {
                     </div>
                   </Link>
                 )
-              } 
+              }
             </div>
           ))
         }
+
       </div>
-    </div> 
+    </div>
   );
 }
 

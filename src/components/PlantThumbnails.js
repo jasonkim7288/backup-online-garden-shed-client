@@ -7,7 +7,7 @@ import api from '../config/api';
 const PlantThumbnails = () => {
   const { state, dispatch } = useGlobalState();
   const { sheds } = state;
-  const [shed, setShed] = useState(null); 
+  const [shed, setShed] = useState(null);
   const { shedId } = useParams();
   useEffect(() => {
     // const foundShed = sheds.find(element => element._id === shedId);
@@ -24,13 +24,17 @@ const PlantThumbnails = () => {
   console.log('shed:', shed);
   return (
     <div>
+      <button type="button" onClick={async () => {
+        const res = await api.get(`/api/sheds/${shedId}/toggle-follow`);
+        console.log('res.data:', res.data);
+      }}>follow</button>
       {
         shed &&
           <>
             <p className="path">{shed.owner.email}</p>
             <div id="plant-thumbnails-container">
               {shed.plantRecords.map(plantRecord => (
-                <Link to={`/sheds/${shedId}/records/${plantRecord._id}`}>
+                <Link to={`/sheds/${shedId}/records/${plantRecord._id}`} key={plantRecord._id}>
                   <div className="plant-thumbnail-wrapper">
                     <img className="plant-thumbnail" src={plantRecord.recordPhoto} alt=""/>
                     <p className="plant-thumbnail-name">{plantRecord.commonName}</p>

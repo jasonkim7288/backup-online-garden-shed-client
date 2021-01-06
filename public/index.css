@@ -50,13 +50,69 @@ button:hover {
   grid-template-rows: 50px 8fr;
 }
 
-.navbar {
+.navbar-wrapper {
   background-color: grey;
-  font-size: 30px;
+}
+
+.navbar {
+  font-size: 1.5em;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* -------Hamburger Menu------- */
+#mobile-menu-list {
+  background-color: #333;
+  display: block;
+  padding: 10px 0 20px;
+}
+
+.mobile-menu-icon {
+  display: block;
+}
+
+.mobile-menu-icon:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 1200px) {
+  #mobile-menu-list, .mobile-menu-icon {
+    display: none;
+  }
+}
+
+.mobile-menu-profile {
+  margin: 0px 20px 10px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.mobile-menu-profile > h4 {
+  color: white;
+  font-size: 1em;
+}
+
+#mobile-menu-list > p {
+  color: white;
+  padding: 15px 20px;
+  text-decoration: none;
+  display: block;
+}
+
+#mobile-menu-list > p:hover {
+  background-color: #ddd;
+  color: black;
+  cursor: pointer;
+}
+
+hr {
+  margin: 8px 20px;
+  padding: 1px;
+  background-color: white;
+  border-radius: 50%;
 }
 
 .profile-image {
