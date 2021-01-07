@@ -2,12 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import api from '../config/api';
 import { getCurrentDate } from '../utilities/date';
+import { uploadFile } from 'react-s3';
+
+
+const config = {
+  bucketName: process.env.REACT_APP_AWS_BUCKET_NAME,
+  region: 'ap-southeast-2',
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
+};
 
 const CreateNewLog = () => {
   const { shedId, plantRecordId } = useParams();
   const [plantRecord, setPlantRecord] = useState(null);
   const [formData, setFormData] = useState({});
-  const [temp, setTemp] = useState(null);
+  const [filesToUpload, setFilesToUpload] = useState(null);
   let history = useHistory();
 
   useEffect(() => {
@@ -24,7 +33,18 @@ const CreateNewLog = () => {
   }, []);
 
   const handleSubmit = async event => {
+    let fileLocations = [];
     event.preventDefault();
+    for(let i = 0; i < filesToUpload.length; i++) {
+      try {
+        const data = await uploadFile(filesToUpload[i], config);
+        console.log(data);
+        fileLocations.push(data.location);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    console.log('fileLocations:', fileLocations);
     // const res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}`,
       // {
       //   commonName: plants[plantIndex].common_name,
@@ -48,9 +68,9 @@ const CreateNewLog = () => {
   const handleChangeFiles = event => {
     console.log(event.target.files);
     console.log(event.target.value);
-    if(event.target.files.length > 0) {
-      setTemp(event.target.files[0].name);
-    }
+    
+    
+    setFilesToUpload(event.target.files)
   };
 
   const { notes } = formData;
@@ -86,9 +106,9 @@ const CreateNewLog = () => {
           <img className="log-thumbnail" src="http://placekitten.com/960/1280" alt="fourth thumbnail"/> */}
           {/* <img className="log-thumbnail" src="http://placekitten.com/2568/1580" alt="fifth thumbnail"/> */}
         </div>
-        {
+        {/* {
           temp && <img className="log-selected-thumbnail" src={temp} alt="seleted thumbnail main plant"/>
-        }
+        } */}
         <img className="log-selected-thumbnail" src="http://placekitten.com/1280/960" alt="seleted thumbnail main plant"/>
         <button type="submit">Submit</button>
       </form>
