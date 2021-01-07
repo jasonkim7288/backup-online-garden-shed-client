@@ -3,9 +3,9 @@ import { useHistory, useLocation } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
-import { AUTH_SIGN_IN, AUTH_SIGN_OUT, SET_USER } from '../config/types';
+import { AUTH_SIGN_IN, AUTH_SIGN_OUT, SET_IS_MENU_ON, SET_USER } from '../config/types';
 
-const SignIn = () => {
+const SignIn = ({ tagType }) => {
   const { state, dispatch } = useGlobalState();
   const { isLoggedIn, currentUser } = state;
   let history = useHistory();
@@ -40,7 +40,12 @@ const SignIn = () => {
   };
 
   const handleClickLogout = async () => {
-    console.log('clicked');
+    // close the menu first
+    dispatch({
+      type: SET_IS_MENU_ON,
+      payload: false
+    });
+
     try {
       await api.get('/api/auth/signout');
       dispatch({
@@ -68,9 +73,23 @@ const SignIn = () => {
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             render={renderProps => (
-              <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="button google">
-                <i className="fab fa-google"></i>Sign in with Google
-              </button>
+              (tagType === 'button') ? (
+                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="button google">
+                  <i className="fab fa-google"></i>Sign in with Google
+                </button>
+              )
+              : (
+                <p onClick={(event) => {
+                      dispatch({
+                        type: SET_IS_MENU_ON,
+                        payload: false
+                      });
+                      renderProps.onClick(event);
+                    }}
+                    disabled={renderProps.disabled}>
+                  <i className="fab fa-google"></i>Sign in with Google
+                </p>
+              )
             )}
             onSuccess={responseGoogle}
             onFailure={responseGoogle}

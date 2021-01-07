@@ -32,6 +32,8 @@ const App = () => {
             payload: acquiredUser
           })
           dispatch({ type: AUTH_SIGN_IN });
+        } else {
+          console.log('not logged in');
         }
       } catch (err) {
         console.log('err: ', err.message);
