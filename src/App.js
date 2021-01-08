@@ -14,6 +14,12 @@ import CreateNewLog from './components/CreateNewLog';
 import api from './config/api';
 import { useGlobalState } from './config/globalState';
 import { SET_USER, AUTH_SIGN_IN } from './config/types';
+import Sidebar from './components/Sidebar';
+import FollowingSheds from './components/FollowingSheds';
+import MyGardenShed from './components/MyGardenShed';
+import FollowingPlants from './components/FollowingPlants';
+import MissionStatement from './components/MissionStatement';
+import HamburgerMenu from './components/HamburgerMenu';
 
 
 const App = () => {
@@ -40,24 +46,32 @@ const App = () => {
       }
     }
     acquireUser();
-  }, []);
+  }, [dispatch]);
   return (
     <div id="app-container">
       <BrowserRouter>
         <Navbar />
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route path="/about" component={About} />
-            <Route path="/sheds/:shedId/records/new" component={CreateNewRecord} />
-            <Route path="/sheds/:shedId/records/:plantRecordId/logs/new" component={CreateNewLog} />
-            <Route path="/sheds/:shedId/records/:plantRecordId/first-entry" component={SelectedPlantFirstEntry} />
-            <Route path="/sheds/:shedId/records/:plantRecordId" component={PlantRecord} />
-            <Route path="/sheds/:shedId" component={PlantThumbnails} />
-            <Route path="/sheds" component={GardenSheds} />
-            <Route path="/search" component={SearchPlant} />
-          </Switch>
-        </div>
+        <HamburgerMenu/>
+        <Sidebar />
+        <section>
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={LandingPage} />
+              <Route path="/about" component={About} />
+              <Route path="/my-shed" component={MyGardenShed} />
+              <Route path="/following-sheds" component={FollowingSheds} />
+              <Route path="/following-plants" component={FollowingPlants} />
+              <Route path="/mission-statement" component={MissionStatement} />
+              <Route path="/sheds/:shedId/records/new" component={CreateNewRecord} />
+              <Route path="/sheds/:shedId/records/:plantRecordId/logs/new" component={CreateNewLog} />
+              <Route path="/sheds/:shedId/records/:plantRecordId/first-entry" component={SelectedPlantFirstEntry} />
+              <Route path="/sheds/:shedId/records/:plantRecordId" component={PlantRecord} />
+              <Route path="/sheds/:shedId" component={PlantThumbnails} />
+              <Route path="/sheds" component={GardenSheds} />
+              <Route path="/search" component={SearchPlant} />
+            </Switch>
+          </div>
+        </section>
       </BrowserRouter>
     </div>
   );
