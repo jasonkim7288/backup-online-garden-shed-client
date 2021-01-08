@@ -27,13 +27,20 @@ const GardenSheds = () => {
         {
           sheds.length > 0 &&
           sheds.map(shed => (
+            shed.plantRecords.length > 0 && (
             <div key={shed._id}>
-              {
-                shed.plantRecords.length > 0 && (
                   <Link to={ `/sheds/${shed._id}` }>
                     <div className="garden-shed-wrapper">
                       <div className="garden-shed-image-wrapper">
-                        <img className="garden-shed-image" src={shed.plantRecords[0].recordPhoto} alt=""/>
+                        <img className="garden-shed-image"
+                          src={shed.plantRecords[0].recordPhoto}
+                          alt="Garden shed"
+                          style={{position: "absolute"}}
+                        />
+                        <img className="garden-shed-image-frame"
+                          src={`${process.env.PUBLIC_URL}/gardenShedFrame.png`}
+                          alt="Garden shed frame"
+                        />
                       </div>
                       <p>{shed.owner.email}</p>
                       {
@@ -45,9 +52,8 @@ const GardenSheds = () => {
                       }
                     </div>
                   </Link>
-                )
-              }
             </div>
+            )
           ))
         }
 
