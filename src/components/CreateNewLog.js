@@ -17,6 +17,7 @@ const CreateNewLog = () => {
   const [plantRecord, setPlantRecord] = useState(null);
   const [formData, setFormData] = useState({});
   const [filesToUpload, setFilesToUpload] = useState(null);
+  const [filePaths, setFilePaths] = useState([]);
   let history = useHistory();
 
   useEffect(() => {
@@ -65,12 +66,22 @@ const CreateNewLog = () => {
     );
   };
 
+  const readAndPreview = file => {
+    let reader = new FileReader();
+    reader.addEventListener('load', () => {
+      setFilePaths([...filePaths, reader.result]);
+    }, false);
+    reader.readAsDataURL(file);
+  };
+
   const handleChangeFiles = event => {
     console.log(event.target.files);
     console.log(event.target.value);
     
-    
-    setFilesToUpload(event.target.files)
+    const { files } = event.target;
+    setFilesToUpload(files);
+    setFilePaths([]);
+    [].forEach.call(files, readAndPreview);
   };
 
   const { notes } = formData;
@@ -93,14 +104,19 @@ const CreateNewLog = () => {
         
         <p id="select-main-image">Select Main Image</p>
         <div className="radio-wrapper">
-          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
+          {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
           {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
           <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
           <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
           {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
         </div>
         <div className="thumbnails-wrapper">
-          <img className="log-thumbnail" src="http://placekitten.com/640/480" alt="first thumbnail"/>
+          {
+            filePaths.map((file, index) => (
+              <img key={index} className="log-thumbnail" src={file} alt="thumbnail"/>  
+            ))
+          }
+          {/* <img className="log-thumbnail" src="http://placekitten.com/640/480" alt="first thumbnail"/> */}
           {/* <img className="log-thumbnail" src="http://placekitten.com/480/640" alt="second thumbnail"/>
           <img className="log-thumbnail" src="http://placekitten.com/1280/960" alt="third thumbnail"/>
           <img className="log-thumbnail" src="http://placekitten.com/960/1280" alt="fourth thumbnail"/> */}
