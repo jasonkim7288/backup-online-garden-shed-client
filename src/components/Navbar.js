@@ -18,7 +18,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      console.log('window.width:', window.innerWidth);
+      // console.log('window.width:', window.innerWidth);
       if (window.innerWidth < 1200) {
         setIsWindowSmall(true);
       } else {
@@ -53,7 +53,6 @@ const Navbar = () => {
                 </div>
             )
           }
-
         </div>
       </div>
     </nav>
