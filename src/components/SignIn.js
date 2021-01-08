@@ -63,11 +63,19 @@ const SignIn = ({ tagType }) => {
     <>
       {
         (isLoggedIn && currentUser) ?
-          <div className="navbar">
+          <div className="profile-wrapper">
             <img src={currentUser.photo} alt="current user" className="profile-image"/>
-            <button onClick={handleClickLogout} type="button" className="button">
-              Sign out
-            </button>
+            {
+
+              (tagType === 'button') ?
+                  <button onClick={handleClickLogout} type="button" className="add-hover">
+                    Sign out
+                  </button>
+                :
+                  <p onClick={handleClickLogout} className="add-hover">
+                    Sign out
+                  </p>
+            }
           </div>
         :
           <GoogleLogin
@@ -86,7 +94,9 @@ const SignIn = ({ tagType }) => {
                       });
                       renderProps.onClick(event);
                     }}
-                    disabled={renderProps.disabled}>
+                    disabled={renderProps.disabled}
+                    className="add-hover"
+                >
                   <i className="fab fa-google"></i>Sign in with Google
                 </p>
               )

@@ -41,6 +41,8 @@ const HamburgerMenu = () => {
     }
   }
 
+  console.log('isMenuOn:', isMenuOn);
+
   return (
     <>
       {
@@ -66,7 +68,7 @@ const HamburgerMenu = () => {
               </>
               :
               <>
-                <SignIn tagType="paragraph"/>
+                <SignIn tagType="paragraphWithIcon"/>
                 <hr />
                 <p>Mission Statement</p>
               </>
