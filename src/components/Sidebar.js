@@ -1,9 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
 
 const Sidebar = () => {
   const { state } = useGlobalState();
   const { currentUser } = state;
+  let history = useHistory();
+
   const menuItems = [
     {
       title: 'My Garden Shed',
@@ -33,10 +36,8 @@ const Sidebar = () => {
   ];
 
   const handleClick = (event) => {
-    if (currentUser) {
-
-    }
-  }
+    history.push(event.target.dataset.link);
+  };
 
   return (
     <aside>
@@ -48,8 +49,8 @@ const Sidebar = () => {
               onClick={handleClick}
               data-link={menuItem.link}
           >
-            <img src={menuItem.image} alt={menuItem.title} className="sidebar-image"/>
-            <p>{menuItem.title}</p>
+            <img src={menuItem.image} alt={menuItem.title} data-link={menuItem.link} className="sidebar-image"/>
+            <p data-link={menuItem.link}>{menuItem.title}</p>
           </div>
         ))
       }
