@@ -15,9 +15,10 @@ const config = {
 const CreateNewLog = () => {
   const { shedId, plantRecordId } = useParams();
   const [plantRecord, setPlantRecord] = useState(null);
-  const [formData, setFormData] = useState({});
+  const [notes, setNotes] = useState(null);
   const [filesToUpload, setFilesToUpload] = useState(null);
   const [filePaths, setFilePaths] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   let history = useHistory();
 
   useEffect(() => {
@@ -52,24 +53,21 @@ const CreateNewLog = () => {
       }
     }
     console.log('fileLocations:', fileLocations);
-    // const res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}`,
-      // {
-      //   commonName: plants[plantIndex].common_name,
-      //   scientificName: plants[plantIndex].scientific_name,
-      //   familyCommonName: plants[plantIndex].family_common_name,
-      //   recordPhoto: plants[plantIndex].image_url,
-      //   description
-      // });
-      // console.log(res.data);
-      // history.push(`/sheds/${shedId}/records/${res.data._id}`);
+    let newLog = {
+      photos: [],
+      note: notes 
+    };
+    newLog.photos = fileLocations.map((fileLocation, index) => ({
+      photo: fileLocation,
+      isMain: index === currentIndex
+    }));
+    const res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}/logs`, newLog);
+    console.log(res.data);
+    history.push(`/sheds/${shedId}/records/${plantRecordId}`);
   };
 
   const handleChangeNotes = event => {
-    setFormData(
-      {...formData,
-        note: event.target.value
-      }
-    );
+    setNotes(event.target.value);
   };
 
   const readAndPreview = file => {
@@ -90,10 +88,14 @@ const CreateNewLog = () => {
     const { files } = event.target;
     setFilesToUpload(files);
     setFilePaths([]);
+    setCurrentIndex(0);
     // [].forEach.call(files, readAndPreview);
   };
 
-  const { notes } = formData;
+  const handleChangeMain = event => {
+    console.log('event.target.value:', typeof event.target.value); 
+    setCurrentIndex(parseInt(event.target.value));
+  };
 
   return (
     <div>
@@ -111,37 +113,36 @@ const CreateNewLog = () => {
         <textarea id="description-input" name="description" rows="5" placeholder="Notes" value={notes} onChange={handleChangeNotes}/>
         <input multiple onChange={handleChangeFiles} type="file" name="image-upload"/>
 
-        <p id="select-main-image">Select Main Image</p>
-        <div className="radio-wrapper">
-          {
-            filePaths &&
-            filePaths.map((file, index) => (
-              <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button" key={index}/>
-            ))
-          }
-          {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
-          {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
-          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
-          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
-          {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
-        </div>
-        <div className="thumbnails-wrapper">
-          {
-            filePaths &&
-            filePaths.map((file, index) => (
-              <img key={index} className="log-thumbnail" src={file} alt="thumbnail"/>
-            ))
-          }
-          {/* <img className="log-thumbnail" src="http://placekitten.com/640/480" alt="first thumbnail"/> */}
-          {/* <img className="log-thumbnail" src="http://placekitten.com/480/640" alt="second thumbnail"/>
-          <img className="log-thumbnail" src="http://placekitten.com/1280/960" alt="third thumbnail"/>
-          <img className="log-thumbnail" src="http://placekitten.com/960/1280" alt="fourth thumbnail"/> */}
-          {/* <img className="log-thumbnail" src="http://placekitten.com/2568/1580" alt="fifth thumbnail"/> */}
-        </div>
-        {/* {
-          temp && <img className="log-selected-thumbnail" src={temp} alt="seleted thumbnail main plant"/>
-        } */}
-        <img className="log-selected-thumbnail" src="http://placekitten.com/1280/960" alt="seleted thumbnail main plant"/>
+        {
+          filePaths && filePaths.length > 0 && 
+          <>
+            <p id="select-main-image">Select Main Image</p>
+            <div className="radio-wrapper">
+              {
+                filePaths.map((file, index) => (
+                  <input 
+                    type="radio" 
+                    className="thumbnail-radio-button" 
+                    name="thumbnail-radio-button" 
+                    key={index}
+                    value={index}
+                    onChange={handleChangeMain}
+                    checked={index === currentIndex}
+                  />
+                ))
+              }
+            </div>
+            <div className="thumbnails-wrapper">
+              {
+                filePaths.map((file, index) => (
+                  <img key={index} className="log-thumbnail" src={file} alt="thumbnail"/>
+                ))
+              }
+            </div>
+
+            <img className="log-selected-thumbnail" src={filePaths[currentIndex]} alt="seleted thumbnail main plant"/>
+          </>
+        }
         <button type="submit">Submit</button>
       </form>
     </div>
