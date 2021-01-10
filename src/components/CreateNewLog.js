@@ -18,6 +18,7 @@ const CreateNewLog = () => {
   const [formData, setFormData] = useState({});
   const [filesToUpload, setFilesToUpload] = useState(null);
   const [filePaths, setFilePaths] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   let history = useHistory();
 
   useEffect(() => {
@@ -90,7 +91,13 @@ const CreateNewLog = () => {
     const { files } = event.target;
     setFilesToUpload(files);
     setFilePaths([]);
+    setCurrentIndex(0);
     // [].forEach.call(files, readAndPreview);
+  };
+
+  const handleChangeMain = event => {
+    console.log('event.target.value:', typeof event.target.value); 
+    setCurrentIndex(parseInt(event.target.value));
   };
 
   const { notes } = formData;
@@ -111,37 +118,36 @@ const CreateNewLog = () => {
         <textarea id="description-input" name="description" rows="5" placeholder="Notes" value={notes} onChange={handleChangeNotes}/>
         <input multiple onChange={handleChangeFiles} type="file" name="image-upload"/>
 
-        <p id="select-main-image">Select Main Image</p>
-        <div className="radio-wrapper">
-          {
-            filePaths &&
-            filePaths.map((file, index) => (
-              <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button" key={index}/>
-            ))
-          }
-          {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
-          {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
-          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
-          <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
-          {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
-        </div>
-        <div className="thumbnails-wrapper">
-          {
-            filePaths &&
-            filePaths.map((file, index) => (
-              <img key={index} className="log-thumbnail" src={file} alt="thumbnail"/>
-            ))
-          }
-          {/* <img className="log-thumbnail" src="http://placekitten.com/640/480" alt="first thumbnail"/> */}
-          {/* <img className="log-thumbnail" src="http://placekitten.com/480/640" alt="second thumbnail"/>
-          <img className="log-thumbnail" src="http://placekitten.com/1280/960" alt="third thumbnail"/>
-          <img className="log-thumbnail" src="http://placekitten.com/960/1280" alt="fourth thumbnail"/> */}
-          {/* <img className="log-thumbnail" src="http://placekitten.com/2568/1580" alt="fifth thumbnail"/> */}
-        </div>
-        {/* {
-          temp && <img className="log-selected-thumbnail" src={temp} alt="seleted thumbnail main plant"/>
-        } */}
-        <img className="log-selected-thumbnail" src="http://placekitten.com/1280/960" alt="seleted thumbnail main plant"/>
+        {
+          filePaths && filePaths.length > 0 && 
+          <>
+            <p id="select-main-image">Select Main Image</p>
+            <div className="radio-wrapper">
+              {
+                filePaths.map((file, index) => (
+                  <input 
+                    type="radio" 
+                    className="thumbnail-radio-button" 
+                    name="thumbnail-radio-button" 
+                    key={index}
+                    value={index}
+                    onChange={handleChangeMain}
+                    checked={index === currentIndex}
+                  />
+                ))
+              }
+            </div>
+            <div className="thumbnails-wrapper">
+              {
+                filePaths.map((file, index) => (
+                  <img key={index} className="log-thumbnail" src={file} alt="thumbnail"/>
+                ))
+              }
+            </div>
+
+            <img className="log-selected-thumbnail" src={filePaths[currentIndex]} alt="seleted thumbnail main plant"/>
+          </>
+        }
         <button type="submit">Submit</button>
       </form>
     </div>
