@@ -15,7 +15,7 @@ const config = {
 const CreateNewLog = () => {
   const { shedId, plantRecordId } = useParams();
   const [plantRecord, setPlantRecord] = useState(null);
-  const [formData, setFormData] = useState({});
+  const [notes, setNotes] = useState(null);
   const [filesToUpload, setFilesToUpload] = useState(null);
   const [filePaths, setFilePaths] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -53,24 +53,21 @@ const CreateNewLog = () => {
       }
     }
     console.log('fileLocations:', fileLocations);
-    // const res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}`,
-      // {
-      //   commonName: plants[plantIndex].common_name,
-      //   scientificName: plants[plantIndex].scientific_name,
-      //   familyCommonName: plants[plantIndex].family_common_name,
-      //   recordPhoto: plants[plantIndex].image_url,
-      //   description
-      // });
-      // console.log(res.data);
-      // history.push(`/sheds/${shedId}/records/${res.data._id}`);
+    let newLog = {
+      photos: [],
+      note: notes 
+    };
+    newLog.photos = fileLocations.map((fileLocation, index) => ({
+      photo: fileLocation,
+      isMain: index === currentIndex
+    }));
+    const res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}/logs`, newLog);
+    console.log(res.data);
+    history.push(`/sheds/${shedId}/records/${plantRecordId}`);
   };
 
   const handleChangeNotes = event => {
-    setFormData(
-      {...formData,
-        note: event.target.value
-      }
-    );
+    setNotes(event.target.value);
   };
 
   const readAndPreview = file => {
@@ -99,8 +96,6 @@ const CreateNewLog = () => {
     console.log('event.target.value:', typeof event.target.value); 
     setCurrentIndex(parseInt(event.target.value));
   };
-
-  const { notes } = formData;
 
   return (
     <div>
