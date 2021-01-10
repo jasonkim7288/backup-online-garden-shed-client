@@ -1,7 +1,7 @@
 import { AUTH_SIGN_IN, AUTH_SIGN_OUT, SET_TOKEN, SET_USER, SET_SHEDS, SET_IS_MENU_ON } from './types';
 
 export const initialState = {
-  isLoggedIn: false,
+  isSignedIn: false,
   errMsg: '',
   currentUser: null,
   token: '',
@@ -14,14 +14,14 @@ export const stateReducer = (state, action) => {
     case AUTH_SIGN_IN:
       return {
         ...state,
-        isLoggedIn: true,
+        isSignedIn: true,
         errMsg: ''
       };
     case AUTH_SIGN_OUT:
       console.log('AUTH_SIGN_OUT');
       return {
         ...state,
-        isLoggedIn: false,
+        isSignedIn: false,
         errMsg: ''
       };
     case SET_TOKEN:

@@ -6,7 +6,7 @@ import SignIn from './SignIn';
 
 const Navbar = () => {
   const { state, dispatch } = useGlobalState();
-  const { isLoggedIn, isMenuOn, currentUser } = state;
+  const { isSignedIn, isMenuOn, currentUser } = state;
   const [ isWindowSmall, setIsWindowSmall] = useState(null);
 
   const handleClickMenuIcon = () => {
@@ -39,7 +39,7 @@ const Navbar = () => {
       <div className="navbar-wrapper">
         <div className="navbar container">
           <div>
-            <Link to={isLoggedIn ? "/sheds" : "/"}>Online Garden Shed</Link>
+            <Link to="/sheds">Online Garden Shed</Link>
           </div>
           {
             (isWindowSmall !== null) && (
