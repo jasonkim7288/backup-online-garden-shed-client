@@ -4,7 +4,7 @@ import { useGlobalState } from '../config/globalState';
 
 const Sidebar = () => {
   const { state } = useGlobalState();
-  const { currentUser } = state;
+  const { isSignedIn, currentUser } = state;
   let history = useHistory();
 
   const menuItems = [
@@ -36,7 +36,11 @@ const Sidebar = () => {
   ];
 
   const handleClick = (event) => {
-    history.push(event.target.dataset.link);
+    if (!isSignedIn) {
+      history.push('/');
+    } else {
+      history.push(event.target.dataset.link);
+    }
   };
 
   return (

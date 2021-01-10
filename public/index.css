@@ -147,7 +147,7 @@ section {
 
 .container {
   /* background-color: lightblue; */
-  max-width: 1000px;
+  max-width: 1100px;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
@@ -293,17 +293,27 @@ aside {
 
 /* -------Garden Sheds------- */
 #garden-sheds-container {
+  width: 100%;
   display: grid;
+  align-items: center;
+  justify-items: center;
   grid-template-columns: 1fr;
   column-gap: 5px;
   row-gap: 30px;
-  margin: 0 10px;
+  margin: 0;
+}
+
+@media (min-width: 576px) {
+  #garden-sheds-container {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* Break point from mobile to tablet */
 @media (min-width: 768px) {
   #garden-sheds-container {
     grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
   }
 }
 
@@ -315,6 +325,9 @@ aside {
 }
 
 .garden-shed-wrapper {
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
   margin-top: 50px;
   box-shadow: 2px 2px 5px grey;
   display: flex;
@@ -325,29 +338,48 @@ aside {
 }
 
 .garden-shed-image-wrapper {
+  width: 250px;
   text-align: center;
   display: grid;
-  grid-template-columns: 47px auto 47px;
-  grid-template-rows: 60px auto;
+  grid-template-columns: 56px auto 55px;
+  grid-template-rows: 62px auto;
+  align-items: center;
+  justify-items: center;
 }
 
 .garden-shed-image-frame {
-  max-width: 100%;
   height: 150px;
   max-height: 150px;
   min-height: 150px;
   object-fit: contain;
   grid-area: 1 / 1 / -1 / -1;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .garden-shed-image {
-  max-width: 100%;
-  height: 78px;
-  max-height: 78px;
-  min-height: 78px;
+  height: 87px;
+  max-height: 87px;
+  min-height: 87px;
   object-fit: contain;
   /* border: 1px solid red; */
   grid-area: 2 / 2;
+}
+
+.garden-shed-owner {
+  word-break: break-word;
+  margin: 10px 18px;
+  text-align: center;
+}
+
+.garden-shed-plants-list {
+  height: 35px;
+  max-height: 35px;
+  min-height: 35px;
+  margin: 10px 18px;
+  color: darkgreen;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 /* -------Plant Thumbnails------- */
@@ -379,6 +411,7 @@ aside {
 .plant-thumbnail-name {
   text-decoration: none;
   color: black;
+  margin: 10px 18px;
 }
 
 .sgs-item {
@@ -413,7 +446,6 @@ aside {
 @media (min-width: 1200px) {
   #plant-thumbnails-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    margin: 0 200px;
   }
   .plant-thumbnail {
     max-width: 100%;

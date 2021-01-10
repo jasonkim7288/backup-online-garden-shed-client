@@ -7,7 +7,7 @@ import { AUTH_SIGN_IN, AUTH_SIGN_OUT, SET_IS_MENU_ON, SET_USER } from '../config
 
 const SignIn = ({ tagType }) => {
   const { state, dispatch } = useGlobalState();
-  const { isLoggedIn, currentUser } = state;
+  const { isSignedIn, currentUser } = state;
   let history = useHistory();
   let location = useLocation();
 
@@ -62,7 +62,7 @@ const SignIn = ({ tagType }) => {
   return (
     <>
       {
-        (isLoggedIn && currentUser) ?
+        (isSignedIn && currentUser) ?
           <div className="profile-wrapper">
             <img src={currentUser.photo} alt="current user" className="profile-image"/>
             {

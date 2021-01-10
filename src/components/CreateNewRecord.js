@@ -3,6 +3,7 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import api from '../config/api';
 import axios from 'axios';
 import { getCurrentDate } from '../utilities/date';
+import { useGlobalState } from '../config/globalState';
 
 const CreateNewRecord = () => {
   const [shed, setShed] = useState(null);
@@ -11,9 +12,16 @@ const CreateNewRecord = () => {
   const { shedId } = useParams();
   const [plantIndex, setPlantIndex] = useState(null);
   const [description, setDescription] = useState('');
+  const { state } = useGlobalState();
+  const { isSignedIn } = state;
   let history = useHistory();
 
   useEffect(() => {
+    if (!isSignedIn) {
+      history.push('/');
+      return;
+    }
+
     const findShed = async () => {
       const res = await api(`/api/sheds/${shedId}`);
       const foundShed = res.data;
@@ -86,7 +94,7 @@ const CreateNewRecord = () => {
                             <p><strong>Common name:</strong>&nbsp;{plant.common_name}</p>
                             <p><strong>Scientific name:</strong>&nbsp;{plant.scientific_name}</p>
                             <p><strong>Family common name:</strong>&nbsp;{plant.family_common_name}</p>
-                          </div>  
+                          </div>
                         ))
                       }
                     </>
@@ -104,7 +112,7 @@ const CreateNewRecord = () => {
                   </form>
                 </div>
             }
-            
+
           </>
       }
     </div>

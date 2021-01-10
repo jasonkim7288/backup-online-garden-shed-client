@@ -17,7 +17,7 @@ const CreateNewLog = () => {
   const [plantRecord, setPlantRecord] = useState(null);
   const [formData, setFormData] = useState({});
   const [filesToUpload, setFilesToUpload] = useState(null);
-  const [filePaths, setFilePaths] = useState([]);
+  const [filePaths, setFilePaths] = useState(null);
   let history = useHistory();
 
   useEffect(() => {
@@ -32,6 +32,12 @@ const CreateNewLog = () => {
     }
     findPlantRecord();
   }, []);
+
+  useEffect(() => {
+    if (filesToUpload && filePaths && filesToUpload.length !== 0 && filesToUpload.length > filePaths.length) {
+      readAndPreview(filesToUpload[filePaths.length]);
+    }
+  }, [filePaths])
 
   const handleSubmit = async event => {
     let fileLocations = [];
@@ -68,20 +74,23 @@ const CreateNewLog = () => {
 
   const readAndPreview = file => {
     let reader = new FileReader();
+
     reader.addEventListener('load', () => {
+      console.log('reader.result:', file.name);
       setFilePaths([...filePaths, reader.result]);
+      console.log('filePaths.length:', filePaths.length);
+
     }, false);
     reader.readAsDataURL(file);
   };
 
   const handleChangeFiles = event => {
-    console.log(event.target.files);
-    console.log(event.target.value);
-    
+    console.log('event.target.files:', event.target.files);
+
     const { files } = event.target;
     setFilesToUpload(files);
     setFilePaths([]);
-    [].forEach.call(files, readAndPreview);
+    // [].forEach.call(files, readAndPreview);
   };
 
   const { notes } = formData;
@@ -101,9 +110,15 @@ const CreateNewLog = () => {
       <form onSubmit={handleSubmit}>
         <textarea id="description-input" name="description" rows="5" placeholder="Notes" value={notes} onChange={handleChangeNotes}/>
         <input multiple onChange={handleChangeFiles} type="file" name="image-upload"/>
-        
+
         <p id="select-main-image">Select Main Image</p>
         <div className="radio-wrapper">
+          {
+            filePaths &&
+            filePaths.map((file, index) => (
+              <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button" key={index}/>
+            ))
+          }
           {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/> */}
           {/* <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
           <input type="radio" className="thumbnail-radio-button" name="thumbnail-radio-button"/>
@@ -112,8 +127,9 @@ const CreateNewLog = () => {
         </div>
         <div className="thumbnails-wrapper">
           {
+            filePaths &&
             filePaths.map((file, index) => (
-              <img key={index} className="log-thumbnail" src={file} alt="thumbnail"/>  
+              <img key={index} className="log-thumbnail" src={file} alt="thumbnail"/>
             ))
           }
           {/* <img className="log-thumbnail" src="http://placekitten.com/640/480" alt="first thumbnail"/> */}

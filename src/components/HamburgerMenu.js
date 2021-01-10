@@ -41,8 +41,6 @@ const HamburgerMenu = () => {
     }
   }
 
-  console.log('isMenuOn:', isMenuOn);
-
   return (
     <>
       {
