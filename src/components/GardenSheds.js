@@ -40,7 +40,7 @@ const GardenSheds = () => {
                     alt="Garden shed frame"
                   />
                 </div>
-                <div className="garden-shed-text-wrapper">
+                <div>
                 <p className="garden-shed-owner">{removeDomain(shed.owner.email)}</p>
                 {
                   shed.plantRecords.length > 0 && (

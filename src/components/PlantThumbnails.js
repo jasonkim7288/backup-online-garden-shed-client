@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
 import api from '../config/api';
+import { getUniquePlantName } from '../utilities/strings';
 
 
 const PlantThumbnails = () => {
@@ -37,7 +38,7 @@ const PlantThumbnails = () => {
                 <Link to={`/sheds/${shedId}/records/${plantRecord._id}`} key={plantRecord._id}>
                   <div className="plant-thumbnail-wrapper">
                     <img className="plant-thumbnail" src={plantRecord.recordPhoto} alt=""/>
-                    <p className="plant-thumbnail-name">{plantRecord.commonName}</p>
+                    <p className="plant-thumbnail-name">{getUniquePlantName(plantRecord)}</p>
                   </div>
                 </Link>
               ))}
