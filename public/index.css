@@ -77,10 +77,6 @@ button:hover {
   display: block;
 }
 
-.mobile-menu-icon:hover {
-  cursor: pointer;
-}
-
 /* @media (min-width: 1200px) {
   #mobile-menu-list, .mobile-menu-icon {
     display: none;
