@@ -23,11 +23,15 @@ const CreateNewRecord = () => {
     }
 
     const findShed = async () => {
-      const res = await api(`/api/sheds/${shedId}`);
-      const foundShed = res.data;
-      console.log('foundShed:', foundShed);
-      if(foundShed) {
-        setShed(foundShed);
+      try {
+        const res = await api.get(`/api/sheds/${shedId}`);
+        const foundShed = res.data;
+        console.log('foundShed:', foundShed);
+        if(foundShed) {
+          setShed(foundShed);
+        }
+      } catch (error) {
+        console.log('error.response: ', error.response);
       }
     }
     findShed();
@@ -51,16 +55,21 @@ const CreateNewRecord = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const res = await api.post(`api/sheds/${shedId}/records`,
-      {
-        commonName: plants[plantIndex].common_name,
-        scientificName: plants[plantIndex].scientific_name,
-        familyCommonName: plants[plantIndex].family_common_name,
-        recordPhoto: plants[plantIndex].image_url,
-        description
-      });
+    try {
+      const res = await api.post(`api/sheds/${shedId}/records`,
+        {
+          commonName: plants[plantIndex].common_name,
+          scientificName: plants[plantIndex].scientific_name,
+          familyCommonName: plants[plantIndex].family_common_name,
+          recordPhoto: plants[plantIndex].image_url,
+          description
+        });
       console.log(res.data);
       history.push(`/sheds/${shedId}/records/${res.data._id}`);
+    } catch (error) {
+      console.log(error.response)
+    }
+    
   }
 
   const handleChangeDescription = (event) => {

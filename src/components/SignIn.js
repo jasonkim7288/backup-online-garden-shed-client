@@ -35,7 +35,7 @@ const SignIn = ({ tagType }) => {
         }
       }
     } catch (err) {
-      console.log('err: ', err.message);
+      console.log('err: ', err.response);
     }
   };
 
@@ -55,7 +55,7 @@ const SignIn = ({ tagType }) => {
       dispatch({ type: AUTH_SIGN_OUT });
       history.push('/');
     } catch (err) {
-      console.log('err: ', err.message);
+      console.log('err: ', err.response);
     }
   };
 

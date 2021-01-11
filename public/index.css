@@ -455,7 +455,7 @@ aside {
 }
 
 /* -------Plant Record------- */
-#plant-record-container {
+.plant-log-container {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -481,34 +481,34 @@ aside {
   padding: 0 5px;
 }
 
-#plant-record-container > #image-wrapper {
+.plant-log-main-wrapper {
   grid-area: 1 / 1 / 2 / 6;
 }
 
 .main-image {
+  width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+}
 
+.plant-log-container .thumbnail {
   width: 100%;
   object-fit: contain;
 }
 
-#plant-record-container .thumbnail {
-  width: 100%;
-  object-fit: contain;
-}
-
-#plant-record-container > .thumbnail-1 {
+.plant-log-container > .thumbnail-1 {
   grid-area: 3 / 1;
 }
-#plant-record-container > .thumbnail-2 {
+.plant-log-container > .thumbnail-2 {
   grid-area: 3 / 2;
 }
-#plant-record-container > .thumbnail-3 {
+.plant-log-container > .thumbnail-3 {
   grid-area: 3 / 3;
 }
-#plant-record-container > .thumbnail-4 {
+.plant-log-container > .thumbnail-4 {
   grid-area: 3 / 4;
 }
-#plant-record-container > .thumbnail-5 {
+.plant-log-container > .thumbnail-5 {
   grid-area: 3 / 5;
 }
 
@@ -540,7 +540,7 @@ aside {
 
 /* Break point for desktop */
 @media (min-width: 1200px) {
-  #plant-record-container > .button > #new-log {
+  .plant-log-container > .button > #new-log {
     font-size: 20px;
     padding: 50px;
   }
@@ -600,5 +600,10 @@ aside {
 form > button {
   margin-top: 5px;
   margin-bottom: 40px;
+}
+
+/* ------- Mission Statement------- */
+#mission-statement{
+  text-align: center;
 }
 
