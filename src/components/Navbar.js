@@ -44,7 +44,7 @@ const Navbar = () => {
           {
             (isWindowSmall !== null) && (
               isWindowSmall ?
-                <div className="mobile-menu-icon" onClick={handleClickMenuIcon}>
+                <div className="mobile-menu-icon add-hover" onClick={handleClickMenuIcon}>
                   <i className="fa fa-bars"></i>
                 </div>
               :

@@ -69,7 +69,7 @@ const CreateNewRecord = () => {
     } catch (error) {
       console.log(error.response)
     }
-    
+
   }
 
   const handleChangeDescription = (event) => {
@@ -98,7 +98,7 @@ const CreateNewRecord = () => {
                       <h2>{`Searched results for "${searchText}"`} </h2>
                       {
                         plants.map((plant, index) => (
-                          <div className="api-wrapper" key={plant.id} onClick={(event) => handleClick(event, index)}>
+                          <div className="api-wrapper add-hover" key={plant.id} onClick={(event) => handleClick(event, index)}>
                             <img className="api-image" src={plant.image_url} alt=""/>
                             <p><strong>Common name:</strong>&nbsp;{plant.common_name}</p>
                             <p><strong>Scientific name:</strong>&nbsp;{plant.scientific_name}</p>
