@@ -54,15 +54,18 @@ const CreateNewLog = () => {
     }
     console.log('fileLocations:', fileLocations);
     let newLog = {
-      photos: [],
-      note: notes 
+      photos: fileLocations,
+      mainPhotoIndex: currentIndex,
+      notes 
     };
-    newLog.photos = fileLocations.map((fileLocation, index) => ({
-      photo: fileLocation,
-      isMain: index === currentIndex
-    }));
-    const res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}/logs`, newLog);
-    console.log(res.data);
+    console.log('new log:', newLog);
+    try {
+      const res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}/logs`, newLog);
+      console.log(res.data);
+    } catch (error) {
+      console.log("error:", error);
+    };
+    
     history.push(`/sheds/${shedId}/records/${plantRecordId}`);
   };
 
