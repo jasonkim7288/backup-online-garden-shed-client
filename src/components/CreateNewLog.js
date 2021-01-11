@@ -23,12 +23,16 @@ const CreateNewLog = () => {
 
   useEffect(() => {
     const findPlantRecord = async () => {
-      const res = await api(`/api/sheds/${shedId}/records/${plantRecordId}`);
-      const foundPlantRecord = res.data;
-      console.log('found Plant record:', foundPlantRecord);
-      if(foundPlantRecord) {
-        setPlantRecord(foundPlantRecord);
-        console.log(new Date(foundPlantRecord.createdAt));
+      try{
+        const res = await api.get(`/api/sheds/${shedId}/records/${plantRecordId}`);
+        const foundPlantRecord = res.data;
+        console.log('found Plant record:', foundPlantRecord);
+        if(foundPlantRecord) {
+          setPlantRecord(foundPlantRecord);
+          console.log(new Date(foundPlantRecord.createdAt));
+        }
+      } catch (error) {
+        console.log("error.response: ", error.response);
       }
     }
     findPlantRecord();
@@ -63,7 +67,7 @@ const CreateNewLog = () => {
       const res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}/logs`, newLog);
       console.log(res.data);
     } catch (error) {
-      console.log("error:", error);
+      console.log("error:", error.response);
     };
     
     history.push(`/sheds/${shedId}/records/${plantRecordId}`);

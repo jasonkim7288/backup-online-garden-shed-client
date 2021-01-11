@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
 import api from '../config/api';
+import { convertStringToDateString } from '../utilities/date';
 
 const PlantRecord = () => {
   const [plantRecord, setPlantRecord] = useState(null);
@@ -36,53 +37,46 @@ const PlantRecord = () => {
               <i className="fas fa-leaf"></i>
             </div>
 
-            <div className="button-wrapper">
+            <Link to={`/sheds/${shedId}/records/${plantRecordId}/first-entry`} className="button-wrapper">
               <button className="about" type="button">About</button>
-            </div>
+            </Link>
             <div className="button-wrapper">
               <button onClick={handleClickNewLog} className="new-log" type="button">Creat a new log</button>
             </div>
 
-            <div id="plant-record-container">
-              <div id="image-wrapper">
-                <img className="main-image" src="http://placekitten.com/400/300"  alt=""/>
-              </div>
+            {
+              plantRecord.plantLogs.map((plantLog, index) => 
+                <div key={index}> 
+                  {
+                    plantLog.photos && plantLog.photos.length > 0 && 
+                      <div className="plant-log-container">
+                        <div className="plant-log-main-wrapper">
+                          <img className="main-image" src={plantLog.photos[plantLog.mainPhotoIndex]}  alt="main"/>
+                        </div>
 
-              <div className="thumbnail-1">
-                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
-              </div>
-              <div className="thumbnail-2">
-                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
-              </div>
-              <div className="thumbnail-3">
-                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
-              </div>
-              <div className="thumbnail-4">
-                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
-              </div>
-              <div className="thumbnail-5">
-                <img className="thumbnail" src="http://placekitten.com/70/50" alt=""/>
-              </div>
+                        {
+                          plantLog.photos.map((photo, photoIndex) => 
+                            <div key={photoIndex} className={`thumbnail-${photoIndex + 1}`}>
+                              <img className="thumbnail" src={photo} alt="thumbnail"/>
+                            </div>
+                          )
+                        }
+                      </div>
+                  }
 
-            </div>
+                  <div className="icon icon-record icon-record-delete">
+                    <i className="far fa-trash-alt"></i>
+                  </div>
+                  <div className="icon icon-record icon-record-edit">
+                    <i className="far fa-edit"></i>
+                  </div>
 
-            <div className="icon icon-record icon-record-delete">
-              <i className="far fa-trash-alt"></i>
-            </div>
-            <div className="icon icon-record icon-record-edit">
-              <i className="far fa-edit"></i>
-            </div>
-
-            <p className="sub-headings"><strong>Date:</strong> 17/11/2020 (Day 1)</p>
-            <p className="sub-headings"><strong>My Notes:</strong></p>
-            <p className="my-notes">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper vitae magna eget mattis.
-              Vivamus posuere iaculis consequat. Pellentesque euismod elementum bibendum.
-              Quisque tincidunt nisi a ligula sagittis accumsan. Fusce sed luctus elit.
-              Aenean at ipsum iaculis, facilisis lectus et, interdum nisi. Pellentesque quis fermentum ante.
-              In id massa eu nisi dignissim elementum in vitae quam. Duis eros ante, pulvinar ut est et, maximus consequat augue.
-              Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vitae tellus lacus.
-            </p>
+                  <p className="sub-headings"><strong>Date:</strong> {convertStringToDateString(plantLog.createdAt)} (Day 1) Need to make this dynamic</p>
+                  <p className="sub-headings"><strong>My Notes:</strong></p>
+                  <p className="my-notes">{plantLog.notes}</p>
+                </div> 
+              )
+            }
           </>
       }
     </div>

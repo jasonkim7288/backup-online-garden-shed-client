@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import LandingPage from './components/LandingPage';
-import About from './components/About';
 import PlantRecord from './components/PlantRecord';
 import SelectedPlantFirstEntry from './components/SelectedPlantFirstEntry';
 import GardenSheds from './components/GardenSheds';
@@ -42,7 +41,7 @@ const App = () => {
           console.log('not logged in');
         }
       } catch (err) {
-        console.log('err: ', err.message);
+        console.log('err: ', err.response);
       }
     }
     acquireUser();
@@ -57,14 +56,13 @@ const App = () => {
           <div className="container">
             <Switch>
               <Route exact path="/" component={LandingPage} />
-              <Route path="/about" component={About} />
               <Route path="/my-shed" component={MyGardenShed} />
               <Route path="/following-sheds" component={FollowingSheds} />
               <Route path="/following-plants" component={FollowingPlants} />
               <Route path="/mission-statement" component={MissionStatement} />
               <Route path="/sheds/:shedId/records/new" component={CreateNewRecord} />
               <Route path="/sheds/:shedId/records/:plantRecordId/logs/new" component={CreateNewLog} />
-              <Route path="/sheds/:shedId/records/:plantRecordId/first-entry" component={SelectedPlantFirstEntry} />
+              <Route path="/sheds/:shedId/records/:plantRecordId/first-entry" component={SelectedPlantFirstEntry} />              
               <Route path="/sheds/:shedId/records/:plantRecordId" component={PlantRecord} />
               <Route path="/sheds/:shedId" component={PlantThumbnails} />
               <Route path="/sheds" component={GardenSheds} />

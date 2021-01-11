@@ -11,13 +11,18 @@ const GardenSheds = () => {
   const { sheds } = state;
 
   useEffect(() => {
-    api.get('/api/sheds')
-      .then(res => {
+    const getCurrentSheds = async () => {
+      try {
+        const res = await api.get('/api/sheds');
         dispatch({
           type: SET_SHEDS,
           payload: res.data
-        })
-      });
+        });
+      } catch (error) { 
+        console.log('error.response: ', error.response);
+      }
+    };
+    getCurrentSheds();
   }, []);
 
   console.log('sheds: ',sheds)
