@@ -56,7 +56,22 @@ const PlantRecord = () => {
 
                         {
                           plantLog.photos.map((photo, photoIndex) => 
-                            <div key={photoIndex} className={`thumbnail-${photoIndex + 1}`}>
+                            <div key={photoIndex}
+                              onClick={() => {
+                                setPlantRecord({
+                                  ...plantRecord,
+                                  plantLogs:  plantRecord.plantLogs.map((element, idx) => 
+                                    (idx === index) ? 
+                                      ({
+                                        ...element, 
+                                        mainPhotoIndex: photoIndex
+                                      })
+                                    :
+                                      element
+                                  )
+                                });
+                              }}  
+                              className={`thumbnail-${photoIndex + 1}`}>
                               <img className="thumbnail" src={photo} alt="thumbnail"/>
                             </div>
                           )
