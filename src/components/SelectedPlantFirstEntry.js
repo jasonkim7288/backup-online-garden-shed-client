@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
-import { confirmAlert } from 'react-confirm-alert'; 
+import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const SelectedPlantFirstEntry = () => {
@@ -46,7 +46,7 @@ const SelectedPlantFirstEntry = () => {
             try {
               await api.delete(`api/sheds/${shedId}/records/${plantRecordId}`);
               history.push(`/sheds/${shedId}`);
-            } catch (error) { 
+            } catch (error) {
               console.log(error.response);
             }
           }
@@ -62,7 +62,7 @@ const SelectedPlantFirstEntry = () => {
   return (
     <>
       {
-        plantRecord && 
+        plantRecord &&
         <>
           <p className="path">
             <Link to={`/sheds/${shedId}`}> {`${plantRecord.ownedShed.owner.email}`}</Link>
@@ -70,7 +70,7 @@ const SelectedPlantFirstEntry = () => {
             {` > About`}
           </p>
           <div>
-            <div className="plant-log-main-wrapper">
+            <div className="selected-thumbnail">
               <img className="main-image" src={plantRecord.recordPhoto} alt=""/>
             </div>
             <div className="icon icon-record icon-record-delete">
@@ -81,7 +81,7 @@ const SelectedPlantFirstEntry = () => {
             <p><strong>Family common name:</strong>&nbsp;{plantRecord.familyCommonName}</p>
             <p><strong>Description:</strong>{plantRecord.description}</p>
           </div>
-        </>     
+        </>
       }
     </>
   );

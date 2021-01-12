@@ -1,5 +1,7 @@
 :root {
   --container-margin: 100px;
+  --main-font-color: #303030;
+  --panal-bg-color: #9eb2bb;
 }
 
 * {
@@ -7,6 +9,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  color: var(--main-font-color);
 }
 
 .title {
@@ -24,6 +27,7 @@
 
 button {
   padding: 0.3em;
+  border-radius: 5px;
 }
 
 .current-date {
@@ -37,7 +41,7 @@ button {
 a, a:link {
   font-weight: 100;
   text-decoration: none;
-  color: black;
+  color: var(--main-font-color);
 }
 
 .add-hover:hover {
@@ -55,7 +59,7 @@ button:hover {
 }
 
 .navbar-wrapper {
-  background-color: #697479;
+  background-color: var(--panal-bg-color);
 }
 
 .navbar {
@@ -98,7 +102,7 @@ button:hover {
 
 #mobile-menu-list > p:hover {
   background-color: #ddd;
-  color: black;
+  color: var(--main-font-color);
   cursor: pointer;
 }
 
@@ -176,7 +180,7 @@ aside {
     top: 50px;
     bottom: 0;
     width: 150px;
-    background-color: #697479;
+    background-color: var(--panal-bg-color);
     box-shadow: 2px 2px 4px #000000;
     border-top: none;
     display: flex;
@@ -192,7 +196,7 @@ aside {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid black; */
+    /* border: 1px solid var(--main-font-color); */
     border-radius: 5px;
     margin: 5px;
     padding: 5px;
@@ -396,12 +400,12 @@ aside {
 
 .plant-thumbnail-name {
   text-decoration: none;
-  color: black;
+  color: var(--main-font-color);
   margin: 10px 18px;
 }
 
 .sgs-item {
-  border: 1px solid black;
+  border: 1px solid var(--main-font-color);
 }
 
 /* Break point for very small devices */
@@ -441,15 +445,6 @@ aside {
 }
 
 /* -------Plant Record------- */
-.plant-log-container {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  row-gap: 10px;
-  column-gap: 10px;
-  margin: 10px 0;
-}
-
 .button-wrapper {
   border-radius: 5px;
   font-size: 15px;
@@ -459,37 +454,17 @@ aside {
 .button-wrapper > .about {
   display: block;
   margin-left: auto;
+  width: 100px;
 }
 
-.plant-log-main-wrapper {
-  grid-area: 1 / 1 / 2 / 6;
+.button-wrapper > .button-new-log {
+  width: 150px;
 }
 
 .main-image {
   width: 100%;
   max-height: 480px;
   object-fit: contain;
-}
-
-.plant-log-container .thumbnail {
-  width: 100%;
-  object-fit: contain;
-}
-
-.plant-log-container > .thumbnail-1 {
-  grid-area: 3 / 1;
-}
-.plant-log-container > .thumbnail-2 {
-  grid-area: 3 / 2;
-}
-.plant-log-container > .thumbnail-3 {
-  grid-area: 3 / 3;
-}
-.plant-log-container > .thumbnail-4 {
-  grid-area: 3 / 4;
-}
-.plant-log-container > .thumbnail-5 {
-  grid-area: 3 / 5;
 }
 
 .icon-record {
@@ -516,50 +491,45 @@ aside {
   margin-bottom: 50px;
 }
 
-
-
-/* Break point for desktop */
-@media (min-width: 1200px) {
-  .plant-log-container > .button > #new-log {
-    font-size: 20px;
-    padding: 50px;
-  }
-}
-
 /* -------Create New Record------- */
-
 #description-input {
   width: 100%;
   margin: 20px 0px;
 }
 
 /* -------Create New Log------- */
-
 #select-main-image {
   margin: 20px 0px;
   text-align: center;
 }
 
-.radio-wrapper {
+.thumbnails-wrapper, .radio-wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
-.thumbnails-wrapper {
-  display: flex;
-  justify-content: space-around;
-}
-
-.log-thumbnail {
+.thumbnail-image {
   object-fit: contain;
   max-width: 180px;
   min-width: 40px;
   width: 100%;
-  max-height: 100px;
-  height: 100px;
-  min-height: 100px;
-  /* border: 1px solid; */
+  max-height: 50px;
+  height: 50px;
+  min-height: 50px;
   margin: 5px;
+  text-align: center;
+}
+
+.thumbnail-image:hover {
+  opacity: 0.9;
+}
+
+@media (min-width: 576px) {
+  .thumbnail-image {
+    max-height: 100px;
+    height: 100px;
+    min-height: 100px;
+  }
 }
 
 .thumbnail-radio-button {
@@ -568,18 +538,21 @@ aside {
   margin: 10px;
 }
 
-.log-selected-thumbnail {
+.selected-thumbnail {
   object-fit: contain;
   width: 100%;
-  border: 5px solid lightgrey;
-  border-radius: 2px;
+  /* border: 5px solid var(--panal-bg-color); */
+  border-radius: 20px;
   margin: 5px 0;
-  /* padding: 10px 5px; */
+  max-height: 480px;
+  /* background-color: lightgrey; */
 }
 
 form > button {
-  margin-top: 5px;
+  display: block;
+  margin-top: 20px;
   margin-bottom: 40px;
+  width: 150px;
 }
 
 /* ------- Mission Statement------- */
