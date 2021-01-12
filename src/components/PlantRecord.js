@@ -3,6 +3,8 @@ import { useParams, Link, useHistory } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
 import api from '../config/api';
 import { convertStringToDateString } from '../utilities/date';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
 const PlantRecord = () => {
   const [plantRecord, setPlantRecord] = useState(null);
@@ -24,6 +26,39 @@ const PlantRecord = () => {
   const handleClickNewLog = () => {
     history.push(`/sheds/${shedId}/records/${plantRecordId}/logs/new`);
   }
+
+  const handleClickDelete = (event) => {
+    const index = parseInt(event.target.dataset.value);
+    console.log(plantRecord.plantLogs[index]._id);
+    console.log(event.target.dataset);
+    console.log('plant record:', plantRecord.plantLogs[index]);
+    console.log('plant record:', index);
+    confirmAlert({
+      title: 'Confirm to delete',
+      message: 'Are you sure?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            try {
+              await api.delete(`api/sheds/${shedId}/records/${plantRecordId}/logs/${plantRecord.plantLogs[index]._id}`)
+              setPlantRecord({
+                ...plantRecord,
+                plantLogs:  plantRecord.plantLogs.filter((element, idx) => idx != index)
+              });
+            } catch (error) { 
+              console.log(error.response);
+            }
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => {}
+        }
+      ]
+    });
+  }
+
   return (
     <div>
       {
@@ -80,10 +115,10 @@ const PlantRecord = () => {
                   }
 
                   <div className="icon icon-record icon-record-delete">
-                    <i className="far fa-trash-alt"></i>
+                    <i onClick={handleClickDelete} className="far fa-trash-alt add-hover" data-value={index}></i>
                   </div>
                   <div className="icon icon-record icon-record-edit">
-                    <i className="far fa-edit"></i>
+                    <i className="far fa-edit add-hover"></i>
                   </div>
 
                   <p className="sub-headings"><strong>Date:</strong> {convertStringToDateString(plantLog.createdAt)} (Day 1) Need to make this dynamic</p>
