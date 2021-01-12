@@ -15,7 +15,7 @@ const config = {
 const CreateNewLog = () => {
   const { shedId, plantRecordId } = useParams();
   const [plantRecord, setPlantRecord] = useState(null);
-  const [notes, setNotes] = useState(null);
+  const [notes, setNotes] = useState('');
   const [filesToUpload, setFilesToUpload] = useState(null);
   const [filePaths, setFilePaths] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
