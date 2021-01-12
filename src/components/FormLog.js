@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import api from '../config/api';
-import { getCurrentDate } from '../utilities/date';
+import { convertStringToDateString, getCurrentDate } from '../utilities/date';
 import { uploadFile } from 'react-s3';
 
 
@@ -19,6 +19,7 @@ const FormLog = ({ action }) => {
   const [filesToUpload, setFilesToUpload] = useState(null);
   const [filePaths, setFilePaths] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [editLog, setEditLog] = useState(null);
   let history = useHistory();
 
   useEffect(() => {
@@ -44,27 +45,30 @@ const FormLog = ({ action }) => {
     if (plantRecord !== null && action === 'edit') {
       const foundLog = plantRecord.plantLogs.find(plantLog => plantLog._id === logId);
       if (foundLog) {
-        const { notes, photos, mainPhotoIndex } = foundLog; 
+        const { notes, photos, mainPhotoIndex } = foundLog;
         setNotes(notes);
         setFilePaths(photos);
         setCurrentIndex(mainPhotoIndex);
+        setEditLog(foundLog);
+      } else {
+        history.push('/');
       }
     }
-  }, [plantRecord, action, logId]);
+  }, [plantRecord, action, logId, history]);
 
   useEffect(() => {
     const readAndPreview = file => {
       let reader = new FileReader();
-  
+
       reader.addEventListener('load', () => {
         console.log('reader.result:', file.name);
         setFilePaths([...filePaths, reader.result]);
         console.log('filePaths.length:', filePaths.length);
-  
+
       }, false);
       reader.readAsDataURL(file);
     };
-  
+
     if (filesToUpload && filePaths && filesToUpload.length !== 0 && filesToUpload.length > filePaths.length) {
       readAndPreview(filesToUpload[filePaths.length]);
     }
@@ -94,13 +98,13 @@ const FormLog = ({ action }) => {
     let newLog = {
       photos: fileLocations,
       mainPhotoIndex: currentIndex,
-      notes 
+      notes
     };
     console.log('new log:', newLog);
     try {
       let res;
       if (action === 'edit') {
-        res = await api.put(`api/sheds/${shedId}/records/${plantRecordId}/logs/${logId}`, newLog);  
+        res = await api.put(`api/sheds/${shedId}/records/${plantRecordId}/logs/${logId}`, newLog);
       } else {
         res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}/logs`, newLog);
       }
@@ -108,7 +112,7 @@ const FormLog = ({ action }) => {
     } catch (error) {
       console.log("error:", error.response);
     };
-    
+
     history.push(`/sheds/${shedId}/records/${plantRecordId}`);
   };
 
@@ -127,8 +131,8 @@ const FormLog = ({ action }) => {
   };
 
   const handleChangeMain = event => {
-    console.log('event.target.value:', typeof event.target.value); 
-    setCurrentIndex(parseInt(event.target.value));
+    console.log('event.target.value:', typeof event.target.dataset.value);
+    setCurrentIndex(parseInt(event.target.dataset.value));
   };
 
   return (
@@ -137,7 +141,19 @@ const FormLog = ({ action }) => {
         plantRecord &&
           <>
             <p className="path">
-              <Link to={`/sheds/${shedId}`}> {`${plantRecord.ownedShed.owner.email}`}</Link>{` > ${plantRecord.commonName}`}
+              <Link to={`/sheds/${shedId}`}> {`${plantRecord.ownedShed.owner.email}`}</Link>
+              <Link to={`/sheds/${shedId}/records/${plantRecord._id}`}> {`> ${plantRecord.commonName}`}</Link>
+              {
+                (action === 'edit') ?
+                  <>
+                    {editLog && ` > ${convertStringToDateString(editLog.createdAt)}`}
+                  </>
+                :
+                  <>
+                    {"> Create New log"}
+                  </>
+              }
+
             </p>
           </>
       }
@@ -148,18 +164,18 @@ const FormLog = ({ action }) => {
         <input multiple onChange={handleChangeFiles} type="file" name="image-upload"/>
 
         {
-          filePaths && filePaths.length > 0 && 
+          filePaths && filePaths.length > 0 &&
           <>
             <p id="select-main-image">Select Main Image</p>
             <div className="radio-wrapper">
               {
                 filePaths.map((file, index) => (
-                  <input 
-                    type="radio" 
-                    className="thumbnail-radio-button" 
-                    name="thumbnail-radio-button" 
+                  <input
+                    type="radio"
+                    className="thumbnail-radio-button  add-hover"
+                    name="thumbnail-radio-button"
                     key={index}
-                    value={index}
+                    data-value={index}
                     onChange={handleChangeMain}
                     checked={index === currentIndex}
                   />
@@ -169,12 +185,12 @@ const FormLog = ({ action }) => {
             <div className="thumbnails-wrapper">
               {
                 filePaths.map((file, index) => (
-                  <img key={index} className="log-thumbnail" src={file} alt="thumbnail"/>
+                  <img key={index} className="thumbnail-image add-hover" src={file} alt="thumbnail" data-value={index}
+                  onClick={handleChangeMain}/>
                 ))
               }
             </div>
-
-            <img className="log-selected-thumbnail" src={filePaths[currentIndex]} alt="seleted thumbnail main plant"/>
+            <img className="selected-thumbnail" src={filePaths[currentIndex]} alt="seleted thumbnail main plant"/>
           </>
         }
         <button type="submit">Submit</button>
