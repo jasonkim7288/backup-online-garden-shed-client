@@ -141,7 +141,7 @@ const FormLog = ({ action }) => {
             </p>
           </>
       }
-      <h1 className="title">Create New Log</h1>
+      <h1 className="title">{action === "edit" ? "Edit Log": "Create New Log"}</h1>
       <p className="current-date">{`Date: ${getCurrentDate()}`}</p>
       <form onSubmit={handleSubmit}>
         <textarea id="description-input" name="description" rows="5" placeholder="Notes" value={notes} onChange={handleChangeNotes}/>
