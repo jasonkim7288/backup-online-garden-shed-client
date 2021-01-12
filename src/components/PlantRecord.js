@@ -117,9 +117,9 @@ const PlantRecord = () => {
                   <div className="icon icon-record icon-record-delete">
                     <i onClick={handleClickDelete} className="far fa-trash-alt add-hover" data-value={index}></i>
                   </div>
-                  <div className="icon icon-record icon-record-edit">
+                  <Link to={`/sheds/${shedId}/records/${plantRecordId}/logs/${plantLog._id}/edit`} className="icon icon-record icon-record-edit">
                     <i className="far fa-edit add-hover"></i>
-                  </div>
+                  </Link>
 
                   <p className="sub-headings"><strong>Date:</strong> {convertStringToDateString(plantLog.createdAt)} (Day 1) Need to make this dynamic</p>
                   <p className="sub-headings"><strong>My Notes:</strong></p>
@@ -133,4 +133,4 @@ const PlantRecord = () => {
   )
 }
 
-export default PlantRecord
+export default PlantRecord;

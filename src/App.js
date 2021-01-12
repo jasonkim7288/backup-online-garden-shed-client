@@ -9,7 +9,7 @@ import GardenSheds from './components/GardenSheds';
 import PlantThumbnails from './components/PlantThumbnails';
 import CreateNewRecord from './components/CreateNewRecord';
 import SearchPlant from './components/SearchPlant';
-import CreateNewLog from './components/CreateNewLog';
+import FormLog from './components/FormLog';
 import api from './config/api';
 import { useGlobalState } from './config/globalState';
 import { SET_USER, AUTH_SIGN_IN } from './config/types';
@@ -19,6 +19,7 @@ import MyGardenShed from './components/MyGardenShed';
 import FollowingPlants from './components/FollowingPlants';
 import MissionStatement from './components/MissionStatement';
 import HamburgerMenu from './components/HamburgerMenu';
+
 
 
 const App = () => {
@@ -61,7 +62,8 @@ const App = () => {
               <Route path="/following-plants" component={FollowingPlants} />
               <Route path="/mission-statement" component={MissionStatement} />
               <Route path="/sheds/:shedId/records/new" component={CreateNewRecord} />
-              <Route path="/sheds/:shedId/records/:plantRecordId/logs/new" component={CreateNewLog} />
+              <Route path="/sheds/:shedId/records/:plantRecordId/logs/new" render={() => <FormLog action="new"/>} />
+              <Route path="/sheds/:shedId/records/:plantRecordId/logs/:logId/edit" render={() => <FormLog action="edit"/>} />
               <Route path="/sheds/:shedId/records/:plantRecordId/first-entry" component={SelectedPlantFirstEntry} />              
               <Route path="/sheds/:shedId/records/:plantRecordId" component={PlantRecord} />
               <Route path="/sheds/:shedId" component={PlantThumbnails} />
