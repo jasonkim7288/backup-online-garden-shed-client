@@ -77,12 +77,6 @@ button:hover {
   display: block;
 }
 
-/* @media (min-width: 1200px) {
-  #mobile-menu-list, .mobile-menu-icon {
-    display: none;
-  }
-} */
-
 .mobile-menu-profile {
   margin: 0px 20px 10px;
   display: flex;
@@ -228,14 +222,10 @@ aside {
   grid-template-rows: repeat(9, 1fr);
   height: calc(100vh - 50px);
 }
-.button {
+.guest-button {
   border-radius: 5px;
   font-size: 15px;
   padding: 5px 5px;
-}
-
-.google {
-
 }
 
 .guest-login-item {
@@ -262,7 +252,7 @@ aside {
     grid-area: 5 / 7;
 
   }
-  .button {
+  .guest-button {
     font-size: 20px;
   }
 
@@ -460,21 +450,15 @@ aside {
   margin: 10px 0;
 }
 
-
 .button-wrapper {
   border-radius: 5px;
   font-size: 15px;
   padding: 5px 0;
 }
 
-.button-wrapper > .new-log {
-  padding: 0 5px;
-}
-
 .button-wrapper > .about {
   display: block;
   margin-left: auto;
-  padding: 0 5px;
 }
 
 .plant-log-main-wrapper {

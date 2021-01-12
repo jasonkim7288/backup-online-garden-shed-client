@@ -45,33 +45,33 @@ const PlantRecord = () => {
             </div>
 
             {
-              plantRecord.plantLogs.map((plantLog, index) => 
-                <div key={index}> 
+              plantRecord.plantLogs.map((plantLog, index) =>
+                <div key={index}>
                   {
-                    plantLog.photos && plantLog.photos.length > 0 && 
+                    plantLog.photos && plantLog.photos.length > 0 &&
                       <div className="plant-log-container">
                         <div className="plant-log-main-wrapper">
                           <img className="main-image" src={plantLog.photos[plantLog.mainPhotoIndex]}  alt="main"/>
                         </div>
 
                         {
-                          plantLog.photos.map((photo, photoIndex) => 
+                          plantLog.photos.map((photo, photoIndex) =>
                             <div key={photoIndex}
                               onClick={() => {
                                 setPlantRecord({
                                   ...plantRecord,
-                                  plantLogs:  plantRecord.plantLogs.map((element, idx) => 
-                                    (idx === index) ? 
+                                  plantLogs:  plantRecord.plantLogs.map((element, idx) =>
+                                    (idx === index) ?
                                       ({
-                                        ...element, 
+                                        ...element,
                                         mainPhotoIndex: photoIndex
                                       })
                                     :
                                       element
                                   )
                                 });
-                              }}  
-                              className={`thumbnail-${photoIndex + 1}`}>
+                              }}
+                              className={`thumbnail-${photoIndex + 1} add-hover`}>
                               <img className="thumbnail" src={photo} alt="thumbnail"/>
                             </div>
                           )
@@ -89,7 +89,7 @@ const PlantRecord = () => {
                   <p className="sub-headings"><strong>Date:</strong> {convertStringToDateString(plantLog.createdAt)} (Day 1) Need to make this dynamic</p>
                   <p className="sub-headings"><strong>My Notes:</strong></p>
                   <p className="my-notes">{plantLog.notes}</p>
-                </div> 
+                </div>
               )
             }
           </>
