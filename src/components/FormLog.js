@@ -12,8 +12,8 @@ const config = {
   secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
 };
 
-const CreateNewLog = () => {
-  const { shedId, plantRecordId } = useParams();
+const FormLog = ({ action }) => {
+  const { shedId, plantRecordId, logId } = useParams();
   const [plantRecord, setPlantRecord] = useState(null);
   const [notes, setNotes] = useState('');
   const [filesToUpload, setFilesToUpload] = useState(null);
@@ -23,39 +23,73 @@ const CreateNewLog = () => {
 
   useEffect(() => {
     const findPlantRecord = async () => {
-      try{
-        const res = await api.get(`/api/sheds/${shedId}/records/${plantRecordId}`);
-        const foundPlantRecord = res.data;
-        console.log('found Plant record:', foundPlantRecord);
-        if(foundPlantRecord) {
-          setPlantRecord(foundPlantRecord);
-          console.log(new Date(foundPlantRecord.createdAt));
-        }
-      } catch (error) {
-        console.log("error.response: ", error.response);
+      const res = await api.get(`/api/sheds/${shedId}/records/${plantRecordId}`);
+      const foundPlantRecord = res.data;
+      console.log('found Plant record:', foundPlantRecord);
+      if(foundPlantRecord) {
+        setPlantRecord(foundPlantRecord);
+        console.log(new Date(foundPlantRecord.createdAt));
       }
     }
-    findPlantRecord();
-  }, []);
+
+    try{
+      findPlantRecord();
+    } catch (error) {
+      console.log("error.response: ", error.response);
+      history.push('/sheds');
+    }
+  }, [history, shedId, plantRecordId]);
 
   useEffect(() => {
+    if (plantRecord !== null && action === 'edit') {
+      const foundLog = plantRecord.plantLogs.find(plantLog => plantLog._id === logId);
+      if (foundLog) {
+        const { notes, photos, mainPhotoIndex } = foundLog; 
+        setNotes(notes);
+        setFilePaths(photos);
+        setCurrentIndex(mainPhotoIndex);
+      }
+    }
+  }, [plantRecord, action, logId]);
+
+  useEffect(() => {
+    const readAndPreview = file => {
+      let reader = new FileReader();
+  
+      reader.addEventListener('load', () => {
+        console.log('reader.result:', file.name);
+        setFilePaths([...filePaths, reader.result]);
+        console.log('filePaths.length:', filePaths.length);
+  
+      }, false);
+      reader.readAsDataURL(file);
+    };
+  
     if (filesToUpload && filePaths && filesToUpload.length !== 0 && filesToUpload.length > filePaths.length) {
       readAndPreview(filesToUpload[filePaths.length]);
     }
-  }, [filePaths])
+  }, [filePaths, filesToUpload]);
 
   const handleSubmit = async event => {
     let fileLocations = [];
     event.preventDefault();
-    for(let i = 0; i < filesToUpload.length; i++) {
-      try {
-        const data = await uploadFile(filesToUpload[i], config);
-        console.log(data);
-        fileLocations.push(data.location);
-      } catch (error) {
-        console.log(error);
+
+    if (filesToUpload) {
+      for(let i = 0; i < filesToUpload.length; i++) {
+        try {
+          const data = await uploadFile(filesToUpload[i], config);
+          console.log(data);
+          fileLocations.push(data.location);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    } else {
+      if (action === 'edit') {
+        fileLocations = filePaths;
       }
     }
+
     console.log('fileLocations:', fileLocations);
     let newLog = {
       photos: fileLocations,
@@ -64,7 +98,12 @@ const CreateNewLog = () => {
     };
     console.log('new log:', newLog);
     try {
-      const res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}/logs`, newLog);
+      let res;
+      if (action === 'edit') {
+        res = await api.put(`api/sheds/${shedId}/records/${plantRecordId}/logs/${logId}`, newLog);  
+      } else {
+        res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}/logs`, newLog);
+      }
       console.log(res.data);
     } catch (error) {
       console.log("error:", error.response);
@@ -75,18 +114,6 @@ const CreateNewLog = () => {
 
   const handleChangeNotes = event => {
     setNotes(event.target.value);
-  };
-
-  const readAndPreview = file => {
-    let reader = new FileReader();
-
-    reader.addEventListener('load', () => {
-      console.log('reader.result:', file.name);
-      setFilePaths([...filePaths, reader.result]);
-      console.log('filePaths.length:', filePaths.length);
-
-    }, false);
-    reader.readAsDataURL(file);
   };
 
   const handleChangeFiles = event => {
@@ -114,7 +141,7 @@ const CreateNewLog = () => {
             </p>
           </>
       }
-      <h1 className="title">Create New Log</h1>
+      <h1 className="title">{action === "edit" ? "Edit Log": "Create New Log"}</h1>
       <p className="current-date">{`Date: ${getCurrentDate()}`}</p>
       <form onSubmit={handleSubmit}>
         <textarea id="description-input" name="description" rows="5" placeholder="Notes" value={notes} onChange={handleChangeNotes}/>
@@ -156,4 +183,4 @@ const CreateNewLog = () => {
   )
 }
 
-export default CreateNewLog
+export default FormLog;

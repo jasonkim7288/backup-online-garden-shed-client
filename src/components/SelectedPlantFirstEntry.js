@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const SelectedPlantFirstEntry = () => {
   const { shedId, plantRecordId } = useParams();
@@ -31,7 +33,31 @@ const SelectedPlantFirstEntry = () => {
       }
     }
     findPlantRecord();
-  }, []);
+  }, [history, isSignedIn, plantRecordId, shedId]);
+
+  const handleClickDelete = (event) => {
+    confirmAlert({
+      title: 'Warning!',
+      message: 'This will delete the entire plant record which includes all logs. Are you sure?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            try {
+              await api.delete(`api/sheds/${shedId}/records/${plantRecordId}`);
+              history.push(`/sheds/${shedId}`);
+            } catch (error) { 
+              console.log(error.response);
+            }
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => {}
+        }
+      ]
+    });
+  };
 
   return (
     <>
@@ -46,6 +72,9 @@ const SelectedPlantFirstEntry = () => {
           <div>
             <div className="plant-log-main-wrapper">
               <img className="main-image" src={plantRecord.recordPhoto} alt=""/>
+            </div>
+            <div className="icon icon-record icon-record-delete">
+              <i onClick={handleClickDelete} className="far fa-trash-alt add-hover"></i>
             </div>
             <p><strong>Common name:</strong>&nbsp;{plantRecord.commonName}</p>
             <p><strong>Scientific name:</strong>&nbsp;{plantRecord.scientificName}</p>
