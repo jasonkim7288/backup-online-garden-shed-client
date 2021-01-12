@@ -87,22 +87,33 @@ Online Garden Shed is for improving your gardening skills by keeping track of a 
 # R6. Screenshots of Trello
 
 ### Trello web site : https://trello.com/b/CYzn0Wex/online-garden-shed
-### Day 1 planning
+### 24-11-2020
 Day 1 was started with making user stories and a trello board.<br />
 ![Day 1](docs/Trello_2020-11-24.png)
 
-### Day 2
+### 25-11-2020
 On day 2, we finished writing the description of the website and user stories<br />
-25/11/2020
 ![Day 2](docs/Trello_2020-11-25.png)
 
-### Day 4
+### 30-11-2020
 On day 4, we finished Dataflow Diagram, Application Archtecture Diagram and Wireframes for Mobile.<br />
 ![Day 4](docs/Trello_2020-11-30.png)
 
-### Day 5
+### 01-12-2020
 On day 5, we finished Wireframes for Tablet and Desktop.<br />
 ![Day 5](docs/Trello_2020-12-01.png)
+
+### 07-12-2020
+On day 6, we implemented the ability for a logged in user to see their own plant records and see other user plant records.<br />
+![Day 5](docs/Trello_2020-12-07.png)
+
+### 09-12-2020
+On day 8, we continued to work on the ability to create a new plant record by first searching the trefle plant api.<br />
+![Day 5](docs/Trello_2020-12-09.png)
+
+### 11-01-2021
+On day 9, we added the ability to upload photos to aws s3 bucket and create new plant logs for the plant record. <br />
+![Day 5](docs/Trello_2021-01-11.png)
 
 
 [Go back](#table-of-contents)<br /><br /><br />
