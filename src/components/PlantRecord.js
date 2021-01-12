@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom';
-import { useGlobalState } from '../config/globalState';
 import api from '../config/api';
 import { convertStringToDateString } from '../utilities/date';
-import { confirmAlert } from 'react-confirm-alert'; 
-import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const PlantRecord = () => {
   const [plantRecord, setPlantRecord] = useState(null);
@@ -21,7 +20,7 @@ const PlantRecord = () => {
       }
     }
     findPlantRecord();
-  }, []);
+  }, [shedId, plantRecordId]);
 
   const handleClickNewLog = () => {
     history.push(`/sheds/${shedId}/records/${plantRecordId}/logs/new`);
@@ -44,9 +43,9 @@ const PlantRecord = () => {
               await api.delete(`api/sheds/${shedId}/records/${plantRecordId}/logs/${plantRecord.plantLogs[index]._id}`)
               setPlantRecord({
                 ...plantRecord,
-                plantLogs:  plantRecord.plantLogs.filter((element, idx) => idx != index)
+                plantLogs:  plantRecord.plantLogs.filter((element, idx) => idx !== index)
               });
-            } catch (error) { 
+            } catch (error) {
               console.log(error.response);
             }
           }
@@ -117,8 +116,8 @@ const PlantRecord = () => {
                   <div className="icon icon-record icon-record-delete">
                     <i onClick={handleClickDelete} className="far fa-trash-alt add-hover" data-value={index}></i>
                   </div>
-                  <Link to={`/sheds/${shedId}/records/${plantRecordId}/logs/${plantLog._id}/edit`} className="icon icon-record icon-record-edit">
-                    <i className="far fa-edit add-hover"></i>
+                  <Link to={`/sheds/${shedId}/records/${plantRecordId}/logs/${plantLog._id}/edit`} className="icon icon-record">
+                    <i className="far fa-edit add-hover icon-record-edit"></i>
                   </Link>
 
                   <p className="sub-headings"><strong>Date:</strong> {convertStringToDateString(plantLog.createdAt)} (Day 1) Need to make this dynamic</p>
