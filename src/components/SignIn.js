@@ -82,7 +82,7 @@ const SignIn = ({ tagType }) => {
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             render={renderProps => (
               (tagType === 'button') ? (
-                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="button google">
+                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="button google guest-button">
                   <i className="fab fa-google"></i>Sign in with Google
                 </button>
               )
