@@ -160,7 +160,7 @@ const FormLog = ({ action }) => {
       <h1 className="title">{action === "edit" ? "Edit Log": "Create New Log"}</h1>
       <p className="current-date">{`Date: ${getCurrentDate()}`}</p>
       <form onSubmit={handleSubmit}>
-        <textarea id="description-input" name="description" rows="5" placeholder="Notes" value={notes} onChange={handleChangeNotes}/>
+        <textarea className="description-input" name="description" rows="5" placeholder="Notes" value={notes} onChange={handleChangeNotes}/>
         <input multiple onChange={handleChangeFiles} type="file" name="image-upload"/>
 
         {

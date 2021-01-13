@@ -10,6 +10,8 @@ const SelectedPlantFirstEntry = () => {
   const [plantRecord, setPlantRecord] = useState(null);
   const { state } = useGlobalState();
   const { isSignedIn } = state;
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [description, setDescription] = useState('');
   let history = useHistory();
 
   console.log('SelectedPlantFirstEntry is called!!!!');
@@ -35,7 +37,33 @@ const SelectedPlantFirstEntry = () => {
     findPlantRecord();
   }, [history, isSignedIn, plantRecordId, shedId]);
 
-  const handleClickDelete = (event) => {
+  const handleClickEdit = () => {
+    setIsEditMode(true);
+    setDescription(plantRecord.description);
+  };
+
+  const handleChangeDescription = event => {
+    setDescription(event.target.value);
+  }
+
+  const handleClickCancel = () => {
+    setIsEditMode(false);
+  }
+  const handleClickEditButton = async () => {
+    try {
+      const editPlantRecord = {
+        description
+      }
+      const res = await api.put(`api/sheds/${shedId}/records/${plantRecordId}`, editPlantRecord);
+      console.log('resData', res.data);
+      setPlantRecord(res.data);
+      setIsEditMode(false);
+    } catch (error) {
+        console.log(error.response);
+    }
+  }
+
+  const handleClickDelete = event => {
     confirmAlert({
       title: 'Warning!',
       message: 'This will delete the entire plant record which includes all logs. Are you sure?',
@@ -73,13 +101,25 @@ const SelectedPlantFirstEntry = () => {
             <div className="selected-thumbnail">
               <img className="main-image" src={plantRecord.recordPhoto} alt=""/>
             </div>
-            <div className="icon icon-record icon-record-delete">
-              <i onClick={handleClickDelete} className="far fa-trash-alt add-hover"></i>
+            <div className="icon icon-record">
+              <i onClick={handleClickDelete} className="far fa-trash-alt add-hover icon-record-delete"></i>
+            </div>
+            <div className="icon icon-record">
+              <i onClick={handleClickEdit} className="far fa-edit add-hover icon-record-edit"></i>
             </div>
             <p><strong>Common name:</strong>&nbsp;{plantRecord.commonName}</p>
             <p><strong>Scientific name:</strong>&nbsp;{plantRecord.scientificName}</p>
             <p><strong>Family common name:</strong>&nbsp;{plantRecord.familyCommonName}</p>
-            <p><strong>Description:</strong>{plantRecord.description}</p>
+            {
+              isEditMode ?
+                <>
+                  <textarea onChange={handleChangeDescription} value={description} className="description-input"/>
+                  <button className ="button-confirm" onClick={handleClickEditButton} >Confirm</button>
+                  <button className="button-cancel" onClick={handleClickCancel}>Cancel</button>
+                </>
+              :
+                <p><strong>Description:</strong>{plantRecord.description}</p>
+            }
           </div>
         </>
       }
