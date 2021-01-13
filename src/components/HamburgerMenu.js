@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
 import { AUTH_SIGN_OUT, SET_IS_MENU_ON, SET_USER } from '../config/types';
