@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import api from '../config/api';
-import axios from 'axios';
 import { getCurrentDate } from '../utilities/date';
 import { useGlobalState } from '../config/globalState';
 
@@ -35,7 +34,7 @@ const CreateNewRecord = () => {
       }
     }
     findShed();
-  }, []);
+  }, [history, isSignedIn, shedId]);
 
   const handleSearch = async (event) => {
     event.preventDefault();
