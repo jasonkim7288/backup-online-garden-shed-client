@@ -395,6 +395,12 @@ aside {
   padding-bottom: 20px;
 }
 
+.plant-thumbanil-follow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
 .plant-thumbnail {
   max-width: 220px;
   width: 100%;
