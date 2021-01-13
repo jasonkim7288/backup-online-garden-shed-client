@@ -383,7 +383,7 @@ aside {
 }
 
 /* -------Plant Thumbnails------- */
-#plant-thumbnails-container {
+.plant-thumbnails-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;
@@ -430,7 +430,7 @@ aside {
 
 /* Break point for very small devices */
 @media (min-width: 576px) {
-  #plant-thumbnails-container {
+  .plant-thumbnails-container {
     grid-template-columns: 1fr 1fr;
   }
   .plant-thumbnail {
@@ -442,7 +442,7 @@ aside {
 
 /* Break point for tablet */
 @media (min-width: 768px) {
-  #plant-thumbnails-container {
+  .plant-thumbnails-container {
     grid-template-columns: 1fr 1fr 1fr;
   }
   .plant-thumbnail {
@@ -454,7 +454,7 @@ aside {
 
 /* Break point for desktop */
 @media (min-width: 1200px) {
-  #plant-thumbnails-container {
+  .plant-thumbnails-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   .plant-thumbnail {

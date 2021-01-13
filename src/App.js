@@ -6,7 +6,7 @@ import LandingPage from './components/LandingPage';
 import PlantRecord from './components/PlantRecord';
 import SelectedPlantFirstEntry from './components/SelectedPlantFirstEntry';
 import GardenSheds from './components/GardenSheds';
-import PlantThumbnails from './components/PlantThumbnails';
+import PlantRecords from './components/PlantRecords';
 import CreateNewRecord from './components/CreateNewRecord';
 import SearchPlant from './components/SearchPlant';
 import FormLog from './components/FormLog';
@@ -66,7 +66,7 @@ const App = () => {
               <Route path="/sheds/:shedId/records/:plantRecordId/logs/:logId/edit" render={() => <FormLog action="edit"/>} />
               <Route path="/sheds/:shedId/records/:plantRecordId/first-entry" component={SelectedPlantFirstEntry} />
               <Route path="/sheds/:shedId/records/:plantRecordId" component={PlantRecord} />
-              <Route path="/sheds/:shedId" component={PlantThumbnails} />
+              <Route path="/sheds/:shedId" component={PlantRecords} />
               <Route path="/sheds" component={GardenSheds} />
               <Route path="/search" component={SearchPlant} />
             </Switch>
