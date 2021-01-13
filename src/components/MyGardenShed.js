@@ -11,7 +11,7 @@ const MyGardenShed = () => {
     if (!isSignedIn) {
       history.push('/');
     }
-  }, []);
+  }, [history, isSignedIn]);
 
   return (
     <div>

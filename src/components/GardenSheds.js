@@ -5,12 +5,9 @@ import { SET_SHEDS, SET_USER } from '../config/types';
 import { Link } from 'react-router-dom'
 import { removeDomain } from '../utilities/strings';
 
-
 const GardenSheds = () => {
   const { state, dispatch } = useGlobalState();
   const { sheds, isSignedIn, currentUser } = state;
-
-
 
   useEffect(() => {
     const getCurrentSheds = async () => {
@@ -25,7 +22,7 @@ const GardenSheds = () => {
       }
     };
     getCurrentSheds();
-  }, []);
+  }, [dispatch]);
 
   console.log('sheds: ',sheds)
 
@@ -64,9 +61,19 @@ const GardenSheds = () => {
                     <div className="garden-shed-follow">
                       {
                         (currentUser.followingSheds.find(followingShed => followingShed === shed._id)) ?
-                          <i onClick={handleClickFollow} data-value={shed._id} className="fas fa-home"></i>
+                          <img 
+                            onClick={handleClickFollow} 
+                            data-value={shed._id} 
+                            src={`${process.env.PUBLIC_URL}/iconShedFollowDark.png`}
+                            alt="follow shed"
+                          />
                         :
-                          <i onClick={handleClickFollow} data-value={shed._id} className="far fa-star"></i>
+                          <img 
+                            onClick={handleClickFollow} 
+                            data-value={shed._id} 
+                            src={`${process.env.PUBLIC_URL}/iconShedFollowLight.png`}
+                            alt="follow shed"
+                          />
                       }
                     </div>
                   }
@@ -85,7 +92,6 @@ const GardenSheds = () => {
             )
           ))
         }
-
       </div>
     </div>
   );
