@@ -98,7 +98,7 @@ const FormLog = ({ action }) => {
     let newLog = {
       photos: fileLocations,
       mainPhotoIndex: currentIndex,
-      notes
+      notes: notes.replace(/\n/g, '<br>')
     };
     console.log('new log:', newLog);
     try {

@@ -4,6 +4,7 @@ import api from '../config/api';
 import { convertStringToDateString, dayCount } from '../utilities/date';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import parse from 'html-react-parser';
 
 const PlantRecord = () => {
   const [plantRecord, setPlantRecord] = useState(null);
@@ -123,7 +124,7 @@ const PlantRecord = () => {
 
                   <p className="sub-headings"><strong>Date:</strong> {`${convertStringToDateString(plantLog.createdAt)} (Day ${dayCount(plantRecord.createdAt, plantLog.createdAt)})`}</p>
                   <p className="sub-headings"><strong>My Notes:</strong></p>
-                  <p className="my-notes">{plantLog.notes}</p>
+                  <p className="my-notes">{parse(plantLog.notes)}</p>
                 </div>
               )
             }

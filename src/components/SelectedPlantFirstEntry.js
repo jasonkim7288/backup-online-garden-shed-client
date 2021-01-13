@@ -4,6 +4,7 @@ import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import parse from 'html-react-parser';
 
 const SelectedPlantFirstEntry = () => {
   const { shedId, plantRecordId } = useParams();
@@ -39,7 +40,7 @@ const SelectedPlantFirstEntry = () => {
 
   const handleClickEdit = () => {
     setIsEditMode(true);
-    setDescription(plantRecord.description);
+    setDescription(parse(plantRecord.description.replace(/<br>/g, '&#10;')));
   };
 
   const handleChangeDescription = event => {
@@ -49,10 +50,11 @@ const SelectedPlantFirstEntry = () => {
   const handleClickCancel = () => {
     setIsEditMode(false);
   }
+
   const handleClickEditButton = async () => {
     try {
       const editPlantRecord = {
-        description
+        description: description.replace(/\n/g, '<br>')
       }
       const res = await api.put(`api/sheds/${shedId}/records/${plantRecordId}`, editPlantRecord);
       console.log('resData', res.data);
@@ -110,15 +112,16 @@ const SelectedPlantFirstEntry = () => {
             <p><strong>Common name:</strong>&nbsp;{plantRecord.commonName}</p>
             <p><strong>Scientific name:</strong>&nbsp;{plantRecord.scientificName}</p>
             <p><strong>Family common name:</strong>&nbsp;{plantRecord.familyCommonName}</p>
+            <p><strong>Description:</strong></p>
             {
               isEditMode ?
                 <>
-                  <textarea onChange={handleChangeDescription} value={description} className="description-input"/>
+                  <textarea onChange={handleChangeDescription} rows="10" value={description} className="description-input"/>
                   <button className ="button-confirm" onClick={handleClickEditButton} >Confirm</button>
                   <button className="button-cancel" onClick={handleClickCancel}>Cancel</button>
                 </>
               :
-                <p><strong>Description:</strong>{plantRecord.description}</p>
+                <p>{parse(plantRecord.description)}</p>
             }
           </div>
         </>

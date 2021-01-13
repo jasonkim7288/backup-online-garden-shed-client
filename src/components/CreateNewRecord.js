@@ -61,7 +61,7 @@ const CreateNewRecord = () => {
           scientificName: plants[plantIndex].scientific_name,
           familyCommonName: plants[plantIndex].family_common_name,
           recordPhoto: plants[plantIndex].image_url,
-          description
+          description: description.replace(/\n/g, '<br>')
         });
       console.log(res.data);
       history.push(`/sheds/${shedId}/records/${res.data._id}`);

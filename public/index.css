@@ -180,9 +180,9 @@ aside {
     top: 50px;
     bottom: 0;
     width: 150px;
-    background-color: var(--panal-bg-color);
-    box-shadow: 2px 2px 4px #000000;
-    border-top: none;
+    /* background-color: var(--panal-bg-color);
+    box-shadow: 2px 2px 4px #000000; */
+    /* border-top: none; */
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
