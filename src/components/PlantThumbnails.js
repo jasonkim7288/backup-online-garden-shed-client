@@ -37,6 +37,9 @@ const PlantThumbnails = () => {
               {shed.plantRecords.map(plantRecord => (
                 <Link to={`/sheds/${shedId}/records/${plantRecord._id}`} key={plantRecord._id}>
                   <div className="plant-thumbnail-wrapper">
+                    <div className="plant-thumbnail-follow">
+                      <i className="fas fa-leaf"></i>
+                    </div>
                     <img className="plant-thumbnail" src={plantRecord.recordPhoto} alt=""/>
                     <p className="plant-thumbnail-name">{getUniquePlantName(plantRecord)}</p>
                   </div>
