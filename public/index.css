@@ -351,6 +351,7 @@ aside {
 .garden-shed-follow {
   grid-area: 2 / 2;
   align-self: flex-start;
+  font-size: 2em;
 }
 
 .garden-shed-follow > img {
@@ -402,6 +403,7 @@ aside {
   position: absolute;
   margin-top: 10px;
   margin-left: 10px;
+  font-size: 2em;
 }
 
 .plant-thumbnail-follow > img {
@@ -461,6 +463,22 @@ aside {
     max-width: 100%;
     min-height: 150px;
     max-height: 150px;
+  }
+}
+
+.spin {
+  animation: icon-rotate 5s linear infinite;
+}
+
+@keyframes icon-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
