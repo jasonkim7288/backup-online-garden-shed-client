@@ -105,15 +105,19 @@ On day 5, we finished Wireframes for Tablet and Desktop.<br />
 
 ### 07-12-2020
 On day 6, we implemented the ability for a logged in user to see their own plant records and see other user plant records.<br />
-![Day 5](docs/Trello_2020-12-07.png)
+![Day 6](docs/Trello_2020-12-07.png)
 
 ### 09-12-2020
 On day 8, we continued to work on the ability to create a new plant record by first searching the trefle plant api.<br />
-![Day 5](docs/Trello_2020-12-09.png)
+![Day 8](docs/Trello_2020-12-09.png)
 
 ### 11-01-2021
 On day 9, we added the ability to upload photos to aws s3 bucket and create new plant logs for the plant record. <br />
-![Day 5](docs/Trello_2021-01-11.png)
+![Day 9](docs/Trello_2021-01-11.png)
+
+### 13-01-2021
+On day 11, we added the ability to follow garden sheds and plants records, along with deploying the front end to Netlify. <br />
+![Day 11](docs/Trello_2021-01-13.png)
 
 
 [Go back](#table-of-contents)<br /><br /><br />
