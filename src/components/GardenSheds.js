@@ -20,7 +20,7 @@ const GardenSheds = () => {
           type: SET_SHEDS,
           payload: res.data
         });
-      } catch (error) { 
+      } catch (error) {
         console.log('error.response: ', error.response);
       }
     };
@@ -31,7 +31,7 @@ const GardenSheds = () => {
 
   const handleClickFollow = async event => {
     event.preventDefault();
-        try {
+    try {
       const res = await api.get(`/api/sheds/${event.target.dataset.value}/toggle-follow`);
       dispatch({
         type: SET_USER,
@@ -66,7 +66,7 @@ const GardenSheds = () => {
                         (currentUser.followingSheds.find(followingShed => followingShed === shed._id)) ?
                           <i onClick={handleClickFollow} data-value={shed._id} className="fas fa-home"></i>
                         :
-                          <i onClick={handleClickFollow} data-value={shed._id}class="far fa-star"></i>
+                          <i onClick={handleClickFollow} data-value={shed._id} className="far fa-star"></i>
                       }
                     </div>
                   }
