@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
-import { SET_SHEDS } from '../config/types';
+import { SET_SHEDS, SET_USER } from '../config/types';
 import { Link } from 'react-router-dom'
 import { removeDomain } from '../utilities/strings';
 
 
 const GardenSheds = () => {
   const { state, dispatch } = useGlobalState();
-  const { sheds } = state;
+  const { sheds, isSignedIn, currentUser } = state;
+
+
 
   useEffect(() => {
     const getCurrentSheds = async () => {
@@ -27,6 +29,19 @@ const GardenSheds = () => {
 
   console.log('sheds: ',sheds)
 
+  const handleClickFollow = async event => {
+    event.preventDefault();
+        try {
+      const res = await api.get(`/api/sheds/${event.target.dataset.value}/toggle-follow`);
+      dispatch({
+        type: SET_USER,
+        payload: res.data
+      });
+    } catch (error) {
+      console.log('error.response: ', error.response);
+    }
+  }
+
   return (
     <div>
       <div id="garden-sheds-container">
@@ -44,6 +59,17 @@ const GardenSheds = () => {
                     src={`${process.env.PUBLIC_URL}/gardenShedFrame.png`}
                     alt="Garden shed frame"
                   />
+                  {
+                    isSignedIn && currentUser &&
+                    <div className="garden-shed-follow">
+                      {
+                        (currentUser.followingSheds.find(followingShed => followingShed === shed._id)) ?
+                          <i onClick={handleClickFollow} data-value={shed._id} className="fas fa-home"></i>
+                        :
+                          <i onClick={handleClickFollow} data-value={shed._id}class="far fa-star"></i>
+                      }
+                    </div>
+                  }
                 </div>
                 <div>
                 <p className="garden-shed-owner">{removeDomain(shed.owner.email)}</p>

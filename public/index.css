@@ -293,6 +293,7 @@ aside {
   margin: 0;
 }
 
+
 @media (min-width: 576px) {
   #garden-sheds-container {
     grid-template-columns: 1fr 1fr;
@@ -331,8 +332,8 @@ aside {
   width: 250px;
   text-align: center;
   display: grid;
-  grid-template-columns: 56px auto 55px;
-  grid-template-rows: 62px auto;
+  grid-template-columns: 0 56px auto 55px;
+  grid-template-rows: 9px 53px auto;
   align-items: center;
   justify-items: center;
 }
@@ -347,13 +348,19 @@ aside {
   margin-right: auto;
 }
 
+.garden-shed-follow {
+  grid-area: 2 / 2;
+  font-size: 1.8em;
+  align-self: flex-start;
+}
+
 .garden-shed-image {
   height: 87px;
   max-height: 87px;
   min-height: 87px;
   object-fit: contain;
   /* border: 1px solid red; */
-  grid-area: 2 / 2;
+  grid-area: 3 / 3;
 }
 
 .garden-shed-owner {
@@ -492,7 +499,7 @@ aside {
 }
 
 /* -------Create New Record------- */
-#description-input {
+.description-input {
   width: 100%;
   margin: 20px 0px;
 }
@@ -560,3 +567,13 @@ form > button {
   text-align: center;
 }
 
+/* -------Create New Record------- */
+
+.button-confirm {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.button-cancel {
+  width: 100px;
+}

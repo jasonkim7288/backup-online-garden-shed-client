@@ -64,7 +64,7 @@ const App = () => {
               <Route path="/sheds/:shedId/records/new" component={CreateNewRecord} />
               <Route path="/sheds/:shedId/records/:plantRecordId/logs/new" render={() => <FormLog action="new"/>} />
               <Route path="/sheds/:shedId/records/:plantRecordId/logs/:logId/edit" render={() => <FormLog action="edit"/>} />
-              <Route path="/sheds/:shedId/records/:plantRecordId/first-entry" component={SelectedPlantFirstEntry} />              
+              <Route path="/sheds/:shedId/records/:plantRecordId/first-entry" component={SelectedPlantFirstEntry} />
               <Route path="/sheds/:shedId/records/:plantRecordId" component={PlantRecord} />
               <Route path="/sheds/:shedId" component={PlantThumbnails} />
               <Route path="/sheds" component={GardenSheds} />

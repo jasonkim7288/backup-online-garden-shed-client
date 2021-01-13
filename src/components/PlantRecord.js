@@ -110,8 +110,8 @@ const PlantRecord = () => {
                       </div>
                   }
 
-                  <div className="icon icon-record icon-record-delete">
-                    <i onClick={handleClickDelete} className="far fa-trash-alt add-hover" data-value={index}></i>
+                  <div className="icon icon-record">
+                    <i onClick={handleClickDelete} className="far fa-trash-alt add-hover icon-record-delete" data-value={index}></i>
                   </div>
                   <Link to={`/sheds/${shedId}/records/${plantRecordId}/logs/${plantLog._id}/edit`} className="icon icon-record">
                     <i className="far fa-edit add-hover icon-record-edit"></i>
