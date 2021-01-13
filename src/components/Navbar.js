@@ -6,7 +6,7 @@ import SignIn from './SignIn';
 
 const Navbar = () => {
   const { state, dispatch } = useGlobalState();
-  const { isSignedIn, isMenuOn, currentUser } = state;
+  const { isMenuOn } = state;
   const [ isWindowSmall, setIsWindowSmall] = useState(null);
 
   const handleClickMenuIcon = () => {
@@ -32,7 +32,7 @@ const Navbar = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [])
+  }, [dispatch])
 
   return (
     <nav>

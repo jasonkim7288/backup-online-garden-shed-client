@@ -8,11 +8,10 @@ import { SET_USER } from '../config/types';
 
 const PlantThumbnails = () => {
   const { state, dispatch } = useGlobalState();
-  const { sheds, isSignedIn, currentUser } = state;
+  const { isSignedIn, currentUser } = state;
   const [shed, setShed] = useState(null);
   const { shedId } = useParams();
   useEffect(() => {
-    // const foundShed = sheds.find(element => element._id === shedId);
     const findShed = async () => {
       const res = await api(`/api/sheds/${shedId}`);
       const foundShed = res.data;
@@ -22,7 +21,7 @@ const PlantThumbnails = () => {
       }
     }
     findShed();
-  }, []);
+  }, [shedId]);
 
   const handleClickFollow = async event => {
     event.preventDefault();
@@ -56,9 +55,19 @@ const PlantThumbnails = () => {
                         <div className="plant-thumbnail-follow">
                           {
                             (currentUser.followingPlantRecords.find(followingPlantRecord => followingPlantRecord === plantRecord._id)) ?
-                              <i onClick={handleClickFollow} data-value={plantRecord._id} className="fas fa-leaf"></i>
+                              <img 
+                                onClick={handleClickFollow} 
+                                data-value={plantRecord._id} 
+                                src={`${process.env.PUBLIC_URL}/iconPlantFollowDark.PNG`}
+                                alt="follow plant"
+                              />
                             :
-                              <i onClick={handleClickFollow} data-value={plantRecord._id} className="far fa-star"></i>
+                              <img 
+                                onClick={handleClickFollow} 
+                                data-value={plantRecord._id} 
+                                src={`${process.env.PUBLIC_URL}/iconPlantFollowLight.PNG`}
+                                alt="follow plant"
+                              />
                           }
                         </div>
                     }
