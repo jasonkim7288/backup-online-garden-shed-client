@@ -12,11 +12,15 @@ const PlantRecord = () => {
 
   useEffect(() => {
     const findPlantRecord = async () => {
-      const res = await api(`/api/sheds/${shedId}/records/${plantRecordId}`);
-      const foundPlantRecord = res.data;
-      console.log('found Plant record:', foundPlantRecord);
-      if(foundPlantRecord) {
-        setPlantRecord(foundPlantRecord);
+      try {
+        const res = await api(`/api/sheds/${shedId}/records/${plantRecordId}`);
+        const foundPlantRecord = res.data;
+        console.log('found Plant record:', foundPlantRecord);
+        if(foundPlantRecord) {
+          setPlantRecord(foundPlantRecord);
+        }
+      } catch (error) {
+        console.log(error.response);
       }
     }
     findPlantRecord();
