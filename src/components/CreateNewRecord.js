@@ -80,7 +80,7 @@ const CreateNewRecord = () => {
   }
   return (
     <div>
-      <ProgressFullScreen isInProgress={isInProgress} />
+      { isInProgress && <ProgressFullScreen />}
       {
         shed &&
           <>

@@ -142,7 +142,7 @@ const FormLog = ({ action }) => {
 
   return (
     <div>
-      <ProgressFullScreen isInProgress={isInProgress} />
+      { isInProgress && <ProgressFullScreen />}
       {
         plantRecord &&
           <>

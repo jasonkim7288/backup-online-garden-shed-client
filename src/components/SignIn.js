@@ -69,7 +69,7 @@ const SignIn = ({ tagType }) => {
 
   return (
     <>
-      <ProgressFullScreen isInProgress={isInProgress} />
+      { isInProgress && <ProgressFullScreen />}
       {
         (isSignedIn && currentUser) ?
           <div className="profile-wrapper">

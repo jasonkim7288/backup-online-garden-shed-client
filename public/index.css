@@ -466,21 +466,6 @@ aside {
   }
 }
 
-.spin {
-  animation: icon-rotate 5s linear infinite;
-}
-
-@keyframes icon-rotate {
-  0% {
-    transform: rotate(0);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 /* -------Plant Record------- */
 .button-wrapper {
@@ -607,7 +592,7 @@ form > button {
   text-align: center;
 }
 
-/* -------Create New Record------- */
+/* -------Progress Animation------- */
 .saving-progress {
   text-align: center;
   font-size: 100px;
@@ -621,8 +606,24 @@ form > button {
   justify-content: center;
   align-items: center;
   font-size: 200px;
-  background-color: #ffffff80;
+  background-color: #000000E0;
   width: 100%;
   height: 100%;
   z-index: 9999;
+}
+
+.spin {
+  animation: icon-rotate 5s linear infinite;
+}
+
+@keyframes icon-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
