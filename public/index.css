@@ -652,7 +652,7 @@ form > button {
 .progress-full-screen {
   position: fixed;
   left: 0;
-  top: 0;
+  top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
