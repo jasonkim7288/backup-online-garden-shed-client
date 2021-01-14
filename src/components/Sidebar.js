@@ -12,7 +12,7 @@ const Sidebar = () => {
     {
       title: 'My Garden Shed',
       image: `${process.env.PUBLIC_URL}/menuMyGardenShed.png`,
-      link: '/my-shed'
+      link: '/user/my-shed'
     },
     {
       title: 'Create Record',
@@ -22,12 +22,12 @@ const Sidebar = () => {
     {
       title: 'Following',
       image: `${process.env.PUBLIC_URL}/menuFollowingSheds.png`,
-      link: '/following-sheds'
+      link: '/user/following-sheds'
     },
     {
       title: 'Following',
       image: `${process.env.PUBLIC_URL}/menuFollowingPlants.png`,
-      link: '/following-plants'
+      link: '/user/following-plants'
     },
     {
       title: 'Mission Statement',

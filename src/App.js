@@ -55,12 +55,12 @@ const App = () => {
         <HamburgerMenu/>
         <Sidebar />
         <section>
-          <div className="container">
+          <div className="container mb-50">
             <Switch>
               <Route exact path="/" component={LandingPage} />
-              <Route path="/my-shed" component={MyGardenShed} />
-              <Route path="/following-sheds" component={FollowingSheds} />
-              <Route path="/following-plants" component={FollowingPlants} />
+              <Route path="/user/my-shed" component={MyGardenShed} />
+              <Route path="/user/following-sheds" component={FollowingSheds} />
+              <Route path="/user/following-plants" component={FollowingPlants} />
               <Route path="/mission-statement" component={MissionStatement} />
               <Route path="/sheds/:shedId/records/new" component={CreateNewRecord} />
               <Route path="/sheds/:shedId/records/:plantRecordId/logs/new" render={() => <FormLog action="new"/>} />

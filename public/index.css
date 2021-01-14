@@ -12,14 +12,24 @@
   color: var(--main-font-color);
 }
 
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.m-10 {
+  margin: 10px;
+}
+
 .title {
   text-align: center;
   margin: 20px 0px;
   font-weight: 100;
 }
+
 .input-content-wrapper {
   display: flex;
 }
+
 .input-content, textarea {
   width: 100%;
   padding: 0.3em 0.5em ;
@@ -30,12 +40,8 @@ button {
   border-radius: 5px;
 }
 
-.current-date {
-  margin-bottom: 20px;
-}
-
-.sub-headings {
-  font-size: 1.2em;
+button:hover {
+  cursor: pointer;
 }
 
 a, a:link {
@@ -48,8 +54,12 @@ a, a:link {
   cursor: pointer;
 }
 
-button:hover {
-  cursor: pointer;
+.current-date {
+  margin-bottom: 20px;
+}
+
+.sub-headings {
+  font-size: 1.2em;
 }
 
 #app-container {
@@ -292,10 +302,8 @@ aside {
   }
 }
 
-
-
 /* -------Garden Sheds------- */
-#garden-sheds-container {
+.garden-sheds-container {
   width: 100%;
   display: grid;
   align-items: center;
@@ -308,14 +316,14 @@ aside {
 
 
 @media (min-width: 576px) {
-  #garden-sheds-container {
+  .garden-sheds-container {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 /* Break point from mobile to tablet */
 @media (min-width: 768px) {
-  #garden-sheds-container {
+  .garden-sheds-container {
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 20px;
   }
@@ -323,7 +331,7 @@ aside {
 
 /* Break point from tablet to desktop */
 @media (min-width: 1200px) {
-  #garden-sheds-container {
+  .garden-sheds-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
@@ -332,7 +340,6 @@ aside {
   width: 240px;
   min-width: 240px;
   max-width: 240px;
-  margin-top: 50px;
   box-shadow: 2px 2px 5px grey;
   display: flex;
   flex-direction: row;
@@ -387,9 +394,9 @@ aside {
 }
 
 .garden-shed-plants-list {
-  height: 35px;
-  max-height: 35px;
-  min-height: 35px;
+  height: 74px;
+  max-height: 74px;
+  min-height: 74px;
   margin: 10px 18px;
   color: darkgreen;
   text-overflow: ellipsis;
@@ -408,8 +415,7 @@ aside {
 .plant-thumbnail-wrapper {
   text-align: center;
   box-shadow: 2px 2px 5px grey;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0;
 }
 
 .plant-thumbnail-follow {
@@ -425,7 +431,7 @@ aside {
 
 .plant-thumbnail {
   max-width: 220px;
-  width: 100%;
+  width: 220px;
   height: 150px;
   max-height: 120px;
   min-height: 120px;
@@ -435,7 +441,7 @@ aside {
 
 .plant-thumbnail-name {
   text-decoration: none;
-  color: var(--main-font-color);
+  color: darkgreen;
   margin: 10px 18px;
 }
 
@@ -489,8 +495,8 @@ aside {
 
 .button-wrapper > .about {
   display: block;
-  margin-left: auto;
-  width: 100px;
+  width: 150px;
+  margin-top: 10px;
 }
 
 .button-wrapper > .button-new-log {
@@ -605,6 +611,31 @@ form > button {
   margin-top: 20px;
   margin-bottom: 40px;
   width: 150px;
+}
+
+/* -------Plant Record Summary------- */
+.summary-wrapper {
+  text-align: center;
+  box-shadow: 2px 2px 5px grey;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.summary-text-wrapper {
+  text-align: left;
+}
+
+.summary-text-wrapper > p {
+  max-height: 50px;
+  overflow: hidden;
+}
+
+@media (min-width: 576px) {
+  .summary-wrapper {
+    text-align: left;
+    display: flex;
+    box-shadow: 2px 2px 5px grey;
+  }
 }
 
 /* -------Mission Statement------- */

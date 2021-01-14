@@ -5,10 +5,11 @@ import { useGlobalState } from '../config/globalState';
 import { SET_USER } from '../config/types';
 import { getUniquePlantName } from '../utilities/strings';
 
-const PlantThumbnail = ({ shedId, plantRecord }) => {
+const PlantThumbnail = ({ plantRecord, withOwner }) => {
   const { state, dispatch } = useGlobalState();
   const { isSignedIn, currentUser } = state;
   const [isInProgress, setIsInProgress] = useState(false);
+  const shedId = plantRecord.ownedShed._id;
 
   const handleClickFollow = async event => {
     setIsInProgress(true);
@@ -25,8 +26,6 @@ const PlantThumbnail = ({ shedId, plantRecord }) => {
       setIsInProgress(false);
     }
   }
-
-  console.log('isInProgress:', isInProgress);
 
   return (
     <Link to={`/sheds/${shedId}/records/${plantRecord._id}`}>
@@ -58,6 +57,10 @@ const PlantThumbnail = ({ shedId, plantRecord }) => {
       }
       <div className="plant-thumbnail-wrapper">
         <img className="plant-thumbnail" src={plantRecord.recordPhoto} alt=""/>
+        {
+          withOwner &&
+            <p className="garden-shed-owner">{removeDomain(plantRecord.ownedShed.owner.email)}</p>
+        }
         <p className="plant-thumbnail-name">{getUniquePlantName(plantRecord)}</p>
       </div>
     </Link>

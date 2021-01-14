@@ -54,11 +54,11 @@ const HamburgerMenu = () => {
                   <h4>{currentUser.displayName}</h4>
                 </div>
 
-                <p onClick={handleClickRedirect} data-path={`/my-shed`}>My Garden Shed</p>
+                <p onClick={handleClickRedirect} data-path={`/user/my-shed`}>My Garden Shed</p>
                 <p onClick={handleClickRedirect} data-path={`/sheds/${currentUser.shed}/records/new`}>Create a new record</p>
                 <hr />
-                <p onClick={handleClickRedirect} data-path={`/following-sheds`}>Following - Garden Sheds</p>
-                <p onClick={handleClickRedirect} data-path={`/following-plants`}>Following - Plants</p>
+                <p onClick={handleClickRedirect} data-path={`/user/following-sheds`}>Following - Garden Sheds</p>
+                <p onClick={handleClickRedirect} data-path={`/user/following-plants`}>Following - Plants</p>
                 <hr />
                 <p onClick={handleClickRedirect} data-path={`/mission-statement`}>Mission Statement</p>
                 <hr />

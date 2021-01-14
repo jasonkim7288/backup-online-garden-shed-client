@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import api from '../config/api';
 import { handleError } from '../utilities/errorHandler';
+import { removeDomain } from '../utilities/strings';
 import PlantThumbnail from './PlantThumbnail';
 
 const PlantRecords = () => {
@@ -30,11 +31,11 @@ const PlantRecords = () => {
       {
         shed &&
           <>
-            <p className="path">{shed.owner.email}</p>
+            <p className="path">{removeDomain(shed.owner.email)}</p>
             <div className="plant-thumbnails-container">
               {
                 shed.plantRecords.map(plantRecord =>
-                  <PlantThumbnail key={plantRecord._id} shedId={shedId} plantRecord={plantRecord} />
+                  <PlantThumbnail key={plantRecord._id} plantRecord={plantRecord} withOwner={false}/>
                 )
               }
             </div>

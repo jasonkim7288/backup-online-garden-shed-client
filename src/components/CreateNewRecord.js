@@ -4,6 +4,7 @@ import api from '../config/api';
 import { getCurrentDate } from '../utilities/date';
 import { useGlobalState } from '../config/globalState';
 import ProgressFullScreen from './ProgressFullScreen';
+import { removeDomain } from '../utilities/strings';
 
 const CreateNewRecord = () => {
   const [shed, setShed] = useState(null);
@@ -84,7 +85,7 @@ const CreateNewRecord = () => {
       {
         shed &&
           <>
-            <p className="path">{shed.owner.email}</p>
+            <p className="path">{removeDomain(shed.owner.email)}</p>
             <h1 className="title">Create New Record</h1>
             <p className="current-date">{`Date: ${getCurrentDate()}`}</p>
             {

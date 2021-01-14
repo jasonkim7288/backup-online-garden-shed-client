@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
+import { removeDomain } from '../utilities/strings';
 import PlantThumbnail from './PlantThumbnail';
 
 const MyGardenShed = () => {
@@ -36,7 +37,7 @@ const MyGardenShed = () => {
       {
         isSignedIn && currentUser && shed &&
           <>
-            <p className="path">{shed.owner.email}</p>
+            <p className="path">{removeDomain(shed.owner.email)}</p>
             <h1 className="title">My Garden Shed</h1>
             <div className="plant-thumbnails-container">
               {
