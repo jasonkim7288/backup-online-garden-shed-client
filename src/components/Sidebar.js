@@ -1,11 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useGlobalState } from '../config/globalState';
 
 const Sidebar = () => {
   const { state } = useGlobalState();
   const { isSignedIn, currentUser } = state;
   let history = useHistory();
+  const location = useLocation();
 
   const menuItems = [
     {
@@ -44,21 +45,26 @@ const Sidebar = () => {
   };
 
   return (
-    <aside>
+    <>
       {
-        menuItems.map(menuItem => (
-          <div to={menuItem.link}
-              className="sidebar-item-wrapper"
-              key={menuItem.image}
-              onClick={handleClick}
-              data-link={menuItem.link}
-          >
-            <img src={menuItem.image} alt={menuItem.title} data-link={menuItem.link} className="sidebar-image"/>
-            <p data-link={menuItem.link}>{menuItem.title}</p>
-          </div>
-        ))
+        location.pathname !== '/' &&
+          <aside>
+            {
+              menuItems.map(menuItem => (
+                <div to={menuItem.link}
+                    className="sidebar-item-wrapper"
+                    key={menuItem.image}
+                    onClick={handleClick}
+                    data-link={menuItem.link}
+                >
+                  <img src={menuItem.image} alt={menuItem.title} data-link={menuItem.link} className="sidebar-image"/>
+                  <p data-link={menuItem.link}>{menuItem.title}</p>
+                </div>
+              ))
+            }
+          </aside>
       }
-    </aside>
+    </>
   );
 };
 
