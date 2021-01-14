@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import api from '../config/api';
+import { handleError } from '../utilities/errorHandler';
 import PlantThumbnail from './PlantThumbnail';
 
 const PlantRecords = () => {
   const [shed, setShed] = useState(null);
   const { shedId } = useParams();
+  let history = useHistory();
   useEffect(() => {
     const findShed = async () => {
       try {
@@ -17,6 +19,7 @@ const PlantRecords = () => {
         }
       } catch (error) {
         console.log(error.response);
+        handleError(error, history);
       }
     }
     findShed();

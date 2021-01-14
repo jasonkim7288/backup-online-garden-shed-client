@@ -241,6 +241,11 @@ aside {
 
 }
 
+@media (min-width: 576px) {
+  .guest-button {
+    font-size: 20px;
+  }
+}
 
 /* Break point for tablet */
 @media (min-width: 768px) {
@@ -255,9 +260,6 @@ aside {
   .google-login-item {
     grid-area: 5 / 7;
 
-  }
-  .guest-button {
-    font-size: 20px;
   }
 
   .google {
@@ -540,6 +542,13 @@ aside {
   justify-content: space-evenly;
 }
 
+.thumbnail-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .thumbnail-image {
   object-fit: contain;
   max-width: 180px;
@@ -625,5 +634,33 @@ form > button {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* -------Not Found------- */
+.not-found-title {
+  text-align: center;
+  font-size: 7em;
+  margin-top: 0.3em;
+}
+
+.not-found-message {
+  text-align: center;
+  font-size: 1em;
+  margin-top: 0.3em;
+}
+
+.not-found-button {
+  margin: 3em auto;
+  text-align: center;
+}
+
+@media (min-width: 576px) {
+  .not-found-title {
+    font-size: 15em;
+  }
+
+  .not-found-message {
+    font-size: 3em;
   }
 }

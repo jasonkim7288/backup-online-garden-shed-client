@@ -173,9 +173,10 @@ const FormLog = ({ action }) => {
           filePaths && filePaths.length > 0 &&
           <>
             <p id="select-main-image">Select Main Image</p>
-            <div className="radio-wrapper">
+            <div className="thumbnails-wrapper">
               {
                 filePaths.map((file, index) => (
+                  <div className="thumbnail-wrapper">
                   <input
                     type="radio"
                     className="thumbnail-radio-button  add-hover"
@@ -185,14 +186,9 @@ const FormLog = ({ action }) => {
                     onChange={handleChangeMain}
                     checked={index === currentIndex}
                   />
-                ))
-              }
-            </div>
-            <div className="thumbnails-wrapper">
-              {
-                filePaths.map((file, index) => (
                   <img key={index} className="thumbnail-image add-hover" src={file} alt="thumbnail" data-value={index}
                   onClick={handleChangeMain}/>
+                  </div>
                 ))
               }
             </div>

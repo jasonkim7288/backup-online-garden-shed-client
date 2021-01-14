@@ -19,6 +19,7 @@ import MyGardenShed from './components/MyGardenShed';
 import FollowingPlants from './components/FollowingPlants';
 import MissionStatement from './components/MissionStatement';
 import HamburgerMenu from './components/HamburgerMenu';
+import PageError from './components/PageError';
 
 
 
@@ -69,6 +70,9 @@ const App = () => {
               <Route path="/sheds/:shedId" component={PlantRecords} />
               <Route path="/sheds" component={GardenSheds} />
               <Route path="/search" component={SearchPlant} />
+              <Route path="/error/404" render={() => <PageError code={404}/>} />
+              <Route path="/error/400" render={() => <PageError code={400}/>} />
+              <Route render={() => <PageError code={404}/>} />
             </Switch>
           </div>
         </section>
