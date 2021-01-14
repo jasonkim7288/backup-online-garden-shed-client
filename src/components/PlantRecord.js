@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link, useHistory } from 'react-router-dom';
 import api from '../config/api';
-import { convertStringToDateString, dayCount } from '../utilities/date';
-import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import parse from 'html-react-parser';
+import PlantLog from './PlantLog';
 
 const PlantRecord = () => {
   const [plantRecord, setPlantRecord] = useState(null);
@@ -31,34 +29,6 @@ const PlantRecord = () => {
     history.push(`/sheds/${shedId}/records/${plantRecordId}/logs/new`);
   }
 
-  const handleClickDelete = (event) => {
-    const index = parseInt(event.target.dataset.value);
-
-    confirmAlert({
-      title: 'Confirm to delete',
-      message: 'Are you sure?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: async () => {
-            try {
-              await api.delete(`api/sheds/${shedId}/records/${plantRecordId}/logs/${plantRecord.plantLogs[index]._id}`)
-              setPlantRecord({
-                ...plantRecord,
-                plantLogs:  plantRecord.plantLogs.filter((element, idx) => idx !== index)
-              });
-            } catch (error) {
-              console.log(error.response);
-            }
-          }
-        },
-        {
-          label: 'No',
-          onClick: () => {}
-        }
-      ]
-    });
-  }
 
   return (
     <div>
@@ -82,50 +52,12 @@ const PlantRecord = () => {
 
             {
               plantRecord.plantLogs.map((plantLog, index) =>
-                <div key={index}>
-                  {
-                    plantLog.photos && plantLog.photos.length > 0 &&
-                      <div>
-                        <img className="selected-thumbnail" src={plantLog.photos[plantLog.mainPhotoIndex]}  alt="main"/>
-                        <div className="thumbnails-wrapper add-hover">
-                          {
-                            plantLog.photos.map((photo, photoIndex) =>
-                              <img key={photoIndex}
-                                  onClick={() => {
-                                    setPlantRecord({
-                                      ...plantRecord,
-                                      plantLogs:  plantRecord.plantLogs.map((element, idx) =>
-                                        (idx === index) ?
-                                          ({
-                                            ...element,
-                                            mainPhotoIndex: photoIndex
-                                          })
-                                        :
-                                          element
-                                      )
-                                    });
-                                  }}
-                                  className="thumbnail-image"
-                                  src={photo}
-                                  alt="thumbnail"
-                              />
-                            )
-                          }
-                        </div>
-                      </div>
-                  }
-
-                  <div className="icon icon-record">
-                    <i onClick={handleClickDelete} className="far fa-trash-alt add-hover icon-record-delete" data-value={index}></i>
-                  </div>
-                  <Link to={`/sheds/${shedId}/records/${plantRecordId}/logs/${plantLog._id}/edit`} className="icon icon-record">
-                    <i className="far fa-edit add-hover icon-record-edit"></i>
-                  </Link>
-
-                  <p className="sub-headings"><strong>Date:</strong> {`${convertStringToDateString(plantLog.createdAt)} (Day ${dayCount(plantRecord.createdAt, plantLog.createdAt)})`}</p>
-                  <p className="sub-headings"><strong>My Notes:</strong></p>
-                  <p className="my-notes">{parse(plantLog.notes)}</p>
-                </div>
+                <PlantLog key={index}
+                  shedId={shedId}
+                  plantRecordId={plantRecordId}
+                  plantLog={plantLog}
+                  plantRecord={plantRecord}
+                  setPlantRecord={setPlantRecord}/>
               )
             }
           </>

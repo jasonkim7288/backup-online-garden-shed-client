@@ -150,7 +150,7 @@ section {
 }
 
 .path {
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 .api-wrapper {
@@ -535,6 +535,15 @@ aside {
   margin: 20px 0px;
 }
 
+.button-confirm {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.button-cancel {
+  width: 100px;
+}
+
 /* -------Create New Log------- */
 #select-main-image {
   margin: 20px 0px;
@@ -593,18 +602,27 @@ form > button {
   width: 150px;
 }
 
-/* ------- Mission Statement------- */
+/* -------Mission Statement------- */
 #mission-statement{
   text-align: center;
 }
 
 /* -------Create New Record------- */
-
-.button-confirm {
-  width: 100px;
-  margin-right: 20px;
+.saving-progress {
+  text-align: center;
+  font-size: 100px;
 }
 
-.button-cancel {
-  width: 100px;
+.progress-full-screen {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 200px;
+  background-color: #ffffff80;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
 }

@@ -3,6 +3,7 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import api from '../config/api';
 import { convertStringToDateString, getCurrentDate } from '../utilities/date';
 import { uploadFile } from 'react-s3';
+import ProgressFullScreen from './ProgressFullScreen';
 
 
 const config = {
@@ -20,6 +21,7 @@ const FormLog = ({ action }) => {
   const [filePaths, setFilePaths] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [editLog, setEditLog] = useState(null);
+  const [isInProgress, setIsInProgress] = useState(false);
   let history = useHistory();
 
   useEffect(() => {
@@ -76,6 +78,7 @@ const FormLog = ({ action }) => {
 
   const handleSubmit = async event => {
     let fileLocations = [];
+    setIsInProgress(true);
     event.preventDefault();
 
     if (filesToUpload) {
@@ -111,7 +114,9 @@ const FormLog = ({ action }) => {
       console.log(res.data);
     } catch (error) {
       console.log("error:", error.response);
-    };
+    } finally {
+      setIsInProgress(false);
+    }
 
     history.push(`/sheds/${shedId}/records/${plantRecordId}`);
   };
@@ -137,6 +142,7 @@ const FormLog = ({ action }) => {
 
   return (
     <div>
+      <ProgressFullScreen isInProgress={isInProgress} />
       {
         plantRecord &&
           <>
