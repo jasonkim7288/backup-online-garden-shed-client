@@ -221,6 +221,17 @@ aside {
 
 /* -------Landing Page------- */
 .landing-page-container {
+  background-image: url("/landingPage.jpg");
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 3fr 1fr;
   grid-template-rows: repeat(9, 1fr);
