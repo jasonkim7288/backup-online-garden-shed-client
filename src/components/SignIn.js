@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
 import { AUTH_SIGN_IN, AUTH_SIGN_OUT, SET_IS_MENU_ON, SET_USER } from '../config/types';
+import ProgressFullScreen from './ProgressFullScreen';
 
 const SignIn = ({ tagType }) => {
   const { state, dispatch } = useGlobalState();
   const { isSignedIn, currentUser } = state;
+  const [isInProgress, setIsInProgress] = useState(false);
   let history = useHistory();
   let location = useLocation();
 
@@ -36,6 +38,12 @@ const SignIn = ({ tagType }) => {
       }
     } catch (err) {
       console.log('err: ', err.response);
+    } finally {
+      setIsInProgress(false);
+      dispatch({
+        type: SET_IS_MENU_ON,
+        payload: false
+      });
     }
   };
 
@@ -61,6 +69,7 @@ const SignIn = ({ tagType }) => {
 
   return (
     <>
+      <ProgressFullScreen isInProgress={isInProgress} />
       {
         (isSignedIn && currentUser) ?
           <div className="profile-wrapper">
@@ -82,16 +91,19 @@ const SignIn = ({ tagType }) => {
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             render={renderProps => (
               (tagType === 'button') ? (
-                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className="button google guest-button">
+                <button disabled={renderProps.disabled}
+                    className="button google guest-button"
+                    onClick={event => {
+                      setIsInProgress(true);
+                      renderProps.onClick(event);
+                    }}
+                >
                   <i className="fab fa-google"></i>Sign in with Google
                 </button>
               )
               : (
                 <p onClick={(event) => {
-                      dispatch({
-                        type: SET_IS_MENU_ON,
-                        payload: false
-                      });
+                      setIsInProgress(true);
                       renderProps.onClick(event);
                     }}
                     disabled={renderProps.disabled}

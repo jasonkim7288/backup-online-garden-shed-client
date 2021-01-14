@@ -4,12 +4,13 @@ import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import parse from 'html-react-parser';
 
 const SelectedPlantFirstEntry = () => {
   const { shedId, plantRecordId } = useParams();
   const [plantRecord, setPlantRecord] = useState(null);
   const { state } = useGlobalState();
-  const { isSignedIn } = state;
+  const { isSignedIn, currentUser } = state;
   const [isEditMode, setIsEditMode] = useState(false);
   const [description, setDescription] = useState('');
   let history = useHistory();
@@ -39,7 +40,7 @@ const SelectedPlantFirstEntry = () => {
 
   const handleClickEdit = () => {
     setIsEditMode(true);
-    setDescription(plantRecord.description);
+    setDescription(parse(plantRecord.description.replace(/<br>/g, '&#10;')));
   };
 
   const handleChangeDescription = event => {
@@ -49,10 +50,11 @@ const SelectedPlantFirstEntry = () => {
   const handleClickCancel = () => {
     setIsEditMode(false);
   }
+
   const handleClickEditButton = async () => {
     try {
       const editPlantRecord = {
-        description
+        description: description.replace(/\n/g, '<br>')
       }
       const res = await api.put(`api/sheds/${shedId}/records/${plantRecordId}`, editPlantRecord);
       console.log('resData', res.data);
@@ -101,24 +103,30 @@ const SelectedPlantFirstEntry = () => {
             <div className="selected-thumbnail">
               <img className="main-image" src={plantRecord.recordPhoto} alt=""/>
             </div>
-            <div className="icon icon-record">
-              <i onClick={handleClickDelete} className="far fa-trash-alt add-hover icon-record-delete"></i>
-            </div>
-            <div className="icon icon-record">
-              <i onClick={handleClickEdit} className="far fa-edit add-hover icon-record-edit"></i>
-            </div>
-            <p><strong>Common name:</strong>&nbsp;{plantRecord.commonName}</p>
-            <p><strong>Scientific name:</strong>&nbsp;{plantRecord.scientificName}</p>
-            <p><strong>Family common name:</strong>&nbsp;{plantRecord.familyCommonName}</p>
+            {
+              isSignedIn && currentUser && (currentUser.shed === plantRecord.ownedShed._id) &&
+                <>
+                  <div className="icon icon-record">
+                    <i onClick={handleClickDelete} className="far fa-trash-alt add-hover icon-record-delete"></i>
+                  </div>
+                  <div className="icon icon-record">
+                    <i onClick={handleClickEdit} className="far fa-edit add-hover icon-record-edit"></i>
+                  </div>
+                </>
+            }
+            <p className="sub-headings"><strong>Common name:</strong>&nbsp;{plantRecord.commonName}</p>
+            <p className="sub-headings"><strong>Scientific name:</strong>&nbsp;{plantRecord.scientificName}</p>
+            <p className="sub-headings"><strong>Family common name:</strong>&nbsp;{plantRecord.familyCommonName}</p>
+            <p className="sub-headings"><strong>Description:</strong></p>
             {
               isEditMode ?
                 <>
-                  <textarea onChange={handleChangeDescription} value={description} className="description-input"/>
+                  <textarea onChange={handleChangeDescription} rows="10" value={description} className="description-input"/>
                   <button className ="button-confirm" onClick={handleClickEditButton} >Confirm</button>
                   <button className="button-cancel" onClick={handleClickCancel}>Cancel</button>
                 </>
               :
-                <p><strong>Description:</strong>{plantRecord.description}</p>
+                <p>{parse(plantRecord.description)}</p>
             }
           </div>
         </>

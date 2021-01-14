@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import api from '../config/api';
 import { getCurrentDate } from '../utilities/date';
 import { useGlobalState } from '../config/globalState';
+import ProgressFullScreen from './ProgressFullScreen';
 
 const CreateNewRecord = () => {
   const [shed, setShed] = useState(null);
@@ -13,6 +14,7 @@ const CreateNewRecord = () => {
   const [description, setDescription] = useState('');
   const { state } = useGlobalState();
   const { isSignedIn } = state;
+  const [isInProgress, setIsInProgress] = useState(false);
   let history = useHistory();
 
   useEffect(() => {
@@ -53,6 +55,7 @@ const CreateNewRecord = () => {
   }
 
   const handleSubmit = async (event) => {
+    setIsInProgress(true);
     event.preventDefault();
     try {
       const res = await api.post(`api/sheds/${shedId}/records`,
@@ -61,14 +64,15 @@ const CreateNewRecord = () => {
           scientificName: plants[plantIndex].scientific_name,
           familyCommonName: plants[plantIndex].family_common_name,
           recordPhoto: plants[plantIndex].image_url,
-          description
+          description: description.replace(/\n/g, '<br>')
         });
       console.log(res.data);
       history.push(`/sheds/${shedId}/records/${res.data._id}`);
     } catch (error) {
       console.log(error.response)
+    } finally {
+      setIsInProgress(false);
     }
-
   }
 
   const handleChangeDescription = (event) => {
@@ -76,6 +80,7 @@ const CreateNewRecord = () => {
   }
   return (
     <div>
+      <ProgressFullScreen isInProgress={isInProgress} />
       {
         shed &&
           <>
