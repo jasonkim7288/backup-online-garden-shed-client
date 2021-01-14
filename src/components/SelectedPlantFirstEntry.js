@@ -5,6 +5,7 @@ import { useGlobalState } from '../config/globalState';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import parse from 'html-react-parser';
+import { removeDomain } from '../utilities/strings';
 
 const SelectedPlantFirstEntry = () => {
   const { shedId, plantRecordId } = useParams();
@@ -93,9 +94,9 @@ const SelectedPlantFirstEntry = () => {
     <>
       {
         plantRecord &&
-        <>
+        <div>
           <p className="path">
-            <Link to={`/sheds/${shedId}`}> {`${plantRecord.ownedShed.owner.email}`}</Link>
+            <Link to={`/sheds/${shedId}`}> {`${removeDomain(plantRecord.ownedShed.owner.email)}`}</Link>
             <Link to={`/sheds/${shedId}/records/${plantRecordId}`}> {`> ${plantRecord.commonName}`}</Link>
             {` > About`}
           </p>
@@ -129,7 +130,7 @@ const SelectedPlantFirstEntry = () => {
                 <p>{parse(plantRecord.description)}</p>
             }
           </div>
-        </>
+        </div>
       }
     </>
   );

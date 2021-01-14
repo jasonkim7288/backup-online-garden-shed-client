@@ -4,6 +4,7 @@ import api from '../config/api';
 import { convertStringToDateString, getCurrentDate } from '../utilities/date';
 import { uploadFile } from 'react-s3';
 import ProgressFullScreen from './ProgressFullScreen';
+import { removeDomain } from '../utilities/strings';
 
 
 const config = {
@@ -142,12 +143,12 @@ const FormLog = ({ action }) => {
 
   return (
     <div>
-      <ProgressFullScreen isInProgress={isInProgress} />
+      { isInProgress && <ProgressFullScreen />}
       {
         plantRecord &&
           <>
             <p className="path">
-              <Link to={`/sheds/${shedId}`}> {`${plantRecord.ownedShed.owner.email}`}</Link>
+              <Link to={`/sheds/${shedId}`}> {`${removeDomain(plantRecord.ownedShed.owner.email)}`}</Link>
               <Link to={`/sheds/${shedId}/records/${plantRecord._id}`}> {`> ${plantRecord.commonName}`}</Link>
               {
                 (action === 'edit') ?
@@ -173,26 +174,21 @@ const FormLog = ({ action }) => {
           filePaths && filePaths.length > 0 &&
           <>
             <p id="select-main-image">Select Main Image</p>
-            <div className="radio-wrapper">
-              {
-                filePaths.map((file, index) => (
-                  <input
-                    type="radio"
-                    className="thumbnail-radio-button  add-hover"
-                    name="thumbnail-radio-button"
-                    key={index}
-                    data-value={index}
-                    onChange={handleChangeMain}
-                    checked={index === currentIndex}
-                  />
-                ))
-              }
-            </div>
             <div className="thumbnails-wrapper">
               {
                 filePaths.map((file, index) => (
-                  <img key={index} className="thumbnail-image add-hover" src={file} alt="thumbnail" data-value={index}
-                  onClick={handleChangeMain}/>
+                  <div className="thumbnail-wrapper" key={index}>
+                    <input
+                      type="radio"
+                      className="thumbnail-radio-button  add-hover"
+                      name="thumbnail-radio-button"
+                      data-value={index}
+                      onChange={handleChangeMain}
+                      checked={index === currentIndex}
+                    />
+                    <img key={index} className="thumbnail-image add-hover" src={file} alt="thumbnail" data-value={index}
+                    onClick={handleChangeMain}/>
+                  </div>
                 ))
               }
             </div>

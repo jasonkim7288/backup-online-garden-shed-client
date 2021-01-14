@@ -3,6 +3,8 @@ import { useParams, Link, useHistory } from 'react-router-dom';
 import api from '../config/api';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import PlantLog from './PlantLog';
+import { removeDomain } from '../utilities/strings';
+import PlantRecordSummary from './PlantRecordSummary';
 
 const PlantRecord = () => {
   const [plantRecord, setPlantRecord] = useState(null);
@@ -29,23 +31,21 @@ const PlantRecord = () => {
     history.push(`/sheds/${shedId}/records/${plantRecordId}/logs/new`);
   }
 
-
   return (
     <div>
       {
         plantRecord &&
           <>
             <p className="path">
-              <Link to={`/sheds/${shedId}`}> {`${plantRecord.ownedShed.owner.email}`}</Link>
+              <Link to={`/sheds/${shedId}`}> {`${removeDomain(plantRecord.ownedShed.owner.email)}`}</Link>
               {` > ${plantRecord.commonName}`}
             </p>
             <div className="icon icon-record icon-record-follow">
               <i className="fas fa-leaf"></i>
             </div>
 
-            <Link to={`/sheds/${shedId}/records/${plantRecordId}/first-entry`} className="button-wrapper">
-              <button className="about" type="button">About</button>
-            </Link>
+            <PlantRecordSummary plantRecord={plantRecord}/>
+
             <div className="button-wrapper">
               <button onClick={handleClickNewLog} className="button-new-log" type="button">Creat a new log</button>
             </div>

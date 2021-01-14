@@ -19,6 +19,7 @@ import MyGardenShed from './components/MyGardenShed';
 import FollowingPlants from './components/FollowingPlants';
 import MissionStatement from './components/MissionStatement';
 import HamburgerMenu from './components/HamburgerMenu';
+import PageError from './components/PageError';
 
 
 
@@ -54,12 +55,12 @@ const App = () => {
         <HamburgerMenu/>
         <Sidebar />
         <section>
-          <div className="container">
+          <div className="container mb-50">
             <Switch>
               <Route exact path="/" component={LandingPage} />
-              <Route path="/my-shed" component={MyGardenShed} />
-              <Route path="/following-sheds" component={FollowingSheds} />
-              <Route path="/following-plants" component={FollowingPlants} />
+              <Route path="/user/my-shed" component={MyGardenShed} />
+              <Route path="/user/following-sheds" component={FollowingSheds} />
+              <Route path="/user/following-plants" component={FollowingPlants} />
               <Route path="/mission-statement" component={MissionStatement} />
               <Route path="/sheds/:shedId/records/new" component={CreateNewRecord} />
               <Route path="/sheds/:shedId/records/:plantRecordId/logs/new" render={() => <FormLog action="new"/>} />
@@ -69,6 +70,9 @@ const App = () => {
               <Route path="/sheds/:shedId" component={PlantRecords} />
               <Route path="/sheds" component={GardenSheds} />
               <Route path="/search" component={SearchPlant} />
+              <Route path="/error/404" render={() => <PageError code={404}/>} />
+              <Route path="/error/400" render={() => <PageError code={400}/>} />
+              <Route render={() => <PageError code={404}/>} />
             </Switch>
           </div>
         </section>
