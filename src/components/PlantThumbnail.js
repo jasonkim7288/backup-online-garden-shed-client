@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
 import { SET_USER } from '../config/types';
-import { getUniquePlantName } from '../utilities/strings';
+import { getUniquePlantName, removeDomain } from '../utilities/strings';
 
 const PlantThumbnail = ({ plantRecord, withOwner }) => {
   const { state, dispatch } = useGlobalState();

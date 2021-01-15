@@ -24,7 +24,7 @@ const PlantRecords = () => {
       }
     }
     findShed();
-  }, [shedId]);
+  }, [shedId, history]);
 
   return (
     <>

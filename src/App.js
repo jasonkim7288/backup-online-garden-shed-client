@@ -20,6 +20,7 @@ import FollowingPlants from './components/FollowingPlants';
 import MissionStatement from './components/MissionStatement';
 import HamburgerMenu from './components/HamburgerMenu';
 import PageError from './components/PageError';
+import GoogleCallback from './components/GoogleCallback';
 
 
 
@@ -58,6 +59,7 @@ const App = () => {
           <div className="container mb-50">
             <Switch>
               <Route exact path="/" component={LandingPage} />
+              <Route path="/auth/google/callback" component={GoogleCallback} />
               <Route path="/user/my-shed" component={MyGardenShed} />
               <Route path="/user/following-sheds" component={FollowingSheds} />
               <Route path="/user/following-plants" component={FollowingPlants} />
