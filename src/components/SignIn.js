@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import GoogleLogin from 'react-google-login';
+import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
 import { AUTH_SIGN_IN, AUTH_SIGN_OUT, SET_IS_MENU_ON, SET_USER } from '../config/types';
@@ -48,7 +48,7 @@ const SignIn = ({ tagType }) => {
     }
   };
 
-  const handleClickLogout = async () => {
+  const responseGoogleLogout = async () => {
     // close the menu first
     dispatch({
       type: SET_IS_MENU_ON,
@@ -75,16 +75,35 @@ const SignIn = ({ tagType }) => {
         (isSignedIn && currentUser) ?
           <div className="profile-wrapper">
             <img src={currentUser.photo} alt="current user" className="profile-image"/>
-            {
-
-              (tagType === 'button') ?
-                  <button onClick={handleClickLogout} type="button" className="add-hover">
+            <GoogleLogout
+              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+              render={renderProps => (
+                (tagType === 'button') ?
+                  <button disabled={renderProps.disabled}
+                      className="button google guest-button"
+                      onClick={event => {
+                        renderProps.onClick(event);
+                      }}
+                  >
                     Sign out
                   </button>
                 :
-                  <p onClick={handleClickLogout} className="add-hover">
+                  <p disabled={renderProps.disabled}
+                      onClick={(event) => {
+                        renderProps.onClick(event);
+                      }}
+                      className="add-hover"
+                  >
                     Sign out
                   </p>
+              )}
+              onLogoutSuccess={responseGoogleLogout}
+              onFailure={responseGoogleLogout}
+            />
+
+            {
+
+
             }
           </div>
         :
@@ -103,11 +122,11 @@ const SignIn = ({ tagType }) => {
                 </button>
               )
               : (
-                <p onClick={(event) => {
+                <p disabled={renderProps.disabled}
+                    onClick={(event) => {
                       setIsInProgress(true);
                       renderProps.onClick(event);
                     }}
-                    disabled={renderProps.disabled}
                     className="add-hover"
                 >
                   <i className="fab fa-google"></i>Sign in with Google

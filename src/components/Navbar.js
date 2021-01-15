@@ -9,7 +9,8 @@ const Navbar = () => {
   const { isMenuOn } = state;
   const [ isWindowSmall, setIsWindowSmall] = useState(null);
 
-  const handleClickMenuIcon = () => {
+  const handleClickMenuIcon = event => {
+    event.preventDefault();
     dispatch({
       type: SET_IS_MENU_ON,
       payload: !isMenuOn
