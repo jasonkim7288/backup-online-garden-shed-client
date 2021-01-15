@@ -94,7 +94,7 @@ const CreateNewRecord = () => {
                   <form onSubmit={handleSearch}>
                     <div className="input-content-wrapper">
                       <input className="input-content" placeholder="Search keywords" autoFocus type="text" value={searchText} onChange={handleChangeSearch}/>
-                      <button className="input-button" type="submit">Search</button>
+                      <button className="btn btn-blue" type="submit">Search</button>
                     </div>
                   </form>
                   {
@@ -122,7 +122,7 @@ const CreateNewRecord = () => {
                   <p><strong>Family common name:</strong>&nbsp;{plants[plantIndex].family_common_name}</p>
                   <form onSubmit={handleSubmit}>
                     <textarea className="description-input" name="description" rows="10" placeholder="Description" value={description} onChange={handleChangeDescription}/>
-                    <button type="submit">Create a new record</button>
+                    <button className="btn-blue" type="submit">Create a new record</button>
                   </form>
                 </div>
             }

@@ -180,7 +180,7 @@ const FormLog = ({ action }) => {
                   <div className="thumbnail-wrapper" key={index}>
                     <input
                       type="radio"
-                      className="thumbnail-radio-button  add-hover"
+                      className="thumbnail-radio-button add-hover"
                       name="thumbnail-radio-button"
                       data-value={index}
                       onChange={handleChangeMain}
@@ -195,7 +195,7 @@ const FormLog = ({ action }) => {
             <img className="selected-thumbnail" src={filePaths[currentIndex]} alt="seleted thumbnail main plant"/>
           </>
         }
-        <button type="submit">Submit</button>
+        <button className="btn btn-blue "type="submit">Submit</button>
       </form>
     </div>
   )

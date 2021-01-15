@@ -15,7 +15,7 @@ const PlantRecordSummary = ({ plantRecord }) => {
         <p><strong>Family common name:</strong>&nbsp;{plantRecord.familyCommonName}</p>
         <p><strong>Description:&nbsp;</strong>{parse(plantRecord.description)}</p>
         <Link to={`/sheds/${plantRecord.ownedShed._id}/records/${plantRecord._id}/first-entry`} className="button-wrapper">
-          <button className="about" type="button">More details</button>
+          <button className="btn btn-green about" type="button">More details</button>
         </Link>
       </div>
     </div>

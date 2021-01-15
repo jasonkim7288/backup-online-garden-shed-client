@@ -80,7 +80,7 @@ const SignIn = ({ tagType }) => {
               render={renderProps => (
                 (tagType === 'button') ?
                   <button disabled={renderProps.disabled}
-                      className="button google guest-button"
+                      className="button btn btn-gray google guest-button"
                       onClick={event => {
                         renderProps.onClick(event);
                       }}
@@ -112,7 +112,7 @@ const SignIn = ({ tagType }) => {
             render={renderProps => (
               (tagType === 'button') ? (
                 <button disabled={renderProps.disabled}
-                    className="button google guest-button"
+                    className="button btn btn-gray google guest-button"
                     onClick={event => {
                       setIsInProgress(true);
                       renderProps.onClick(event);

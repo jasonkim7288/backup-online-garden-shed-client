@@ -123,8 +123,8 @@ const SelectedPlantFirstEntry = () => {
               isEditMode ?
                 <>
                   <textarea onChange={handleChangeDescription} rows="10" value={description} className="description-input"/>
-                  <button className ="button-confirm" onClick={handleClickEditButton} >Confirm</button>
-                  <button className="button-cancel" onClick={handleClickCancel}>Cancel</button>
+                  <button className ="btn btn-green button-confirm" onClick={handleClickEditButton} >Confirm</button>
+                  <button className="btn btn-red button-cancel" onClick={handleClickCancel}>Cancel</button>
                 </>
               :
                 <p>{parse(plantRecord.description)}</p>
