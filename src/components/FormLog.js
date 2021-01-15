@@ -5,6 +5,7 @@ import { convertStringToDateString, getCurrentDate } from '../utilities/date';
 import { uploadFile } from 'react-s3';
 import ProgressFullScreen from './ProgressFullScreen';
 import { removeDomain } from '../utilities/strings';
+import { handleError } from '../utilities/errorHandler';
 
 
 const config = {
@@ -113,13 +114,13 @@ const FormLog = ({ action }) => {
         res = await api.post(`api/sheds/${shedId}/records/${plantRecordId}/logs`, newLog);
       }
       console.log(res.data);
+      history.push(`/sheds/${shedId}/records/${plantRecordId}`);
     } catch (error) {
       console.log("error:", error.response);
+      handleError(error, history);
     } finally {
       setIsInProgress(false);
     }
-
-    history.push(`/sheds/${shedId}/records/${plantRecordId}`);
   };
 
   const handleChangeNotes = event => {

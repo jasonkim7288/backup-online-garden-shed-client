@@ -73,6 +73,7 @@ const App = () => {
               <Route path="/sheds" component={GardenSheds} />
               <Route path="/search" component={SearchPlant} />
               <Route path="/error/404" render={() => <PageError code={404}/>} />
+              <Route path="/error/401" render={() => <PageError code={401}/>} />
               <Route path="/error/400" render={() => <PageError code={400}/>} />
               <Route render={() => <PageError code={404}/>} />
             </Switch>

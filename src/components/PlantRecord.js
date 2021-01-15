@@ -3,10 +3,14 @@ import { useParams, Link, useHistory } from 'react-router-dom';
 import api from '../config/api';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import PlantLog from './PlantLog';
-import { removeDomain } from '../utilities/strings';
+import { getUniquePlantName, removeDomain } from '../utilities/strings';
 import PlantRecordSummary from './PlantRecordSummary';
+import FollowIconPlant from './FollowIconPlant';
+import { useGlobalState } from '../config/globalState';
 
 const PlantRecord = () => {
+  const { state } = useGlobalState();
+  const { isSignedIn, currentUser } = state;
   const [plantRecord, setPlantRecord] = useState(null);
   const { shedId, plantRecordId } = useParams();
   let history = useHistory();
@@ -38,17 +42,19 @@ const PlantRecord = () => {
           <>
             <p className="path">
               <Link to={`/sheds/${shedId}`}> {`${removeDomain(plantRecord.ownedShed.owner.email)}`}</Link>
-              {` > ${plantRecord.commonName}`}
+              {` > ${getUniquePlantName(plantRecord)}`}
             </p>
-            <div className="icon icon-record icon-record-follow">
-              <i className="fas fa-leaf"></i>
-            </div>
+
+            <FollowIconPlant plantRecord={plantRecord} position="relative"/>
 
             <PlantRecordSummary plantRecord={plantRecord}/>
 
-            <div className="button-wrapper">
-              <button onClick={handleClickNewLog} className="btn btn-blue button-new-log" type="button">Creat a new log</button>
-            </div>
+            {
+              isSignedIn && currentUser && currentUser.shed === plantRecord.ownedShed._id &&
+                <div className="button-wrapper">
+                  <button onClick={handleClickNewLog} className="btn btn-blue button-new-log" type="button">Creat a new log</button>
+                </div>
+            }
 
             {
               plantRecord.plantLogs.map((plantLog, index) =>

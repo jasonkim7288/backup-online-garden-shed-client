@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
+import { handleError } from '../utilities/errorHandler';
 import GardenShedThumbnail from './GardenShedThumbnail';
 
 const FollowingSheds = () => {
@@ -11,17 +12,13 @@ const FollowingSheds = () => {
   let history = useHistory();
 
   useEffect(() => {
-    if (!isSignedIn) {
-      history.push('/');
-      return;
-    }
-
     const getCurrentUser = async () => {
       try {
         const res = await api.get('/api/sheds/following-sheds');
         setConnectedUser(res.data);
       } catch (error) {
         console.log('error.response: ', error.response);
+        handleError(error, history);
       }
     };
     getCurrentUser();

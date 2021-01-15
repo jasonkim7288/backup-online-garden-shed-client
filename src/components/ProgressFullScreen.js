@@ -4,9 +4,10 @@ const ProgressFullScreen = () => {
   const [rainClass, setRainClass] = useState(false);
 
   useEffect(() => {
+    let runTimeout;
     const runAnimation = () => {
       setRainClass(true);
-      setTimeout(() => {
+      runTimeout = setTimeout(() => {
         setRainClass(false);
       }, 1200);
     };
@@ -19,9 +20,11 @@ const ProgressFullScreen = () => {
     }, 2000);
 
     return (() => {
+      clearTimeout(runTimeout);
       clearInterval(growingInterval);
     })
-  }, [])
+  }, []);
+
   return (
     <div className="progress-full-screen">
       <div className="box">

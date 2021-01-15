@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import api from '../config/api';
 import { SET_USER } from '../config/types';
-import { removeDomain } from '../utilities/strings';
+import { getUniquePlantName, removeDomain } from '../utilities/strings';
 import { useGlobalState } from '../config/globalState';
 
 const GardenShedThumbnail = ({ shed }) => {
@@ -69,7 +69,7 @@ const GardenShedThumbnail = ({ shed }) => {
       {
         shed.plantRecords.length > 0 && (
           <p className="garden-shed-plants-list">
-            {shed.plantRecords.map(plantRecord => plantRecord.commonName).join(', ')}
+            {shed.plantRecords.map(plantRecord => getUniquePlantName(plantRecord)).join(', ')}
           </p>
         )
       }

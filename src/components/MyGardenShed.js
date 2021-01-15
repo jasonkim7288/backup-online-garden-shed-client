@@ -13,7 +13,7 @@ const MyGardenShed = () => {
 
   useEffect(() => {
     if (!isSignedIn || !currentUser) {
-      history.push('/');
+      history.push('/error/401');
     } else {
       const findShed = async () => {
         try {
