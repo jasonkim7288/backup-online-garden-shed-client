@@ -4,6 +4,7 @@ const MissionStatement = () => {
   return (
     <div>
       <h1 className="title">Mission Statement</h1>
+      <img id="mission-statement-image" src="/missionStatement.jpg" alt="cartoon gardeners'"></img>
       <p id="mission-statement">
         Started from within Australia, Online Garden Shed is for improving your gardening skills by 
         keeping track of a plant's growth history and learning from other gardeners' experiences. 
@@ -11,6 +12,9 @@ const MissionStatement = () => {
         records and experiences online. By having access to the online garden sheds and being able to 
         follow other plant records and setting up notifications, gardeners can be more actively involved 
         in their gardening community whilst not being restricted by their geographic location.
+        <br/>
+        <br/>
+        Lets help each other and the planet.
         </p>
     </div>
   );
