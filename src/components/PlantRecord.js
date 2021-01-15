@@ -47,7 +47,7 @@ const PlantRecord = () => {
             <PlantRecordSummary plantRecord={plantRecord}/>
 
             <div className="button-wrapper">
-              <button onClick={handleClickNewLog} className="button-new-log" type="button">Creat a new log</button>
+              <button onClick={handleClickNewLog} className="btn btn-blue button-new-log" type="button">Creat a new log</button>
             </div>
 
             {

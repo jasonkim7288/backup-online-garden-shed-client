@@ -23,7 +23,7 @@ const LandingPage = () => {
   return (
     <div className="landing-page-container">
       <div className="guest-login-item" >
-        <button type="button" onClick={handleClickGuestLogin} className="guest-button">Guest</button>
+        <button className="guest-button btn btn-gray" type="button" onClick={handleClickGuestLogin} >Guest</button>
       </div>
       <div className="google-login-item">
         <SignIn tagType="button"/>

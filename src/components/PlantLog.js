@@ -35,10 +35,11 @@ const PlantLog = ({ shedId, plantRecordId, plantLog, plantRecord, setPlantRecord
   }
 
   return (
-    <div>
+    <div className="plantlog-wrapper">
       {
         plantLog.photos && plantLog.photos.length > 0 &&
           <div>
+            <hr/>
             <img className="selected-thumbnail" src={plantLog.photos[plantLog.mainPhotoIndex]} alt="main"/>
             <div className="thumbnails-wrapper add-hover">
               {
@@ -70,17 +71,17 @@ const PlantLog = ({ shedId, plantRecordId, plantLog, plantRecord, setPlantRecord
 
       {
         isSignedIn && currentUser && (currentUser.shed === plantRecord.ownedShed._id) &&
-          <>
+          <div className="mt-10">
             <div className="icon icon-record">
               <i onClick={handleClickDelete} className="far fa-trash-alt add-hover icon-record-delete"></i>
             </div>
             <Link to={`/sheds/${shedId}/records/${plantRecordId}/logs/${plantLog._id}/edit`} className="icon icon-record">
               <i className="far fa-edit add-hover icon-record-edit"></i>
             </Link>
-          </>
+          </div>
       }
 
-      <p className="sub-headings"><strong>Date:</strong> {`${convertStringToDateString(plantLog.createdAt)} (Day ${dayCount(plantRecord.createdAt, plantLog.createdAt)})`}</p>
+      <p className="sub-headings mt-10"><strong>Date:</strong> {`${convertStringToDateString(plantLog.createdAt)} (Day ${dayCount(plantRecord.createdAt, plantLog.createdAt)})`}</p>
       <p className="sub-headings"><strong>My Notes:</strong></p>
       <p className="my-notes">{parse(plantLog.notes)}</p>
     </div>
