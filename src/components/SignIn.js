@@ -16,6 +16,7 @@ const SignIn = ({ tagType }) => {
   const responseGoogle = async (data) => {
     try {
       const { accessToken } = data;
+      console.log('data:', data);
 
       if (accessToken) {
         const res = await api.post('/api/auth/signin', {
@@ -113,12 +114,16 @@ const SignIn = ({ tagType }) => {
                 </p>
               )
             )}
+            // uxMode="redirect"
+            // responseType='code'
+            // redirectUri={`${window.location.href}auth/google/callback`}
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
-          />
+            />
       }
     </>
   );
 }
 
 export default SignIn;
+
