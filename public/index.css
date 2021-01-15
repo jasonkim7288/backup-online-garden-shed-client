@@ -314,7 +314,6 @@ aside {
   margin: 0;
 }
 
-
 @media (min-width: 576px) {
   .garden-sheds-container {
     grid-template-columns: 1fr 1fr;
