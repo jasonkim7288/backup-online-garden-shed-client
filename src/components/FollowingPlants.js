@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
 import PlantThumbnail from './PlantThumbnail';
@@ -7,8 +8,14 @@ const FollowingPlants = () => {
   const [connectedUser, setConnectedUser] = useState(null);
   const { state } = useGlobalState();
   const { isSignedIn } = state;
+  let history = useHistory();
 
   useEffect(() => {
+    if (!isSignedIn) {
+      history.push('/');
+      return;
+    }
+
     const getCurrentUser = async () => {
       try {
         const res = await api.get('/api/sheds/following-plant-records');
@@ -18,13 +25,14 @@ const FollowingPlants = () => {
       }
     };
     getCurrentUser();
-  }, []);
+  }, [history, isSignedIn]);
 
   return (
     <>
       {
         isSignedIn && connectedUser &&
           <>
+            <h1 className="title">Following Plants</h1>
             <div className="plant-thumbnails-container">
               {
                 connectedUser.followingPlantRecords.map(plantRecord =>
@@ -32,6 +40,15 @@ const FollowingPlants = () => {
                 )
               }
             </div>
+            {
+              connectedUser.followingPlantRecords.length <= 0 &&
+              <p className="no-data-message">
+                <strong>No following Plants</strong><br/>
+                You can click
+                <img className="no-data-message-icon" src={`${process.env.PUBLIC_URL}/iconPlantFollowLight.png`} alt="follow plant"/><br/>
+                to follow plants records you like
+              </p>
+            }
           </>
       }
     </>

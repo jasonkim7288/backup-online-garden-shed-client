@@ -104,35 +104,33 @@ const SelectedPlantFirstEntry = () => {
             <div className="selected-thumbnail">
               <img className="main-image" src={plantRecord.recordPhoto} alt=""/>
             </div>
-            <div style={{border: '1px solid lightgray'}}>
-
-            {
-              isSignedIn && currentUser && (currentUser.shed === plantRecord.ownedShed._id) &&
-                <>
-                  <div className="icon icon-record">
-                    <i onClick={handleClickDelete} className="far fa-trash-alt add-hover icon-record-delete"></i>
-                  </div>
-                  <div className="icon icon-record">
-                    <i onClick={handleClickEdit} className="far fa-edit add-hover icon-record-edit"></i>
-                  </div>
-                </>
-            }
-            <p className="sub-headings"><strong>Common name:</strong>&nbsp;{plantRecord.commonName}</p>
-            <p className="sub-headings"><strong>Scientific name:</strong>&nbsp;{plantRecord.scientificName}</p>
-            <p className="sub-headings"><strong>Family common name:</strong>&nbsp;{plantRecord.familyCommonName}</p>
-            <p className="sub-headings mt-10"><strong className="my-notes">My notes:</strong></p>
-            {
-              isEditMode ?
-                <>
-                  <textarea onChange={handleChangeDescription} rows="10" value={description} className="description-input"/>
-                  <button className ="btn btn-green button-confirm" onClick={handleClickEditButton} >Confirm</button>
-                  <button className="btn btn-red button-cancel" onClick={handleClickCancel}>Cancel</button>
-                </>
-              :
-                <p>{parse(plantRecord.description)}</p>
-            }
+            <div className="description-wrapper">
+              {
+                isSignedIn && currentUser && (currentUser.shed === plantRecord.ownedShed._id) &&
+                  <>
+                    <div className="icon icon-record">
+                      <i onClick={handleClickDelete} className="far fa-trash-alt add-hover icon-record-delete"></i>
+                    </div>
+                    <div className="icon icon-record">
+                      <i onClick={handleClickEdit} className="far fa-edit add-hover icon-record-edit"></i>
+                    </div>
+                  </>
+              }
+              <p className="sub-headings"><strong>Common name:</strong>&nbsp;{plantRecord.commonName}</p>
+              <p className="sub-headings"><strong>Scientific name:</strong>&nbsp;{plantRecord.scientificName}</p>
+              <p className="sub-headings"><strong>Family common name:</strong>&nbsp;{plantRecord.familyCommonName}</p>
+              <p className="sub-headings mt-10"><strong className="my-notes">My notes:</strong></p>
+              {
+                isEditMode ?
+                  <>
+                    <textarea onChange={handleChangeDescription} rows="10" value={description} className="description-input"/>
+                    <button className ="btn btn-green button-confirm" onClick={handleClickEditButton} >Confirm</button>
+                    <button className="btn btn-red button-cancel" onClick={handleClickCancel}>Cancel</button>
+                  </>
+                :
+                  <p>{parse(plantRecord.description)}</p>
+              }
             </div>
-
           </div>
         </div>
       }
