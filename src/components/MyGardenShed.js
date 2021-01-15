@@ -46,6 +46,14 @@ const MyGardenShed = () => {
                 )
               }
             </div>
+            {
+              shed.plantRecords.length <= 0 &&
+                <p className="no-data-message">
+                  <strong>No plants records</strong><br/>
+                  You can create record from menu
+                  <img className="no-data-message-icon" src={`${process.env.PUBLIC_URL}/menuCreateRecord.png`} alt="create record"/><br/>
+                </p>
+            }
           </>
       }
     </>

@@ -58,7 +58,7 @@ const Sidebar = () => {
                     data-link={menuItem.link}
                 >
                   <img src={menuItem.image} alt={menuItem.title} data-link={menuItem.link} className="sidebar-image"/>
-                  <p data-link={menuItem.link}>{menuItem.title}</p>
+                  <p className="text-center" data-link={menuItem.link}>{menuItem.title}</p>
                 </div>
               ))
             }

@@ -1,6 +1,7 @@
 :root {
   --container-margin: 100px;
-  --main-font-color: #303030;
+  /* --main-font-color: #303030; */
+  --main-font-color: black;
   --panal-bg-color: #9eb2bb;
 }
 
@@ -255,10 +256,6 @@ aside {
     border-radius: 5px;
     margin: 5px;
     padding: 5px;
-  }
-
-  .sidebar-item-wrapper > p {
-    text-align: center;
   }
 
   .sidebar-item-wrapper:hover {
@@ -675,7 +672,7 @@ form > button {
 }
 
 .summary-text-wrapper > p {
-  max-height: 50px;
+  max-height: 55px;
   overflow: hidden;
 }
 
@@ -684,6 +681,9 @@ form > button {
     text-align: left;
     display: flex;
     box-shadow: 2px 2px 5px grey;
+  }
+  .summary-text-wrapper {
+    margin-left: 10px
   }
 }
 
@@ -748,7 +748,7 @@ form > button {
 
 .not-found-message {
   text-align: center;
-  font-size: 1em;
+  font-size: 1.5em;
   margin-top: 0.3em;
 }
 
@@ -770,4 +770,28 @@ form > button {
 /* -------Selected Plant First Entry------- */
 .my-notes {
   color: darkgreen !important;
+}
+
+.description-wrapper {
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+
+/* -------Following Sheds------- */
+.no-data-message {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 2em;
+}
+
+.no-data-message-icon {
+  transform: translateY(7px);
+  width: 42px;
+  margin: 0 10px;
+}
+
+@media (min-width: 576px) {
+  .no-data-message {
+    font-size: 2em;
+  }
 }
