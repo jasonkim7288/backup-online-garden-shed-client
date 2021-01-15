@@ -104,6 +104,8 @@ const SelectedPlantFirstEntry = () => {
             <div className="selected-thumbnail">
               <img className="main-image" src={plantRecord.recordPhoto} alt=""/>
             </div>
+            <div style={{border: '1px solid lightgray'}}>
+
             {
               isSignedIn && currentUser && (currentUser.shed === plantRecord.ownedShed._id) &&
                 <>
@@ -118,7 +120,7 @@ const SelectedPlantFirstEntry = () => {
             <p className="sub-headings"><strong>Common name:</strong>&nbsp;{plantRecord.commonName}</p>
             <p className="sub-headings"><strong>Scientific name:</strong>&nbsp;{plantRecord.scientificName}</p>
             <p className="sub-headings"><strong>Family common name:</strong>&nbsp;{plantRecord.familyCommonName}</p>
-            <p className="sub-headings"><strong>Description:</strong></p>
+            <p className="sub-headings mt-10"><strong className="my-notes">My notes:</strong></p>
             {
               isEditMode ?
                 <>
@@ -129,6 +131,8 @@ const SelectedPlantFirstEntry = () => {
               :
                 <p>{parse(plantRecord.description)}</p>
             }
+            </div>
+
           </div>
         </div>
       }

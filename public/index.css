@@ -690,7 +690,18 @@ form > button {
 /* -------Mission Statement------- */
 #mission-statement{
   text-align: center;
+  margin: 20px 0;
 }
+
+#mission-statement-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
+
 
 /* -------Progress Animation------- */
 .saving-progress {
@@ -754,4 +765,9 @@ form > button {
   .not-found-message {
     font-size: 3em;
   }
+}
+
+/* -------Selected Plant First Entry------- */
+.my-notes {
+  color: darkgreen !important;
 }
