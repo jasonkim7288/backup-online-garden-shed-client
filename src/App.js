@@ -38,7 +38,7 @@ const App = () => {
           dispatch({
             type: SET_USER,
             payload: acquiredUser
-          })
+          });
           dispatch({ type: AUTH_SIGN_IN });
         } else {
           console.log('not logged in');
