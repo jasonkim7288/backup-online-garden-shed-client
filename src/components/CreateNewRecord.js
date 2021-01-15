@@ -5,6 +5,7 @@ import { getCurrentDate } from '../utilities/date';
 import { useGlobalState } from '../config/globalState';
 import ProgressFullScreen from './ProgressFullScreen';
 import { removeDomain } from '../utilities/strings';
+import { handleError } from '../utilities/errorHandler';
 
 const CreateNewRecord = () => {
   const [shed, setShed] = useState(null);
@@ -19,11 +20,6 @@ const CreateNewRecord = () => {
   let history = useHistory();
 
   useEffect(() => {
-    if (!isSignedIn) {
-      history.push('/');
-      return;
-    }
-
     const findShed = async () => {
       try {
         const res = await api.get(`/api/sheds/${shedId}`);
@@ -34,6 +30,7 @@ const CreateNewRecord = () => {
         }
       } catch (error) {
         console.log('error.response: ', error.response);
+        handleError(error, history);
       }
     }
     findShed();
@@ -70,7 +67,8 @@ const CreateNewRecord = () => {
       console.log(res.data);
       history.push(`/sheds/${shedId}/records/${res.data._id}`);
     } catch (error) {
-      console.log(error.response)
+      console.log(error.response);
+      handleError(error, history);
     } finally {
       setIsInProgress(false);
     }
@@ -100,16 +98,19 @@ const CreateNewRecord = () => {
                   {
                     plants &&
                     <>
-                      <h2>{`Searched results for "${searchText}"`} </h2>
+                      <h2 className="searched-results-title">{`Searched results for "${searchText}"`} </h2>
                       {
-                        plants.map((plant, index) => (
-                          <div className="api-wrapper add-hover" key={plant.id} onClick={(event) => handleClick(event, index)}>
-                            <img className="api-image" src={plant.image_url} alt=""/>
-                            <p><strong>Common name:</strong>&nbsp;{plant.common_name}</p>
-                            <p><strong>Scientific name:</strong>&nbsp;{plant.scientific_name}</p>
-                            <p><strong>Family common name:</strong>&nbsp;{plant.family_common_name}</p>
-                          </div>
-                        ))
+                        plants.map((plant, index) =>
+                          plant.common_name &&
+                            <div className="summary-wrapper add-hover" key={plant.id} onClick={(event) => handleClick(event, index)}>
+                              <img className="plant-thumbnail" src={plant.image_url} alt="plant"/>
+                              <div className="summary-text-wrapper">
+                                <p><strong>Common name:</strong>&nbsp;{plant.common_name}</p>
+                                <p><strong>Scientific name:</strong>&nbsp;{plant.scientific_name}</p>
+                                <p><strong>Family common name:</strong>&nbsp;{plant.family_common_name}</p>
+                              </div>
+                            </div>
+                        )
                       }
                     </>
                   }

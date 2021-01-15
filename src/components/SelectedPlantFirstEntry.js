@@ -5,7 +5,7 @@ import { useGlobalState } from '../config/globalState';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import parse from 'html-react-parser';
-import { removeDomain } from '../utilities/strings';
+import { getUniquePlantName, removeDomain } from '../utilities/strings';
 
 const SelectedPlantFirstEntry = () => {
   const { shedId, plantRecordId } = useParams();
@@ -19,11 +19,6 @@ const SelectedPlantFirstEntry = () => {
   console.log('SelectedPlantFirstEntry is called!!!!');
 
   useEffect(() => {
-    if (!isSignedIn) {
-      history.push('/');
-      return;
-    }
-
     const findPlantRecord = async () => {
       try{
         const res = await api.get(`/api/sheds/${shedId}/records/${plantRecordId}`);
@@ -97,7 +92,7 @@ const SelectedPlantFirstEntry = () => {
         <div>
           <p className="path">
             <Link to={`/sheds/${shedId}`}> {`${removeDomain(plantRecord.ownedShed.owner.email)}`}</Link>
-            <Link to={`/sheds/${shedId}/records/${plantRecordId}`}> {`> ${plantRecord.commonName}`}</Link>
+            <Link to={`/sheds/${shedId}/records/${plantRecordId}`}> {`> ${getUniquePlantName(plantRecord)}`}</Link>
             {` > About`}
           </p>
           <div>

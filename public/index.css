@@ -31,6 +31,10 @@
   font-weight: 100;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .input-content-wrapper {
   display: flex;
 }
@@ -207,22 +211,6 @@ section {
 
 .path {
   margin: 20px 0;
-}
-
-.api-wrapper {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  width: 100%;
-  box-shadow: 2px 2px 5px grey;
-}
-
-.api-image {
-  margin-bottom: 10px;
-  height: 100px;
-  object-fit: contain;
 }
 
 /* -------Sidebar------- */
@@ -461,10 +449,13 @@ aside {
 }
 
 .plant-thumbnail-follow {
+  font-size: 2em;
+}
+
+.plant-thumbnail-follow-absolute {
   position: absolute;
   margin-top: 10px;
   margin-left: 10px;
-  font-size: 2em;
 }
 
 .plant-thumbnail-follow > img {
@@ -566,10 +557,6 @@ aside {
   color: red;
 }
 
-.icon-record-follow {
-  color: rgb(170, 167, 167);
-}
-
 .my-notes {
   margin-top: 20px;
   margin-bottom: 50px;
@@ -580,6 +567,22 @@ aside {
 }
 
 /* -------Create New Record------- */
+.api-wrapper {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  box-shadow: 2px 2px 5px grey;
+  margin-top: 20px;
+}
+
+.api-image {
+  margin-bottom: 10px;
+  height: 100px;
+  object-fit: contain;
+}
+
 .description-input {
   width: 100%;
   margin: 20px 0px;
@@ -592,6 +595,11 @@ aside {
 
 .button-cancel {
   width: 100px;
+}
+
+.searched-results-title {
+  text-align: center;
+  margin: 20px 0;
 }
 
 /* -------Create New Log------- */
