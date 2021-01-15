@@ -283,7 +283,7 @@ aside {
   background-position: center;
   background-attachment: fixed;
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
   width: auto;
   height: auto;
@@ -292,6 +292,7 @@ aside {
   grid-template-rows: repeat(9, 1fr);
   height: calc(100vh - 50px);
 }
+
 .guest-button {
   border-radius: 5px;
   font-size: 15px;
