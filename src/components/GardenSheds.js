@@ -21,7 +21,7 @@ const GardenSheds = () => {
   return (
     <>
       <h1 className="title">All Garden Sheds</h1>
-      <div className="garden-sheds-container">
+      <div className="thumbnails-container">
         {
           sheds && sheds.length > 0 &&
           sheds.map(shed => shed.plantRecords.length > 0 && <GardenShedThumbnail shed={shed} key={shed._id}/>)

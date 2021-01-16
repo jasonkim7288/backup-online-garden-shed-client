@@ -30,7 +30,7 @@ const FollowingPlants = () => {
         isSignedIn && connectedUser &&
           <>
             <h1 className="title">Following Plants</h1>
-            <div className="plant-thumbnails-container">
+            <div className="thumbnails-container">
               {
                 connectedUser.followingPlantRecords.map(plantRecord =>
                   <PlantThumbnail key={plantRecord._id} plantRecord={plantRecord} withOwner={true}/>

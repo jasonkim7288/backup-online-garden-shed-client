@@ -30,7 +30,7 @@ const FollowingSheds = () => {
         isSignedIn && connectedUser &&
           <>
             <h1 className="title">Following Sheds</h1>
-            <div className="garden-sheds-container">
+            <div className="thumbnails-container">
               {
                 connectedUser.followingSheds.length > 0 &&
                   connectedUser.followingSheds.map(shed => shed.plantRecords.length > 0 && <GardenShedThumbnail shed={shed} key={shed._id}/>)
