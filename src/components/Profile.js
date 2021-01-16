@@ -3,7 +3,7 @@ import { useGlobalState } from '../config/globalState';
 import { removeDomain } from '../utilities/strings';
 
 const Profile = () => {
-  const { state, dispatch } = useGlobalState();
+  const { state } = useGlobalState();
   const { isSignedIn, currentUser } = state;
 
   return (
