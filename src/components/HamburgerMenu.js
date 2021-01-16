@@ -49,10 +49,10 @@ const HamburgerMenu = () => {
           {
             currentUser ?
               <>
-                <div className="mobile-menu-profile">
-                  <img src={currentUser.photo} alt="current user" className="profile-image"/>
-                  <h4>{currentUser.displayName}</h4>
-                </div>
+                <p onClick={handleClickRedirect} data-path={`/user/profile`} className="mobile-menu-profile">
+                  <img src={currentUser.photo} alt="current user" className="profile-image profile-image-position"/>
+                  {currentUser.displayName}
+                </p>
 
                 <p onClick={handleClickRedirect} data-path={`/user/my-shed`}>My Garden Shed</p>
                 <p onClick={handleClickRedirect} data-path={`/sheds/${currentUser.shed}/records/new`}>Create a new record</p>

@@ -21,6 +21,7 @@ import MissionStatement from './components/MissionStatement';
 import HamburgerMenu from './components/HamburgerMenu';
 import PageError from './components/PageError';
 import GoogleCallback from './components/GoogleCallback';
+import Profile from './components/Profile';
 
 
 
@@ -63,6 +64,7 @@ const App = () => {
               <Route path="/user/my-shed" component={MyGardenShed} />
               <Route path="/user/following-sheds" component={FollowingSheds} />
               <Route path="/user/following-plants" component={FollowingPlants} />
+              <Route path="/user/profile" component={Profile} />
               <Route path="/mission-statement" component={MissionStatement} />
               <Route path="/sheds/:shedId/records/new" component={CreateNewRecord} />
               <Route path="/sheds/:shedId/records/:plantRecordId/logs/new" render={() => <FormLog action="new"/>} />
