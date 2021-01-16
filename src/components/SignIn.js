@@ -95,6 +95,7 @@ const SignIn = ({ tagType }) => {
                       className="add-hover"
                   >
                     Sign out
+                    <i className="fas fa-sign-out-alt ms-10"></i>
                   </p>
               )}
               onLogoutSuccess={responseGoogleLogout}
@@ -127,9 +128,9 @@ const SignIn = ({ tagType }) => {
                       setIsInProgress(true);
                       renderProps.onClick(event);
                     }}
-                    className="add-hover"
+                    className="profile-wrapper add-hover"
                 >
-                  <i className="fab fa-google"></i>Sign in with Google
+                  <i className="fab fa-google nav-icon-google"></i>Sign in with Google
                 </p>
               )
             )}
