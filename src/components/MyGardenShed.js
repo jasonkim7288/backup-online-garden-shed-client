@@ -39,7 +39,7 @@ const MyGardenShed = () => {
           <>
             <p className="path">{removeDomain(shed.owner.email)}</p>
             <h1 className="title">My Garden Shed</h1>
-            <div className="plant-thumbnails-container">
+            <div className="thumbnails-container">
               {
                 shed.plantRecords.map(plantRecord =>
                   <PlantThumbnail key={plantRecord._id} shedId={currentUser.shed} plantRecord={plantRecord} />

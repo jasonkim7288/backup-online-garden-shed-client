@@ -32,7 +32,8 @@ const PlantRecords = () => {
         shed &&
           <>
             <p className="path">{removeDomain(shed.owner.email)}</p>
-            <div className="garden-sheds-container">
+            <h1 className="title">{`${removeDomain(shed.owner.email)}'s Plants`}</h1>
+            <div className="thumbnails-container">
               {
                 shed.plantRecords.map(plantRecord =>
                   <PlantThumbnail key={plantRecord._id} plantRecord={plantRecord} withOwner={false}/>
