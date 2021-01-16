@@ -68,13 +68,21 @@ const SignIn = ({ tagType }) => {
     }
   };
 
+  const handleClickProfile = () => {
+    history.push('/user/profile');
+  }
+
   return (
     <>
       { isInProgress && <ProgressFullScreen />}
       {
         (isSignedIn && currentUser) ?
           <div className="profile-wrapper">
-            <img src={currentUser.photo} alt="current user" className="profile-image"/>
+            <img className="profile-image add-hover"
+              src={currentUser.photo ? currentUser.photo : `${process.env.PUBLIC_URL}/favicon.ico`}
+              onClick={handleClickProfile}
+              alt="profile"
+            />
             <GoogleLogout
               clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
               render={renderProps => (
