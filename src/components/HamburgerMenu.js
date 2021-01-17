@@ -68,7 +68,7 @@ const HamburgerMenu = () => {
               <>
                 <SignIn tagType="paragraphWithIcon"/>
                 <hr />
-                <p>Mission Statement</p>
+                <p onClick={handleClickRedirect} data-path={`/mission-statement`}>Mission Statement</p>
               </>
           }
         </div>

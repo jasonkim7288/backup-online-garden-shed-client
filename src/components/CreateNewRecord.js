@@ -5,7 +5,7 @@ import { getCurrentDate } from '../utilities/date';
 import { useGlobalState } from '../config/globalState';
 import ProgressFullScreen from './ProgressFullScreen';
 import { removeDomain } from '../utilities/strings';
-import { handleError } from '../utilities/errorHandler';
+import { handleError } from '../config/errorHandler';
 
 // This compoment has two pages. The first one is search plant page.
 // After selecting one of the search result, the second new record page will be displayed
