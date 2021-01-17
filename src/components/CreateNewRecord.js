@@ -7,6 +7,8 @@ import ProgressFullScreen from './ProgressFullScreen';
 import { removeDomain } from '../utilities/strings';
 import { handleError } from '../utilities/errorHandler';
 
+// This compoment has two pages. The first one is search plant page.
+// After selecting one of the search result, the second new record page will be displayed
 const CreateNewRecord = () => {
   const [shed, setShed] = useState(null);
   const [searchText, setSearchText] = useState('');
@@ -20,6 +22,7 @@ const CreateNewRecord = () => {
   let history = useHistory();
 
   useEffect(() => {
+    // get the shed info and put it into shed
     const findShed = async () => {
       try {
         const res = await api.get(`/api/sheds/${shedId}`);

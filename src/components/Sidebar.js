@@ -37,10 +37,11 @@ const Sidebar = () => {
   ];
 
   const handleClick = (event) => {
-    if (!isSignedIn) {
+    const { link } = event.target.dataset;
+    if (link !== '/mission-statement' && !isSignedIn) {
       history.push('/');
     } else {
-      history.push(event.target.dataset.link);
+      history.push(link);
     }
   };
 
