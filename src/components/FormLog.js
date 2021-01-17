@@ -5,7 +5,7 @@ import { convertStringToDateString, getCurrentDate } from '../utilities/date';
 import { uploadFile } from 'react-s3';
 import ProgressFullScreen from './ProgressFullScreen';
 import { removeDomain } from '../utilities/strings';
-import { handleError } from '../utilities/errorHandler';
+import { handleError } from '../config/errorHandler';
 
 
 const config = {

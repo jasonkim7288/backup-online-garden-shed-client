@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import api from '../config/api';
 import { useGlobalState } from '../config/globalState';
-import { handleError } from '../utilities/errorHandler';
+import { handleError } from '../config/errorHandler';
 import GardenShedThumbnail from './GardenShedThumbnail';
 
 const FollowingSheds = () => {

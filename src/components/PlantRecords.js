@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import api from '../config/api';
-import { handleError } from '../utilities/errorHandler';
+import { handleError } from '../config/errorHandler';
 import { removeDomain } from '../utilities/strings';
 import PlantThumbnail from './PlantThumbnail';
 
