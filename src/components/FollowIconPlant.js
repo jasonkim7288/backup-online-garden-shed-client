@@ -38,14 +38,14 @@ const FollowIconPlant = ({ plantRecord, position }) => {
                     <img className="add-hover"
                       onClick={handleClickFollow}
                       data-value={plantRecord._id}
-                      src={`${process.env.PUBLIC_URL}/iconPlantFollowDark.PNG`}
+                      src={`${process.env.PUBLIC_URL}/iconPlantFollowDark.png`}
                       alt="follow plant"
                     />
                   :
                     <img className="add-hover"
                       onClick={handleClickFollow}
                       data-value={plantRecord._id}
-                      src={`${process.env.PUBLIC_URL}/iconPlantFollowLight.PNG`}
+                      src={`${process.env.PUBLIC_URL}/iconPlantFollowLight.png`}
                       alt="follow plant"
                     />
                 )

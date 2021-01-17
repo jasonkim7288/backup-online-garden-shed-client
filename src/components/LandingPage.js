@@ -14,7 +14,6 @@ const LandingPage = () => {
   };
 
   useEffect(() => {
-    console.log("Hi");
     if (isSignedIn) {
       history.push('/sheds');
     }
