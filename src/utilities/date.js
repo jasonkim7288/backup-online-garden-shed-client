@@ -1,8 +1,12 @@
 export const convertDateToString = paramDate => {
-  const date = paramDate.getDate();
-  const month = paramDate.getMonth() + 1;
-  const year = paramDate.getFullYear();
-  return `${date < 10 ? `0${date}` : `${date}`}/${month < 10 ? `0${month}` : `${month}`}/${year}`
+  if (paramDate) {
+    const date = paramDate.getDate();
+    const month = paramDate.getMonth() + 1;
+    const year = paramDate.getFullYear();
+    return `${date < 10 ? `0${date}` : `${date}`}/${month < 10 ? `0${month}` : `${month}`}/${year}`;
+  } else {
+    return '';
+  }
 }
 
 export const getCurrentDate = () => {
@@ -11,7 +15,9 @@ export const getCurrentDate = () => {
 };
 
 export const dayCount = (paramStartingDate, paramTargetDate) => {
+  // console.log('paramStartingDate: ', paramStartingDate)
   paramStartingDate = new Date(paramStartingDate);
+  // console.log('paramStartingDate after creating new: ', paramStartingDate)
   paramTargetDate = new Date(paramTargetDate);
   const startingDate = paramStartingDate.getDate();
   const startingMonth = paramStartingDate.getMonth();
@@ -22,7 +28,8 @@ export const dayCount = (paramStartingDate, paramTargetDate) => {
   const newStartingDate = new Date(startingYear, startingMonth, startingDate);
   const newTargetDate = new Date(targetYear, targetMonth, targetDate);
 
-  return (newTargetDate - newStartingDate) / (1000 * 3600 * 24) + 1;
+  const resultDay = (newTargetDate - newStartingDate) / (1000 * 3600 * 24) + 1;
+  return resultDay > 0 ? resultDay : 1;
 };
 
 export const convertStringToDateString = str => {
