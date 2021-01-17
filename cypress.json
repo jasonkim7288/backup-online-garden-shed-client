@@ -2,6 +2,6 @@
   "baseUrl": "http://localhost:3000",
   "env": {
     "serverUrl": "https://garden-shed.herokuapp.com",
-    "accessToken": "ya29.a0AfH6SMASbk1t_OBiLAvAbTYzIx7HYxkT7beDH4uH9GUxICcSQKdgx06nVaEiGGopRmvyjBc4C0j5ifqwLC_EcUUIRisU8_BNnw35t-wyB3ARG543Bn73FJ-jZh2IZMlZ9HJxf3xZp7UZiXxQ08ZuSTyun93oARzCNLsJ0lNFfPo"
+    "accessToken": "ya29.a0AfH6SMApf1zqZJ3WI1l9GHysTG-Ww9MP6n4Cql2vNfn0_SYlBwN8sMf19NTrxvs_taZibpRoA0wxaTqSE7WpEXtmzFRXP4OihH07EYFe9bCHJ-t9IExBAzwrf7zR_aM5OLIM_VJvulTpxpU37hDpr1_KKQwpLMHR8C1LQEpfrDo"
   }
 }

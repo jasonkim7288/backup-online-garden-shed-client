@@ -19,8 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "cypress": "cypress open",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest tests/*",
+    "test": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
