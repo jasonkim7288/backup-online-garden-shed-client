@@ -55,7 +55,7 @@ const HamburgerMenu = () => {
                 </p>
 
                 <p onClick={handleClickRedirect} data-path={`/user/my-shed`}>My Garden Shed</p>
-                <p onClick={handleClickRedirect} data-path={`/sheds/${currentUser.shed}/records/new`}>Create a new record</p>
+                <p onClick={handleClickRedirect} data-path={`/sheds/${currentUser.shed}/records/new`} data-cy="mobile-menu-create-record">Create a new record</p>
                 <hr />
                 <p onClick={handleClickRedirect} data-path={`/user/following-sheds`}>Following - Garden Sheds</p>
                 <p onClick={handleClickRedirect} data-path={`/user/following-plants`}>Following - Plants</p>

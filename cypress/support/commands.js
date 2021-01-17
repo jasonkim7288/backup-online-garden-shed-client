@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("signin", () => {
+  cy.visit(`?access_token=${Cypress.env('accessToken')}`);
+  cy.get('.title').contains('All Garden Sheds');
+  cy.wait(2000)
+  cy.get('[data-cy=mobile-menu]').click();
+  cy.get('[data-cy=mobile-menu-create-record]').click();
+});
+
+Cypress.Commands.add("searchCorrectPlant", () => {
+  cy.get('.input-content')
+    .type('rose');
+  cy.get('[data-cy=submit-plant-search]').click();
+});

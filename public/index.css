@@ -572,6 +572,17 @@ aside {
   margin: 20px 0;
 }
 
+.no-results {
+  font-size:2em;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.err-msg-search, .err-msg-description {
+  margin: 10px 0;
+  color: red;
+}
+
 /* -------Create New Log------- */
 #select-main-image {
   margin: 20px 0px;
@@ -631,7 +642,6 @@ form > button {
   display: block;
   margin-top: 20px;
   margin-bottom: 40px;
-  width: 150px;
 }
 
 /* -------Plant Record Summary------- */
