@@ -60,6 +60,7 @@ const HamburgerMenu = () => {
                 <p onClick={handleClickRedirect} data-path={`/user/following-sheds`}>Following - Garden Sheds</p>
                 <p onClick={handleClickRedirect} data-path={`/user/following-plants`}>Following - Plants</p>
                 <hr />
+                <p onClick={handleClickRedirect} data-path={`/user-guide`}>User Guide</p>
                 <p onClick={handleClickRedirect} data-path={`/mission-statement`}>Mission Statement</p>
                 <hr />
                 <p onClick={handleClickSignOut}>Sign out</p>

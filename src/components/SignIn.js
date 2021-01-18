@@ -81,7 +81,7 @@ const SignIn = ({ tagType }) => {
       responseGoogle({ accessToken: access_token });
     }
   }, [responseGoogle, location.search]);
-  
+
   const handleClickProfile = () => {
     history.push('/user/profile');
   }
@@ -123,11 +123,6 @@ const SignIn = ({ tagType }) => {
               onLogoutSuccess={responseGoogleLogout}
               onFailure={responseGoogleLogout}
             />
-
-            {
-
-
-            }
           </div>
         :
           <GoogleLogin
