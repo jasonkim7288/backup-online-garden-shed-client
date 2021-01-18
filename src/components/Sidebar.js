@@ -30,6 +30,11 @@ const Sidebar = () => {
       link: '/user/following-plants'
     },
     {
+      title: 'User Guide',
+      image: `${process.env.PUBLIC_URL}/menuFollowingPlants.png`,
+      link: '/user-guide'
+    },
+    {
       title: 'Mission Statement',
       image: `${process.env.PUBLIC_URL}/menuMissionStatement.png`,
       link: '/mission-statement'
